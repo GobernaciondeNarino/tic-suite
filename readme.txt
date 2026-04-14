@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,14 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.1.0 =
+* Migrado a @d3plus/core v3.1.4 (antes apuntaba a un CDN legacy inexistente).
+* Ahora los gráficos renderizan correctamente tanto en el admin como en el shortcode.
+* Cargador defensivo `waitForD3plus()` con timeout; mensaje de error útil si el script no llega.
+* Responsive: `detectResize(true)` + `ResizeObserver` del contenedor; SVG reescala en ventana y en cambios de layout.
+* `stacked_bar` usa ahora `BarChart` con `.stacked(true)` (no hay clase `StackedBarChart` en v3).
+* CSS: contenedores con altura explícita para que d3plus pueda medir el parent.
 
 = 1.0.0 =
 * Versión inicial.

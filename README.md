@@ -1,7 +1,8 @@
 # TIC Suite · Gráficos
 
-Plugin profesional para **TIC Suite** (Gobernación de Nariño) que permite generar
-**15 tipos de gráficos interactivos con d3plus.js** e insertarlos en cualquier
+**v1.1.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+que permite generar **15 tipos de gráficos interactivos con
+[@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
 
 ## Características
@@ -106,6 +107,19 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 ```
 
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
+
+## Changelog
+
+### 1.1.0
+- Migrado a `@d3plus/core` v3.1.4 desde el CDN oficial (`cdn.jsdelivr.net/npm/@d3plus/core@3.1.4/umd/d3plus-core.js`).
+- Renderer reescrito a la API v3 (chainable `.select()`, `.data()`, `.groupBy()`, etc.) con `.detectResize(true)` para responsive automático.
+- `stacked_bar` ahora usa `BarChart` + `.stacked(true)` (en v3 no existe `StackedBarChart`).
+- Cargador `waitForD3plus()` con timeout de 8 s y mensaje de error claro.
+- CSS: `.tsg-chart` y `.tsg-preview__canvas` con altura explícita y SVG responsive al 100 %.
+- Shortcode: añade `height` además de `min-height` para que el parent sea medible.
+
+### 1.0.0
+- Versión inicial.
 
 ## Licencia
 

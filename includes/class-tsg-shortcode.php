@@ -107,7 +107,7 @@ class TSG_Shortcode {
 			<div
 				id="<?php echo esc_attr( $container_id ); ?>"
 				class="tsg-chart"
-				style="min-height: <?php echo esc_attr( (string) $height ); ?>px;"
+				style="height: <?php echo esc_attr( (string) $height ); ?>px; min-height: <?php echo esc_attr( (string) $height ); ?>px;"
 				data-tsg-chart="1"
 				data-view="<?php echo esc_attr( $view_id ); ?>"
 				data-type="<?php echo esc_attr( $chart_type ); ?>"

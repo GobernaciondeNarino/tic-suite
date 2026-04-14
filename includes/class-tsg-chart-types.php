@@ -57,7 +57,7 @@ class TSG_Chart_Types {
 			'stacked_bar' => [
 				'label'        => __( 'Barras apiladas', 'tic-suite-graficos' ),
 				'icon'         => 'chart-bar',
-				'd3plus_class' => 'StackedBarChart',
+				'd3plus_class' => 'BarChart',
 				'categories'   => [ 'categorical' ],
 				'requires'     => [ 'dimensions' => 2, 'measures' => 1 ],
 				'description'  => __( 'Descomposición de categorías en sub-grupos.', 'tic-suite-graficos' ),

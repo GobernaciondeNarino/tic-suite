@@ -1,25 +1,55 @@
 /* global d3plus */
 /**
- * TIC Suite · Gráficos — d3plus renderer.
+ * TIC Suite · Gráficos — d3plus v3 renderer.
  *
- * Exposes window.TSGRenderer.render( containerId, payload ) where payload is
- * the REST response shape:
- *   { chart: { key, class, label }, view, data, mapping }
+ * Uses @d3plus/core v3 API: chainable config methods + .render().
+ * Responsive via .detectResize(true) (ResizeObserver on parent +
+ * window resize).
  *
- * Shared between the admin preview and the public shortcode render.
+ * Exposes window.TSGRenderer.render( containerId, payload ).
  */
 ( function () {
 	'use strict';
 
+	const PALETTE = [
+		'#2563eb', '#0ea5e9', '#14b8a6', '#22c55e',
+		'#eab308', '#f97316', '#ef4444', '#a855f7',
+		'#ec4899', '#6366f1',
+	];
+
 	const Renderer = {
-		render( containerId, payload ) {
+		/**
+		 * Wait until window.d3plus is ready (script may still be loading).
+		 */
+		waitForD3plus( timeoutMs = 8000 ) {
+			return new Promise( ( resolve, reject ) => {
+				if ( window.d3plus ) {
+					return resolve();
+				}
+				const start = Date.now();
+				const tick = () => {
+					if ( window.d3plus ) {
+						return resolve();
+					}
+					if ( Date.now() - start > timeoutMs ) {
+						return reject( new Error( 'd3plus timeout' ) );
+					}
+					setTimeout( tick, 80 );
+				};
+				tick();
+			} );
+		},
+
+		async render( containerId, payload ) {
 			const el = document.getElementById( containerId );
 			if ( ! el || ! payload ) {
 				return;
 			}
 			el.innerHTML = '';
 
-			if ( ! window.d3plus ) {
+			try {
+				await this.waitForD3plus();
+			} catch ( e ) {
 				el.innerHTML = '<p class="tsg-empty">d3plus no disponible.</p>';
 				return;
 			}
@@ -31,130 +61,204 @@
 			}
 
 			try {
-				const viz = new Ctor().select( '#' + containerId );
+				const viz = new Ctor();
+
+				// Base config — applies to every chart type.
+				viz
+					.select( '#' + containerId )
+					.detectResize( true )
+					.data( payload.data || [] )
+					.legend( true );
+
 				this.configure( viz, payload );
+
 				viz.render();
+
+				// Belt-and-suspenders: force a resize tick after the container
+				// is laid out so width/height are picked up correctly.
+				window.requestAnimationFrame( () => {
+					try {
+						if ( typeof viz.resize === 'function' ) {
+							viz.resize();
+						}
+					} catch ( _e ) { /* noop */ }
+				} );
 			} catch ( err ) {
 				console.error( '[TSG] render error', err );
 				el.innerHTML = '<p class="tsg-empty">No fue posible renderizar el gráfico.</p>';
 			}
 		},
 
+		/**
+		 * Apply chart-specific configuration.
+		 */
 		configure( viz, payload ) {
 			const { mapping, data, view, chart } = payload;
-
-			if ( data && data.length ) {
-				viz.data( data );
-			}
+			const dims     = view.dimensions || [];
+			const measures = view.measures   || [];
 
 			switch ( chart.key ) {
 				case 'bar':
+					viz
+						.groupBy( dims[ 0 ] )
+						.x( dims[ 0 ] )
+						.y( measures[ 0 ] );
+					break;
+
 				case 'stacked_bar':
 					viz
-						.groupBy( mapping.groupBy )
-						.x( mapping.x )
-						.y( mapping.y );
-					if ( chart.key === 'stacked_bar' ) {
-						viz.stacked && viz.stacked( true );
-					}
+						.groupBy( dims[ 1 ] || dims[ 0 ] )
+						.x( dims[ 0 ] )
+						.y( measures[ 0 ] )
+						.stacked( true );
 					break;
 
 				case 'line':
+					viz
+						.groupBy( dims[ 1 ] || dims[ 0 ] )
+						.x( dims[ 0 ] )
+						.y( measures[ 0 ] );
+					break;
+
 				case 'area':
+					viz
+						.groupBy( dims[ 1 ] || dims[ 0 ] )
+						.x( dims[ 0 ] )
+						.y( measures[ 0 ] );
+					break;
+
 				case 'stacked_area':
 					viz
-						.groupBy( mapping.groupBy[ 1 ] || mapping.groupBy[ 0 ] )
-						.x( mapping.x )
-						.y( mapping.y );
-					if ( chart.key === 'stacked_area' ) {
-						viz.stacked && viz.stacked( true );
-					}
+						.groupBy( dims[ 1 ] || dims[ 0 ] )
+						.x( dims[ 0 ] )
+						.y( measures[ 0 ] );
 					break;
 
 				case 'pie':
 				case 'donut':
 					viz
-						.groupBy( mapping.groupBy[ 0 ] )
-						.value( mapping.value );
+						.groupBy( dims[ 0 ] )
+						.value( measures[ 0 ] );
 					break;
 
 				case 'treemap':
 					viz
-						.groupBy( mapping.groupBy )
-						.sum( mapping.value );
+						.groupBy( dims.length ? dims : [ dims[ 0 ] ] )
+						.sum( measures[ 0 ] );
 					break;
 
 				case 'box_whisker':
 					viz
-						.groupBy( mapping.groupBy[ 0 ] )
-						.x( mapping.groupBy[ 0 ] )
-						.y( mapping.y );
+						.groupBy( dims[ 0 ] )
+						.x( dims[ 0 ] )
+						.y( measures[ 0 ] );
 					break;
 
 				case 'priestley':
-					viz
-						.groupBy( mapping.groupBy[ 0 ] )
-						.start && viz.start( mapping.start );
-					viz.end && viz.end( mapping.end );
-					break;
-
-				case 'network':
-				case 'rings':
-					viz
-						.nodes( ( mapping.nodes || [] ).map( ( n ) => ( { id: n.id || n } ) ) )
-						.links( mapping.links || [] )
-						.size( mapping.size );
-					if ( chart.key === 'rings' && viz.center && data[ 0 ] ) {
-						viz.center( data[ 0 ].id );
+					viz.groupBy( dims[ 0 ] );
+					if ( typeof viz.start === 'function' && dims[ 0 ] ) {
+						viz.start( dims[ 0 ] );
+					}
+					if ( typeof viz.end === 'function' && dims[ 1 ] ) {
+						viz.end( dims[ 1 ] );
 					}
 					break;
 
-				case 'sankey':
-					viz
-						.nodes( data.map( ( d ) => ( { id: d[ view.dimensions[ 0 ] ] } ) ) )
-						.links( mapping.links || [] );
+				case 'network': {
+					const nodes = this.buildNodes( data, dims[ 0 ] );
+					this.safeCall( viz, 'nodes', nodes );
+					this.safeCall( viz, 'links', mapping.links || view.edges || [] );
+					viz.groupBy( dims[ 0 ] );
+					if ( measures[ 0 ] ) {
+						viz.size( measures[ 0 ] );
+					}
 					break;
+				}
+
+				case 'rings': {
+					const nodes = this.buildNodes( data, dims[ 0 ] );
+					this.safeCall( viz, 'nodes', nodes );
+					this.safeCall( viz, 'links', mapping.links || view.edges || [] );
+					if ( nodes.length && typeof viz.center === 'function' ) {
+						viz.center( nodes[ 0 ].id );
+					}
+					break;
+				}
+
+				case 'sankey': {
+					const nodes = this.buildNodes( data, dims[ 0 ] );
+					this.safeCall( viz, 'nodes', nodes );
+					this.safeCall( viz, 'links', mapping.links || view.edges || [] );
+					break;
+				}
 
 				case 'tree':
-					viz
-						.groupBy( mapping.groupBy )
-						.sum( mapping.value || ( () => 1 ) );
+					viz.groupBy( dims );
+					if ( measures[ 0 ] ) {
+						viz.sum( measures[ 0 ] );
+					}
 					break;
 
 				case 'geomap':
 					viz
-						.groupBy( mapping.groupBy[ 0 ] )
-						.colorScale( mapping.value )
-						.topojson( mapping.topojson )
-						.topojsonId( mapping.topojsonId )
-						.topojsonKey( mapping.topojsonKey );
+						.groupBy( dims[ 0 ] )
+						.colorScale( measures[ 0 ] );
+					if ( typeof viz.topojson === 'function' && mapping.topojson ) {
+						viz.topojson( mapping.topojson );
+					}
+					if ( typeof viz.topojsonId === 'function' && mapping.topojsonId ) {
+						viz.topojsonId( mapping.topojsonId );
+					}
+					if ( typeof viz.topojsonKey === 'function' && mapping.topojsonKey ) {
+						viz.topojsonKey( mapping.topojsonKey );
+					}
 					break;
 
 				default:
-					viz.groupBy( mapping.groupBy ).x( mapping.x ).y( mapping.y );
+					if ( dims[ 0 ] ) {
+						viz.groupBy( dims[ 0 ] );
+					}
+					if ( measures[ 0 ] ) {
+						viz.y( measures[ 0 ] );
+					}
 			}
 
-			// Minimalist theme defaults — consistent across admin + public.
-			viz
-				.legend( true )
-				.tooltipConfig( {
-					background: '#0f172a',
-					padding:    '12px',
-					fontColor:  '#f8fafc',
-					fontSize:   '13px',
-				} )
-				.shapeConfig( {
-					fill: ( d, i ) => Renderer.palette( i ),
+			// Consistent minimalist color palette.
+			if ( typeof viz.shapeConfig === 'function' ) {
+				viz.shapeConfig( {
+					fill: ( _d, i ) => PALETTE[ i % PALETTE.length ],
 				} );
+			}
 		},
 
-		palette( i ) {
-			const colors = [
-				'#2563eb', '#0ea5e9', '#14b8a6', '#22c55e',
-				'#eab308', '#f97316', '#ef4444', '#a855f7',
-				'#ec4899', '#6366f1',
-			];
-			return colors[ i % colors.length ];
+		/**
+		 * Build a unique nodes array from row data keyed on `field`.
+		 */
+		buildNodes( data, field ) {
+			const seen = new Set();
+			const out  = [];
+			( data || [] ).forEach( ( row ) => {
+				const id = row.id || row[ field ];
+				if ( ! id || seen.has( id ) ) {
+					return;
+				}
+				seen.add( id );
+				out.push( Object.assign( { id }, row ) );
+			} );
+			return out;
+		},
+
+		/**
+		 * Call viz.method(value) only if the method exists on the instance.
+		 */
+		safeCall( viz, method, value ) {
+			if ( typeof viz[ method ] === 'function' ) {
+				try {
+					viz[ method ]( value );
+				} catch ( err ) {
+					console.warn( `[TSG] viz.${ method }() failed`, err );
+				}
+			}
 		},
 	};
 

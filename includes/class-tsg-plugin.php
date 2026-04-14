@@ -152,9 +152,9 @@ final class TSG_Plugin {
 	public function enqueue_public_assets(): void {
 		wp_register_script(
 			'd3plus',
-			'https://cdn.jsdelivr.net/npm/d3plus@2.2.1/build/d3plus.full.min.js',
+			TSG_D3PLUS_URL,
 			[],
-			'2.2.1',
+			TSG_D3PLUS_VERSION,
 			true
 		);
 
@@ -208,9 +208,9 @@ final class TSG_Plugin {
 
 		wp_enqueue_script(
 			'd3plus',
-			'https://cdn.jsdelivr.net/npm/d3plus@2.2.1/build/d3plus.full.min.js',
+			TSG_D3PLUS_URL,
 			[],
-			'2.2.1',
+			TSG_D3PLUS_VERSION,
 			true
 		);
 
