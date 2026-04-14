@@ -131,7 +131,33 @@ class TSG_Data_Provider {
 		}
 
 		$view = $this->security->decode_json( $raw );
+
+		// Schema guard: ignore JSON files that don't match the TSG view shape
+		// (e.g. arbitrary MinTIC / GeoJSON documents that happen to live here).
+		if ( ! $this->looks_like_view( $view ) ) {
+			return [];
+		}
+
 		return $this->normalize_view( $view );
+	}
+
+	/**
+	 * Does this payload look like a TSG view?
+	 *
+	 * @param array $raw Decoded JSON.
+	 */
+	private function looks_like_view( array $raw ): bool {
+		if ( ! isset( $raw['id'], $raw['name'], $raw['data'] ) ) {
+			return false;
+		}
+		if ( ! is_array( $raw['data'] ) ) {
+			return false;
+		}
+		// At least one of dimensions/measures must be declared.
+		if ( empty( $raw['dimensions'] ) && empty( $raw['measures'] ) ) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
