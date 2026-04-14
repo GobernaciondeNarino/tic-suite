@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,11 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.1.1 =
+* Cambio crítico de CDN: `@d3plus/core@3.1.4/umd/d3plus-core.js` (que requería 30+ peer deps en window y fallaba en silencio) → `@d3plus/core@3.1.4/umd/d3plus-core.full.js` (bundle standalone de 2 MB que embebe todas las dependencias).
+* Ahora sí se expone `window.d3plus.BarChart`, `.LinePlot`, `.Pie`, `.Donut`, `.Treemap`, `.Geomap`, `.Network`, `.Tree`, `.Sankey`, `.Rings`, `.BoxWhisker`, `.Priestley`, `.StackedArea`, `.AreaPlot` — las 15 clases que usa el plugin.
+* Verificado contra el UMD descargado y contra el campo `browser` del package.json del paquete.
 
 = 1.1.0 =
 * Migrado a @d3plus/core v3.1.4 (antes apuntaba a un CDN legacy inexistente).

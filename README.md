@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.1.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.1.1** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,10 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.1.1
+- **Fix crítico de CDN**: pasa de `/umd/d3plus-core.js` a `/umd/d3plus-core.full.js`. El primero requería 30+ peer deps (d3-array, d3-scale, d3-sankey, topojson-client, @floating-ui/dom, …) presentes en `window`, lo que hacía que `window.d3plus` se cargara como `{}` vacío y el renderer cayera en el fallback *"Tipo de gráfico no soportado"*.
+- El bundle `full` (2 MB) embebe todas las dependencias y expone las 15 clases que usa el plugin: `BarChart`, `LinePlot`, `AreaPlot`, `StackedArea`, `Pie`, `Donut`, `Treemap`, `Geomap`, `Network`, `Tree`, `Sankey`, `Rings`, `BoxWhisker`, `Priestley`.
 
 ### 1.1.0
 - Migrado a `@d3plus/core` v3.1.4 desde el CDN oficial (`cdn.jsdelivr.net/npm/@d3plus/core@3.1.4/umd/d3plus-core.js`).

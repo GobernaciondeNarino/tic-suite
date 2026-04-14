@@ -3,7 +3,7 @@
  * Plugin Name:       TIC Suite - Gráficos (d3plus)
  * Plugin URI:        https://github.com/GobernaciondeNarino/tic-suite
  * Description:       Plugin profesional para la creación y publicación de gráficos interactivos con d3plus.js dentro de TIC Suite. Genera 15 tipos de gráficos, expone shortcodes reutilizables y ofrece una experiencia minimalista tanto para el administrador como para el usuario final.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Gobernación de Nariño - Secretaría TIC
@@ -26,9 +26,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 // -----------------------------------------------------------------------------
 // Plugin constants.
 // -----------------------------------------------------------------------------
-define( 'TSG_VERSION', '1.1.0' );
+define( 'TSG_VERSION', '1.1.1' );
 define( 'TSG_D3PLUS_VERSION', '3.1.4' );
-define( 'TSG_D3PLUS_URL', 'https://cdn.jsdelivr.net/npm/@d3plus/core@' . TSG_D3PLUS_VERSION . '/umd/d3plus-core.js' );
+// NOTE: must use the /full/ bundle — /umd/d3plus-core.js expects 30+
+// peer deps to already be on window and fails silently with window.d3plus
+// set to an empty object. The /full/ build embeds every dependency.
+define( 'TSG_D3PLUS_URL', 'https://cdn.jsdelivr.net/npm/@d3plus/core@' . TSG_D3PLUS_VERSION . '/umd/d3plus-core.full.js' );
 define( 'TSG_PLUGIN_FILE', __FILE__ );
 define( 'TSG_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TSG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
