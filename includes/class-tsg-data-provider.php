@@ -2,9 +2,40 @@
 /**
  * Data provider for TIC Suite views.
  *
- * Loads canonical view definitions from JSON files under /data/views/*.json
- * and exposes them to the chart builder, the REST API, and the shortcode
- * renderer. Caches reads via WordPress object cache.
+ * Loads view definitions from JSON files under /data/views/*.json and
+ * normalizes them into a single canonical shape, regardless of whether
+ * the file was authored in the native plugin format or in the TIC Suite
+ * publication format (`vista`, `titulo`, `datos`, …).
+ *
+ * Shapes accepted:
+ *
+ *  A) Native plugin format
+ *     {
+ *       "id": "slug",
+ *       "name": "…",
+ *       "description": "…",
+ *       "category": "categorical|temporal|geographic|hierarchical|network|statistical",
+ *       "dimensions": ["field", …],
+ *       "measures":   ["field", …],
+ *       "data":       [ { … }, … ],
+ *       "edges":      [ … ]        // optional
+ *     }
+ *
+ *  B) TIC Suite publication format (auto-detected)
+ *     {
+ *       "vista":                "slug_vista",
+ *       "titulo":               "…",
+ *       "descripcion":          "…",
+ *       "tipo_grafico_sugerido": "bar|bar_stacked|doughnut|radar|bar_horizontal",
+ *       "municipios"|"datos"|"data"|"items": [ { municipio: …, medida: … }, … ],
+ *       …
+ *     }
+ *     Dimensions / measures / category are inferred from the first row:
+ *       - string fields  → dimensions
+ *       - numeric fields → measures
+ *       - if a dimension is named "municipio"/"departamento" → category=geographic
+ *       - if any dim has a date-ish name → category=temporal
+ *       - otherwise                                         → categorical
  *
  * @package TicSuite\Graficos
  */
@@ -23,6 +54,12 @@ class TSG_Data_Provider {
 	private const CACHE_GROUP = 'tsg_views';
 	private const VIEWS_DIR   = 'views';
 
+	/**
+	 * Data keys we'll probe (in order) looking for a row array in the
+	 * TIC Suite publication format.
+	 */
+	private const DATA_KEY_CANDIDATES = [ 'data', 'datos', 'municipios', 'items', 'rows' ];
+
 	private TSG_Security $security;
 
 	public function __construct( TSG_Security $security ) {
@@ -37,7 +74,14 @@ class TSG_Data_Provider {
 	}
 
 	/**
-	 * Return all available view summaries (id, name, category).
+	 * Return the absolute path to the topo directory (topojson + lookups).
+	 */
+	public function topo_path(): string {
+		return TSG_DATA_DIR . 'topo/';
+	}
+
+	/**
+	 * Return all available view summaries.
 	 *
 	 * @return array<int, array<string, mixed>>
 	 */
@@ -63,13 +107,13 @@ class TSG_Data_Provider {
 				continue;
 			}
 			$out[] = [
-				'id'          => (string) ( $view['id'] ?? basename( $file, '.json' ) ),
-				'name'        => (string) ( $view['name'] ?? '' ),
-				'description' => (string) ( $view['description'] ?? '' ),
-				'category'    => (string) ( $view['category'] ?? '' ),
-				'dimensions'  => $view['dimensions'] ?? [],
-				'measures'    => $view['measures'] ?? [],
-				'rows'        => count( $view['data'] ?? [] ),
+				'id'          => (string) $view['id'],
+				'name'        => (string) $view['name'],
+				'description' => (string) $view['description'],
+				'category'    => (string) $view['category'],
+				'dimensions'  => $view['dimensions'],
+				'measures'    => $view['measures'],
+				'rows'        => count( $view['data'] ),
 			];
 		}
 
@@ -83,7 +127,7 @@ class TSG_Data_Provider {
 	}
 
 	/**
-	 * Return a single view, including its full payload, by id.
+	 * Return a single full view by id.
 	 *
 	 * @param string $id View id.
 	 */
@@ -98,18 +142,25 @@ class TSG_Data_Provider {
 			return $cached;
 		}
 
-		$file = $this->views_path() . $id . '.json';
-		if ( ! is_readable( $file ) ) {
+		// The id may equal either the internal `id`/`vista` field or the file
+		// basename, so we scan every file and match on the normalized id.
+		$dir   = $this->views_path();
+		$files = glob( $dir . '*.json' );
+		if ( ! is_array( $files ) ) {
 			return [];
 		}
-
-		$view = $this->load_view_file( $file );
-		if ( empty( $view ) ) {
-			return [];
+		foreach ( $files as $file ) {
+			$view = $this->load_view_file( $file );
+			if ( empty( $view ) ) {
+				continue;
+			}
+			if ( $view['id'] === $id ) {
+				wp_cache_set( 'view_' . $id, $view, self::CACHE_GROUP, 300 );
+				return $view;
+			}
 		}
 
-		wp_cache_set( 'view_' . $id, $view, self::CACHE_GROUP, 300 );
-		return $view;
+		return [];
 	}
 
 	/**
@@ -118,7 +169,7 @@ class TSG_Data_Provider {
 	 * @param string $file Absolute path.
 	 */
 	private function load_view_file( string $file ): array {
-		// Hard-check: the file must live inside the views dir (no path traversal).
+		// Path-traversal guard.
 		$real_dir  = realpath( $this->views_path() );
 		$real_file = realpath( $file );
 		if ( ! $real_dir || ! $real_file || strpos( $real_file, $real_dir ) !== 0 ) {
@@ -130,11 +181,13 @@ class TSG_Data_Provider {
 			return [];
 		}
 
-		$view = $this->security->decode_json( $raw );
+		$raw_view = $this->security->decode_json( $raw );
+		if ( empty( $raw_view ) ) {
+			return [];
+		}
 
-		// Schema guard: ignore JSON files that don't match the TSG view shape
-		// (e.g. arbitrary MinTIC / GeoJSON documents that happen to live here).
-		if ( ! $this->looks_like_view( $view ) ) {
+		$view = $this->adapt( $raw_view, basename( $real_file, '.json' ) );
+		if ( empty( $view ) ) {
 			return [];
 		}
 
@@ -142,39 +195,174 @@ class TSG_Data_Provider {
 	}
 
 	/**
-	 * Does this payload look like a TSG view?
+	 * Detect the file shape and convert it to the canonical plugin shape.
 	 *
-	 * @param array $raw Decoded JSON.
+	 * @param array  $raw      Decoded JSON.
+	 * @param string $fallback Fallback id (filename).
 	 */
-	private function looks_like_view( array $raw ): bool {
-		if ( ! isset( $raw['id'], $raw['name'], $raw['data'] ) ) {
-			return false;
+	private function adapt( array $raw, string $fallback ): array {
+		// A) Native plugin format — has id + name + data[].
+		if ( isset( $raw['id'], $raw['name'], $raw['data'] ) && is_array( $raw['data'] ) ) {
+			return $raw;
 		}
-		if ( ! is_array( $raw['data'] ) ) {
-			return false;
+
+		// B) TIC Suite publication format — has vista + titulo + row array.
+		if ( isset( $raw['vista'], $raw['titulo'] ) ) {
+			$data = $this->extract_rows( $raw );
+			if ( empty( $data ) ) {
+				return [];
+			}
+
+			$fields   = $this->infer_fields( $data[0] );
+			$category = $this->infer_category( $fields['dimensions'] );
+			$hint     = isset( $raw['tipo_grafico_sugerido'] ) ? (string) $raw['tipo_grafico_sugerido'] : '';
+
+			return [
+				'id'                    => (string) $raw['vista'],
+				'name'                  => (string) $raw['titulo'],
+				'description'           => (string) ( $raw['descripcion'] ?? '' ),
+				'category'              => $category,
+				'dimensions'            => $fields['dimensions'],
+				'measures'              => $fields['measures'],
+				'data'                  => $data,
+				'tipo_grafico_sugerido' => $hint,
+			];
 		}
-		// At least one of dimensions/measures must be declared.
-		if ( empty( $raw['dimensions'] ) && empty( $raw['measures'] ) ) {
-			return false;
+
+		// C) Anonymous dataset — no vista/titulo/id but has a row array.
+		// Use the filename as id and a prettified version as name.
+		$data = $this->extract_rows( $raw );
+		if ( ! empty( $data ) ) {
+			$fields   = $this->infer_fields( $data[0] );
+			$category = $this->infer_category( $fields['dimensions'] );
+			return [
+				'id'          => $fallback,
+				'name'        => $this->humanize_id( $fallback ),
+				'description' => (string) ( $raw['fuente'] ?? $raw['descripcion'] ?? '' ),
+				'category'    => $category,
+				'dimensions'  => $fields['dimensions'],
+				'measures'    => $fields['measures'],
+				'data'        => $data,
+			];
 		}
-		return true;
+
+		return [];
 	}
 
 	/**
-	 * Normalize a view payload into a predictable shape.
+	 * Turn a slug like "vista-analisis-municipios" into "Análisis municipios".
+	 */
+	private function humanize_id( string $id ): string {
+		$name = preg_replace( '/^vista[-_]/', '', $id );
+		$name = str_replace( [ '-', '_' ], ' ', (string) $name );
+		return ucfirst( trim( (string) $name ) );
+	}
+
+	/**
+	 * Pull the row array out of a publication-format file.
 	 *
-	 * @param array $view Raw view.
+	 * Special-case: `vista-comparativo-municipios.json` has BOTH a
+	 * `municipios` array (strings) and a `datos` array (rows). We want `datos`.
+	 */
+	private function extract_rows( array $raw ): array {
+		// Prefer `data` / `datos` over `municipios` when both exist and
+		// `municipios` is a list of strings.
+		if ( isset( $raw['datos'] ) && is_array( $raw['datos'] ) && $this->is_row_list( $raw['datos'] ) ) {
+			return array_values( $raw['datos'] );
+		}
+		foreach ( self::DATA_KEY_CANDIDATES as $key ) {
+			if ( isset( $raw[ $key ] ) && is_array( $raw[ $key ] ) && $this->is_row_list( $raw[ $key ] ) ) {
+				return array_values( $raw[ $key ] );
+			}
+		}
+		return [];
+	}
+
+	/**
+	 * True if $arr is a non-empty list whose first element is an associative
+	 * array (i.e. a row object, not a list of scalars).
+	 */
+	private function is_row_list( array $arr ): bool {
+		if ( empty( $arr ) ) {
+			return false;
+		}
+		$first = reset( $arr );
+		return is_array( $first ) && ! empty( $first ) && count( array_filter( array_keys( $first ), 'is_string' ) ) > 0;
+	}
+
+	/**
+	 * Infer dimensions + measures from the first row.
+	 *
+	 * - Numeric values → measures
+	 * - String values  → dimensions
+	 * - Nested arrays/objects are flattened one level deep.
+	 *
+	 * @param array $row Representative row.
+	 * @return array{dimensions: array<int,string>, measures: array<int,string>}
+	 */
+	private function infer_fields( array $row ): array {
+		$dimensions = [];
+		$measures   = [];
+		foreach ( $row as $field => $value ) {
+			if ( is_string( $field ) === false ) {
+				continue;
+			}
+			if ( is_numeric( $value ) ) {
+				$measures[] = $field;
+			} elseif ( is_string( $value ) ) {
+				$dimensions[] = $field;
+			} elseif ( is_bool( $value ) ) {
+				$dimensions[] = $field;
+			}
+			// Nested arrays/objects are not auto-flattened here; they remain
+			// available in $data but are not promoted as dimensions/measures.
+		}
+		return [ 'dimensions' => $dimensions, 'measures' => $measures ];
+	}
+
+	/**
+	 * Infer the high-level category from dimension names.
+	 *
+	 * @param array $dimensions Dimension field names.
+	 */
+	private function infer_category( array $dimensions ): string {
+		$lower = array_map( 'strtolower', $dimensions );
+		foreach ( $lower as $d ) {
+			if ( in_array( $d, [ 'municipio', 'municipios', 'departamento', 'departamentos', 'municipio_id' ], true ) ) {
+				return 'geographic';
+			}
+		}
+		$date_hints = [ 'fecha', 'mes', 'anio', 'año', 'year', 'date', 'periodo', 'vigencia' ];
+		foreach ( $lower as $d ) {
+			foreach ( $date_hints as $hint ) {
+				if ( false !== strpos( $d, $hint ) ) {
+					return 'temporal';
+				}
+			}
+		}
+		return 'categorical';
+	}
+
+	/**
+	 * Final normalization + sanitization pass.
+	 *
+	 * @param array $view Adapted view.
 	 */
 	private function normalize_view( array $view ): array {
-		$view['id']             = isset( $view['id'] ) ? $this->security->sanitize_view_id( (string) $view['id'] ) : '';
-		$view['name']           = isset( $view['name'] ) ? sanitize_text_field( (string) $view['name'] ) : '';
-		$view['description']    = isset( $view['description'] ) ? sanitize_text_field( (string) $view['description'] ) : '';
-		$view['category']       = isset( $view['category'] ) ? sanitize_key( (string) $view['category'] ) : '';
-		$view['dimensions']     = array_values( array_map( 'sanitize_text_field', (array) ( $view['dimensions'] ?? [] ) ) );
-		$view['measures']       = array_values( array_map( 'sanitize_text_field', (array) ( $view['measures'] ?? [] ) ) );
+		$view['id']          = $this->security->sanitize_view_id( (string) ( $view['id'] ?? '' ) );
+		$view['name']        = sanitize_text_field( (string) ( $view['name'] ?? '' ) );
+		$view['description'] = sanitize_text_field( (string) ( $view['description'] ?? '' ) );
+		$view['category']    = sanitize_key( (string) ( $view['category'] ?? '' ) );
+		$view['dimensions']  = array_values( array_map( 'sanitize_text_field', (array) ( $view['dimensions'] ?? [] ) ) );
+		$view['measures']    = array_values( array_map( 'sanitize_text_field', (array) ( $view['measures'] ?? [] ) ) );
 		$view['temporal_range'] = ! empty( $view['temporal_range'] );
-		$view['edges']          = ! empty( $view['edges'] ) ? array_values( (array) $view['edges'] ) : [];
-		$view['data']           = is_array( $view['data'] ?? null ) ? array_values( $view['data'] ) : [];
+		$view['edges']       = ! empty( $view['edges'] ) ? array_values( (array) $view['edges'] ) : [];
+		$view['data']        = is_array( $view['data'] ?? null ) ? array_values( $view['data'] ) : [];
+
+		if ( isset( $view['tipo_grafico_sugerido'] ) ) {
+			$view['tipo_grafico_sugerido'] = sanitize_text_field( (string) $view['tipo_grafico_sugerido'] );
+		}
+
 		return $view;
 	}
 }

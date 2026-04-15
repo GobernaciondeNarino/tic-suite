@@ -190,9 +190,15 @@ class TSG_Rest_Api {
 				$mapping['end']   = $view['dimensions'][1] ?? '';
 				break;
 			case 'geomap':
-				$mapping['topojson']     = 'https://cdn.jsdelivr.net/gh/MinCiencia/Datos-COVID19@master/output/producto90/geojson/colombia_municipios.topojson';
-				$mapping['topojsonId']   = 'id';
-				$mapping['topojsonKey']  = 'objects.municipios';
+				$mapping['topojson']    = plugins_url( 'data/topo/narino_municipios.topojson', TSG_PLUGIN_FILE );
+				$mapping['topojsonId']  = 'id';
+				$mapping['topojsonKey'] = 'objects.municipios';
+				// The join key on each data row. Views store municipio names
+				// as "SAN ANDRÉS DE TUMACO"; the topojson id is "SAN ANDRES
+				// DE TUMACO" (accents stripped), so the renderer computes a
+				// derived _municipio_id field on the client with the same
+				// normalization and uses that for groupBy.
+				$mapping['join']        = 'municipio';
 				break;
 		}
 

@@ -63,11 +63,13 @@
 			try {
 				const viz = new Ctor();
 
-				// Base config — applies to every chart type.
+				// Base config — applies to every chart type. `.data()` is
+				// NOT set here; each branch in configure() calls .data()
+				// itself, possibly after reshaping rows (e.g. wide→long for
+				// stacked bar / stacked area).
 				viz
 					.select( '#' + containerId )
 					.detectResize( true )
-					.data( payload.data || [] )
 					.legend( true );
 
 				this.configure( viz, payload );
@@ -100,21 +102,39 @@
 			switch ( chart.key ) {
 				case 'bar':
 					viz
+						.data( data )
 						.groupBy( dims[ 0 ] )
 						.x( dims[ 0 ] )
 						.y( measures[ 0 ] );
 					break;
 
-				case 'stacked_bar':
+				case 'stacked_bar': {
+					// Wide → long reshape: one row per (dim, measure) pair.
+					// Skips "total" / "pct_*" measures since they're derived
+					// and would double-count or be on a different scale.
+					const stackable = measures.filter( ( m ) => ! /^(total|pct_|participacion|cobertura)/i.test( m ) );
+					const useMeasures = stackable.length >= 2 ? stackable : measures.slice( 0, 3 );
+					const long = [];
+					( data || [] ).forEach( ( row ) => {
+						useMeasures.forEach( ( m ) => {
+							long.push( Object.assign( {}, row, {
+								_metric: Renderer.humanizeKey( m ),
+								_value:  Number( row[ m ] ) || 0,
+							} ) );
+						} );
+					} );
 					viz
-						.groupBy( dims[ 1 ] || dims[ 0 ] )
+						.data( long )
+						.groupBy( [ '_metric', dims[ 0 ] ] )
 						.x( dims[ 0 ] )
-						.y( measures[ 0 ] )
+						.y( '_value' )
 						.stacked( true );
 					break;
+				}
 
 				case 'line':
 					viz
+						.data( data )
 						.groupBy( dims[ 1 ] || dims[ 0 ] )
 						.x( dims[ 0 ] )
 						.y( measures[ 0 ] );
@@ -122,33 +142,50 @@
 
 				case 'area':
 					viz
+						.data( data )
 						.groupBy( dims[ 1 ] || dims[ 0 ] )
 						.x( dims[ 0 ] )
 						.y( measures[ 0 ] );
 					break;
 
-				case 'stacked_area':
+				case 'stacked_area': {
+					const stackable = measures.filter( ( m ) => ! /^(total|pct_|participacion|cobertura)/i.test( m ) );
+					const useMeasures = stackable.length >= 2 ? stackable : measures.slice( 0, 3 );
+					const long = [];
+					( data || [] ).forEach( ( row ) => {
+						useMeasures.forEach( ( m ) => {
+							long.push( Object.assign( {}, row, {
+								_metric: Renderer.humanizeKey( m ),
+								_value:  Number( row[ m ] ) || 0,
+							} ) );
+						} );
+					} );
 					viz
-						.groupBy( dims[ 1 ] || dims[ 0 ] )
+						.data( long )
+						.groupBy( '_metric' )
 						.x( dims[ 0 ] )
-						.y( measures[ 0 ] );
+						.y( '_value' );
 					break;
+				}
 
 				case 'pie':
 				case 'donut':
 					viz
+						.data( data )
 						.groupBy( dims[ 0 ] )
 						.value( measures[ 0 ] );
 					break;
 
 				case 'treemap':
 					viz
-						.groupBy( dims.length ? dims : [ dims[ 0 ] ] )
+						.data( data )
+						.groupBy( [ dims[ 0 ] ] )
 						.sum( measures[ 0 ] );
 					break;
 
 				case 'box_whisker':
 					viz
+						.data( data )
 						.groupBy( dims[ 0 ] )
 						.x( dims[ 0 ] )
 						.y( measures[ 0 ] );
@@ -199,9 +236,18 @@
 					}
 					break;
 
-				case 'geomap':
+				case 'geomap': {
+					// Normalize the join field on every row so "SAN ANDRÉS DE
+					// TUMACO" joins to topojson id "SAN ANDRES DE TUMACO".
+					const joinField = mapping.join || dims[ 0 ] || 'municipio';
+					const normData  = ( data || [] ).map( ( row ) => Object.assign(
+						{},
+						row,
+						{ _municipio_id: Renderer.normalizeMuni( row[ joinField ] ) }
+					) );
 					viz
-						.groupBy( dims[ 0 ] )
+						.data( normData )
+						.groupBy( '_municipio_id' )
 						.colorScale( measures[ 0 ] );
 					if ( typeof viz.topojson === 'function' && mapping.topojson ) {
 						viz.topojson( mapping.topojson );
@@ -212,7 +258,16 @@
 					if ( typeof viz.topojsonKey === 'function' && mapping.topojsonKey ) {
 						viz.topojsonKey( mapping.topojsonKey );
 					}
+					if ( typeof viz.topojsonFilter === 'function' ) {
+						// Restrict to the Nariño polygons only.
+						viz.topojsonFilter( () => true );
+					}
+					if ( typeof viz.label === 'function' ) {
+						// Show the un-normalized name in tooltips.
+						viz.label( ( d ) => d[ joinField ] || d._municipio_id );
+					}
 					break;
+				}
 
 				default:
 					if ( dims[ 0 ] ) {
@@ -229,6 +284,40 @@
 					fill: ( _d, i ) => PALETTE[ i % PALETTE.length ],
 				} );
 			}
+		},
+
+		/**
+		 * Turn a snake_case / kebab-case field name into a human label.
+		 * "en_operacion" -> "En operacion"
+		 * "inversion_millones_cop" -> "Inversion millones cop"
+		 */
+		humanizeKey( key ) {
+			if ( ! key ) {
+				return '';
+			}
+			return String( key )
+				.replace( /[_\-]+/g, ' ' )
+				.replace( /\s+/g, ' ' )
+				.trim()
+				.replace( /^./, ( c ) => c.toUpperCase() );
+		},
+
+		/**
+		 * Normalize a municipio name to the same form used as `id` in the
+		 * topojson (uppercase, no accents, collapsed whitespace). Safe on
+		 * null / undefined / non-string inputs.
+		 */
+		normalizeMuni( value ) {
+			if ( value === null || value === undefined ) {
+				return '';
+			}
+			const str = String( value );
+			return str
+				.normalize( 'NFD' )
+				.replace( /[\u0300-\u036f]/g, '' )
+				.toUpperCase()
+				.trim()
+				.replace( /\s+/g, ' ' );
 		},
 
 		/**

@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,13 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.2.0 =
+* Vistas: el data provider ahora acepta dos formatos — el nativo del plugin (id/name/category/dimensions/measures/data) y el formato de publicación TIC Suite (vista/titulo/descripcion/tipo_grafico_sugerido/municipios|datos). Dimensiones, medidas y categoría se infieren automáticamente de la primera fila.
+* Compatibilidad de gráficos ampliada: las vistas geográficas ahora son compatibles con bar, stacked_bar, pie, donut, treemap, tree, box_whisker y geomap (antes solo geomap).
+* Mapa coroplético: el renderer normaliza nombres de municipios en el cliente (NFD + quitar acentos + upper) para unirlos contra el id del topojson — así "SAN ANDRÉS DE TUMACO" se une a "SAN ANDRES DE TUMACO" sin configurar nada extra.
+* Topojson local: `data/topo/narino_municipios.topojson` (14 KB, generado desde el geojson de 354 KB con simplificación geométrica), con 64 municipios de Nariño y propiedades limpias (id, nombre, divipola). Servido via `plugins_url()`.
+* Reshape wide→long automático para `stacked_bar` y `stacked_area`: series derivadas (total, pct_, participacion, cobertura) se omiten para evitar doble conteo.
 
 = 1.1.1 =
 * Cambio crítico de CDN: `@d3plus/core@3.1.4/umd/d3plus-core.js` (que requería 30+ peer deps en window y fallaba en silencio) → `@d3plus/core@3.1.4/umd/d3plus-core.full.js` (bundle standalone de 2 MB que embebe todas las dependencias).

@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.1.1** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.2.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,14 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.2.0
+- **Vistas TIC Suite nativas**: el data provider acepta dos formatos — el nativo del plugin y el formato de publicación TIC Suite (`vista` / `titulo` / `descripcion` / `tipo_grafico_sugerido` / `municipios` | `datos`). Dimensiones / medidas / categoría se infieren de la primera fila.
+- **Compatibilidad de gráficos ampliada**: las vistas geográficas ya no son exclusivas de `geomap` — ahora soportan también `bar`, `stacked_bar`, `pie`, `donut`, `treemap`, `tree`, `box_whisker`. Las 6 vistas del usuario producen 48 combinaciones válidas (promedio de 8 gráficos por vista).
+- **Topojson local de Nariño**: `data/topo/narino_municipios.topojson` (14 KB, 4% del geojson original) con los 64 municipios, propiedades limpias (id, nombre, divipola) y geometría simplificada (toposimplify=0.002).
+- **IDs normalizados para join**: el topojson usa id = `normalize(MPIO_CNMBR)` (uppercase, NFD sin acentos, whitespace colapsado). El renderer aplica la misma normalización al campo `municipio` de cada fila de datos y genera `_municipio_id` para que d3plus.Geomap haga el join sin configuración adicional.
+- **Reshape wide→long**: `stacked_bar` y `stacked_area` ahora reshape filas anchas (`en_operacion`/`en_instalacion`/`en_planeacion`) a formato largo (una fila por métrica). Series derivadas (`total`, `pct_*`, `participacion_*`, `cobertura_*`) se omiten para evitar doble conteo.
+- **humanizeKey()** convierte `en_operacion` → `En operacion` en las leyendas.
 
 ### 1.1.1
 - **Fix crítico de CDN**: pasa de `/umd/d3plus-core.js` a `/umd/d3plus-core.full.js`. El primero requería 30+ peer deps (d3-array, d3-scale, d3-sankey, topojson-client, @floating-ui/dom, …) presentes en `window`, lo que hacía que `window.d3plus` se cargara como `{}` vacío y el renderer cayera en el fallback *"Tipo de gráfico no soportado"*.
