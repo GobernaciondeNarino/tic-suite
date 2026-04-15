@@ -39,8 +39,10 @@
 		// Wire toolbar now (works even before data loads).
 		wireToolbar( figure );
 
-		const legendOn = figure.getAttribute( 'data-legend' ) === '1';
+		const legendOn    = figure.getAttribute( 'data-legend' ) === '1';
 		const legendStyle = figure.getAttribute( 'data-legend-style' ) || 'text';
+		const xTitle      = figure.getAttribute( 'data-x-title' ) || '';
+		const yTitle      = figure.getAttribute( 'data-y-title' ) || '';
 
 		const url = `${ TSG_FRONTEND.restUrl }?view=${ encodeURIComponent( viewId ) }&type=${ encodeURIComponent( type ) }`;
 
@@ -67,6 +69,8 @@
 				// and paint a custom strip ourselves.
 				const rendererOpts = {
 					legend: legendOn && legendStyle === 'text',
+					xTitle: xTitle,
+					yTitle: yTitle,
 				};
 
 				chartEl.innerHTML = '';

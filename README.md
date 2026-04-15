@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.3.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.4.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,21 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.4.0
+- **Tooltips informativos**: cada gráfico ahora muestra un `tbody` con todas las dimensiones y medidas. Etiquetas en español (humanizadas + unidad detectada del nombre del campo: `(Millones COP)`, `(%)`); valores con `Intl.NumberFormat('es-CO')` (separadores de miles correctos); porcentajes con 1 decimal forzado.
+- **Títulos de ejes**:
+  - Atributos nuevos `x_title="..."` y `y_title="..."` en el shortcode.
+  - Auto-detect: si están vacíos, el renderer genera el título a partir del nombre del campo (`humanizeKey`) más una sufijo de unidad si lo detecta. Ej: `inversion_millones_cop` → `Inversion (Millones COP)`.
+  - Para `stacked_bar` / `stacked_area` el título Y muestra `Cantidad` o `Valor (Millones COP)` según el conjunto de medidas apiladas.
+  - Charts sin ejes (`pie`, `donut`, `treemap`, `geomap`, `network`, `rings`, `sankey`, `tree`) se saltan la configuración de ejes automáticamente.
+- **Tooltip por chart**:
+  - `geomap`: título = nombre original del municipio con acentos.
+  - `stacked_bar` / `stacked_area`: título = "Métrica — Municipio".
+  - `network` / `rings` / `sankey`: título = id del nodo.
+  - resto: título = valor de la primera dimensión.
+- **Estilos del tooltip**: fondo blanco, borde `#cbd5e1`, padding 12/14, título en negrita con underline, body en `#334155 12px`.
+- **Admin builder**: dos inputs nuevos en el fieldset "Opciones" para `Eje X` y `Eje Y`, con placeholder `auto` y actualización en vivo de la preview y el shortcode generado.
 
 ### 1.3.0
 - **Topojson con detalle completo**: regenerado desde el geojson oficial sin `toposimplify`, solo con quantización. Los 64 municipios ahora conservan todas las delimitaciones originales (49 KB, 188 arcs únicos, 349 referencias compartidas entre vecinos — cada borde compartido aparece una sola vez).

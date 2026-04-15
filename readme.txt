@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,14 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.4.0 =
+* Tooltips: cada gráfico ahora muestra un tbody con todas las dimensiones y medidas en español, valores formateados con `Intl.NumberFormat('es-CO')` (separadores de miles correctos), porcentajes con 1 decimal y unidades detectadas automáticamente del nombre del campo (`(Millones COP)`, `(%)`).
+* Títulos de ejes: nuevos atributos `x_title` y `y_title` en el shortcode. Si se omiten, el renderer infiere el título a partir del nombre del campo y le añade la unidad apropiada. Para charts apilados el título Y muestra "Cantidad" o "Valor (Millones COP)" según las medidas que se estén apilando.
+* Charts sin ejes (pie/donut/treemap/geomap/network/rings/sankey/tree) se saltan automáticamente la configuración de ejes.
+* Geomap: el tooltip muestra el nombre original del municipio con acentos (`SAN ANDRÉS DE TUMACO`) en vez del id normalizado.
+* Stacked bar/area: el tooltip combina nombre del municipio + métrica + valor.
+* Builder admin: dos inputs nuevos en el fieldset "Opciones" — Eje X / Eje Y, con placeholder "auto" y actualización en vivo de la preview y el shortcode generado.
 
 = 1.3.0 =
 * Topojson regenerado con detalle completo: toposimplify desactivado, solo quantización. El mapa ahora conserva todas las delimitaciones originales (49 KB, 188 arcs únicos, 349 referencias compartidas entre municipios vecinos).

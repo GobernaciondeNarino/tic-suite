@@ -95,6 +95,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</label>
 				</div>
 
+				<div class="tsg-options__row tsg-options__axes">
+					<label class="tsg-text-inline">
+						<span><?php esc_html_e( 'Eje X:', 'tic-suite-graficos' ); ?></span>
+						<input type="text" data-tsg-opt="x_title" placeholder="<?php esc_attr_e( 'auto', 'tic-suite-graficos' ); ?>" />
+					</label>
+					<label class="tsg-text-inline">
+						<span><?php esc_html_e( 'Eje Y:', 'tic-suite-graficos' ); ?></span>
+						<input type="text" data-tsg-opt="y_title" placeholder="<?php esc_attr_e( 'auto', 'tic-suite-graficos' ); ?>" />
+					</label>
+				</div>
+
 				<div class="tsg-options__row tsg-options__actions">
 					<span class="tsg-options__label"><?php esc_html_e( 'Acciones:', 'tic-suite-graficos' ); ?></span>
 					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="detalle" checked /><span class="dashicons dashicons-info-outline" aria-hidden="true"></span><?php esc_html_e( 'Detalle', 'tic-suite-graficos' ); ?></label>

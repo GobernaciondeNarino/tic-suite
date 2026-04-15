@@ -317,6 +317,36 @@
 	font-size: 13px;
 }
 
+/* Inline text input (axis title) */
+.tsg-text-inline {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 13px;
+	color: var(--tsg-ink-soft);
+}
+.tsg-text-inline > span {
+	font-weight: 500;
+}
+.tsg-text-inline input[type="text"] {
+	min-width: 160px;
+	min-height: 28px;
+	padding: 3px 10px;
+	border-radius: 6px;
+	border: 1px solid var(--tsg-border);
+	background: #ffffff;
+	font-size: 13px;
+	font-family: inherit;
+}
+.tsg-text-inline input[type="text"]:focus {
+	outline: 2px solid var(--tsg-accent);
+	outline-offset: 1px;
+	border-color: var(--tsg-accent);
+}
+.tsg-options__axes {
+	gap: 16px;
+}
+
 /* Chip toggles for actions */
 .tsg-chip {
 	display: inline-flex;

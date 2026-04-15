@@ -79,6 +79,8 @@ class TSG_Shortcode {
 				'legend_style' => 'text',
 				'toolbar'      => 'true',
 				'actions'      => 'detalle,compartir,datos,imagen,descarga',
+				'x_title'      => '',
+				'y_title'      => '',
 			],
 			is_array( $atts ) ? $atts : [],
 			'tsg_grafico'
@@ -93,6 +95,8 @@ class TSG_Shortcode {
 		$show_tools  = $this->to_bool( $atts['toolbar'] );
 		$legend_style = in_array( $atts['legend_style'], [ 'text', 'icons' ], true ) ? $atts['legend_style'] : 'text';
 		$actions     = $this->sanitize_actions( (string) $atts['actions'] );
+		$x_title     = $this->security->esc_label( (string) $atts['x_title'] );
+		$y_title     = $this->security->esc_label( (string) $atts['y_title'] );
 
 		if ( '' === $view_id || '' === $chart_type ) {
 			return sprintf(
@@ -131,6 +135,8 @@ class TSG_Shortcode {
 			data-type="<?php echo esc_attr( $chart_type ); ?>"
 			data-legend="<?php echo $show_legend ? '1' : '0'; ?>"
 			data-legend-style="<?php echo esc_attr( $legend_style ); ?>"
+			data-x-title="<?php echo esc_attr( $x_title ); ?>"
+			data-y-title="<?php echo esc_attr( $y_title ); ?>"
 		>
 			<?php if ( '' !== $title ) : ?>
 				<figcaption class="tsg-figure__title"><?php echo esc_html( $title ); ?></figcaption>

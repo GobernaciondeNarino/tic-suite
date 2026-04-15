@@ -25,6 +25,8 @@
 			legend_style: 'text',
 			toolbar:      true,
 			actions:      DEFAULT_ACTIONS.slice(),
+			x_title:      '',
+			y_title:      '',
 		},
 	};
 
@@ -72,7 +74,7 @@
 		}
 
 		$$( '[data-tsg-opt]', els.options ).forEach( ( input ) => {
-			input.addEventListener( 'change', () => {
+			const handler = () => {
 				const key = input.getAttribute( 'data-tsg-opt' );
 				if ( input.type === 'checkbox' ) {
 					state.options[ key ] = input.checked;
@@ -80,7 +82,12 @@
 					state.options[ key ] = input.value;
 				}
 				onOptionsChange();
-			} );
+			};
+			input.addEventListener( 'change', handler );
+			// Live update for text inputs (axis titles).
+			if ( input.type === 'text' ) {
+				input.addEventListener( 'input', handler );
+			}
 		} );
 
 		$$( '[data-tsg-action-opt]', els.options ).forEach( ( input ) => {
@@ -237,6 +244,8 @@
 
 		const rendererOpts = {
 			legend: opts.legend && opts.legend_style === 'text',
+			xTitle: opts.x_title || '',
+			yTitle: opts.y_title || '',
 		};
 		window.TSGRenderer.render( containerId, payload, rendererOpts );
 
@@ -349,6 +358,12 @@
 			if ( ! sameAsDefault && opts.actions.length > 0 ) {
 				parts.push( `actions="${ opts.actions.join( ',' ) }"` );
 			}
+		}
+		if ( opts.x_title ) {
+			parts.push( `x_title="${ String( opts.x_title ).replace( /"/g, "'" ) }"` );
+		}
+		if ( opts.y_title ) {
+			parts.push( `y_title="${ String( opts.y_title ).replace( /"/g, "'" ) }"` );
 		}
 		els.shortcodeInput.value = `[tsg_grafico ${ parts.join( ' ' ) }]`;
 		els.shortcodeBox.hidden  = false;
