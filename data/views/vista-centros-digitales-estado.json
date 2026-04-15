@@ -1,0 +1,195 @@
+{
+  "vista": "centros_digitales_estado",
+  "titulo": "Centros Digitales – Estado de Implementación (Top 20 Municipios)",
+  "descripcion": "Centros Digitales asignados vs en operación vs en instalación por municipio",
+  "tipo_grafico_sugerido": "bar_stacked",
+  "municipios": [
+    {
+      "municipio": "SAN ANDRÉS DE TUMACO",
+      "en_operacion": 106,
+      "en_instalacion": 16,
+      "en_planeacion": 0,
+      "total": 122,
+      "inversion_millones_cop": 19859,
+      "pct_operacion": 86.9
+    },
+    {
+      "municipio": "PASTO",
+      "en_operacion": 66,
+      "en_instalacion": 2,
+      "en_planeacion": 0,
+      "total": 68,
+      "inversion_millones_cop": 11069,
+      "pct_operacion": 97.1
+    },
+    {
+      "municipio": "POLICARPA",
+      "en_operacion": 35,
+      "en_instalacion": 2,
+      "en_planeacion": 0,
+      "total": 37,
+      "inversion_millones_cop": 6023,
+      "pct_operacion": 94.6
+    },
+    {
+      "municipio": "BARBACOAS",
+      "en_operacion": 25,
+      "en_instalacion": 3,
+      "en_planeacion": 1,
+      "total": 29,
+      "inversion_millones_cop": 4721,
+      "pct_operacion": 86.2
+    },
+    {
+      "municipio": "SAN LORENZO",
+      "en_operacion": 27,
+      "en_instalacion": 1,
+      "en_planeacion": 0,
+      "total": 28,
+      "inversion_millones_cop": 4558,
+      "pct_operacion": 96.4
+    },
+    {
+      "municipio": "SAMANIEGO",
+      "en_operacion": 27,
+      "en_instalacion": 0,
+      "en_planeacion": 0,
+      "total": 27,
+      "inversion_millones_cop": 4395,
+      "pct_operacion": 100.0
+    },
+    {
+      "municipio": "BUESACO",
+      "en_operacion": 23,
+      "en_instalacion": 3,
+      "en_planeacion": 0,
+      "total": 26,
+      "inversion_millones_cop": 4232,
+      "pct_operacion": 88.5
+    },
+    {
+      "municipio": "TÚQUERRES",
+      "en_operacion": 23,
+      "en_instalacion": 2,
+      "en_planeacion": 0,
+      "total": 25,
+      "inversion_millones_cop": 4069,
+      "pct_operacion": 92.0
+    },
+    {
+      "municipio": "LOS ANDES",
+      "en_operacion": 20,
+      "en_instalacion": 3,
+      "en_planeacion": 0,
+      "total": 23,
+      "inversion_millones_cop": 3744,
+      "pct_operacion": 87.0
+    },
+    {
+      "municipio": "IPIALES",
+      "en_operacion": 20,
+      "en_instalacion": 2,
+      "en_planeacion": 0,
+      "total": 22,
+      "inversion_millones_cop": 3581,
+      "pct_operacion": 90.9
+    },
+    {
+      "municipio": "CUMBAL",
+      "en_operacion": 17,
+      "en_instalacion": 4,
+      "en_planeacion": 0,
+      "total": 21,
+      "inversion_millones_cop": 3418,
+      "pct_operacion": 81.0
+    },
+    {
+      "municipio": "CÓRDOBA",
+      "en_operacion": 17,
+      "en_instalacion": 0,
+      "en_planeacion": 0,
+      "total": 17,
+      "inversion_millones_cop": 2767,
+      "pct_operacion": 100.0
+    },
+    {
+      "municipio": "CUMBITARA",
+      "en_operacion": 6,
+      "en_instalacion": 11,
+      "en_planeacion": 0,
+      "total": 17,
+      "inversion_millones_cop": 2767,
+      "pct_operacion": 35.3
+    },
+    {
+      "municipio": "GUACHUCAL",
+      "en_operacion": 17,
+      "en_instalacion": 0,
+      "en_planeacion": 0,
+      "total": 17,
+      "inversion_millones_cop": 2767,
+      "pct_operacion": 100.0
+    },
+    {
+      "municipio": "PUPIALES",
+      "en_operacion": 16,
+      "en_instalacion": 1,
+      "en_planeacion": 0,
+      "total": 17,
+      "inversion_millones_cop": 2767,
+      "pct_operacion": 94.1
+    },
+    {
+      "municipio": "ALBÁN",
+      "en_operacion": 16,
+      "en_instalacion": 0,
+      "en_planeacion": 0,
+      "total": 16,
+      "inversion_millones_cop": 2604,
+      "pct_operacion": 100.0
+    },
+    {
+      "municipio": "RICAURTE",
+      "en_operacion": 12,
+      "en_instalacion": 4,
+      "en_planeacion": 0,
+      "total": 16,
+      "inversion_millones_cop": 2604,
+      "pct_operacion": 75.0
+    },
+    {
+      "municipio": "TAMINANGO",
+      "en_operacion": 16,
+      "en_instalacion": 0,
+      "en_planeacion": 0,
+      "total": 16,
+      "inversion_millones_cop": 2604,
+      "pct_operacion": 100.0
+    },
+    {
+      "municipio": "LA UNIÓN",
+      "en_operacion": 14,
+      "en_instalacion": 0,
+      "en_planeacion": 0,
+      "total": 14,
+      "inversion_millones_cop": 2279,
+      "pct_operacion": 100.0
+    },
+    {
+      "municipio": "POTOSÍ",
+      "en_operacion": 14,
+      "en_instalacion": 0,
+      "en_planeacion": 0,
+      "total": 14,
+      "inversion_millones_cop": 2279,
+      "pct_operacion": 100.0
+    }
+  ],
+  "totales": {
+    "cd_asignados": 905,
+    "en_operacion": 820,
+    "en_instalacion": 83,
+    "en_planeacion": 2,
+    "inversion_total_millones_cop": 147315
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "vista": "zcp_por_municipio",
+  "titulo": "Zonas Comunitarias para la Paz – ZCP por Municipio",
+  "descripcion": "Número de ZCP asignadas e inversión por municipio PDET de Nariño",
+  "tipo_grafico_sugerido": "bar_horizontal",
+  "municipios": [
+    {
+      "municipio": "ROBERTO PAYÁN",
+      "zcp_asignadas": 21,
+      "operacion": 21,
+      "inversion_millones_cop": 2907,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "SANTA BÁRBARA",
+      "zcp_asignadas": 19,
+      "operacion": 19,
+      "inversion_millones_cop": 2630,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "EL CHARCO",
+      "zcp_asignadas": 18,
+      "operacion": 18,
+      "inversion_millones_cop": 2491,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "OLAYA HERRERA",
+      "zcp_asignadas": 18,
+      "operacion": 18,
+      "inversion_millones_cop": 2491,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "BARBACOAS",
+      "zcp_asignadas": 17,
+      "operacion": 17,
+      "inversion_millones_cop": 2353,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "CUMBITARA",
+      "zcp_asignadas": 16,
+      "operacion": 16,
+      "inversion_millones_cop": 2215,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "MAGÜÍ",
+      "zcp_asignadas": 16,
+      "operacion": 16,
+      "inversion_millones_cop": 2215,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "SAN ANDRÉS DE TUMACO",
+      "zcp_asignadas": 15,
+      "operacion": 15,
+      "inversion_millones_cop": 2076,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "MOSQUERA",
+      "zcp_asignadas": 14,
+      "operacion": 14,
+      "inversion_millones_cop": 1938,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "RICAURTE",
+      "zcp_asignadas": 14,
+      "operacion": 14,
+      "inversion_millones_cop": 1938,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "LEIVA",
+      "zcp_asignadas": 12,
+      "operacion": 12,
+      "inversion_millones_cop": 1661,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "EL ROSARIO",
+      "zcp_asignadas": 9,
+      "operacion": 9,
+      "inversion_millones_cop": 1246,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "FRANCISCO PIZARRO",
+      "zcp_asignadas": 7,
+      "operacion": 7,
+      "inversion_millones_cop": 969,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "LA TOLA",
+      "zcp_asignadas": 7,
+      "operacion": 7,
+      "inversion_millones_cop": 969,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "POLICARPA",
+      "zcp_asignadas": 7,
+      "operacion": 7,
+      "inversion_millones_cop": 969,
+      "cobertura_pct": 100.0
+    },
+    {
+      "municipio": "LOS ANDES",
+      "zcp_asignadas": 1,
+      "operacion": 1,
+      "inversion_millones_cop": 138,
+      "cobertura_pct": 100.0
+    }
+  ],
+  "totales": {
+    "zcp_total": 211,
+    "inversion_total_millones_cop": 29205
+  }
+}

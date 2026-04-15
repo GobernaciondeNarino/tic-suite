@@ -1,0 +1,125 @@
+{
+  "vista": "comparativo_programas_municipios",
+  "titulo": "Cobertura Multiproyecto – Top 12 Municipios",
+  "descripcion": "Comparativo de participación de los principales municipios en los 5 proyectos TIC de Nariño",
+  "tipo_grafico_sugerido": "radar",
+  "municipios": [
+    "SAN ANDRÉS DE TUMACO",
+    "PASTO",
+    "POLICARPA",
+    "BARBACOAS",
+    "SAN LORENZO",
+    "SAMANIEGO",
+    "BUESACO",
+    "TÚQUERRES",
+    "LOS ANDES",
+    "IPIALES",
+    "CUMBAL",
+    "CÓRDOBA"
+  ],
+  "programas": [
+    "Centros Digitales",
+    "Talento Tech",
+    "Juntas Internet (pre-reg)",
+    "Computadores",
+    "AvanzaTEC"
+  ],
+  "datos": [
+    {
+      "municipio": "SAN ANDRÉS DE TUMACO",
+      "centros_digitales": 122,
+      "talento_tech": 307,
+      "juntas_internet_prereg": 60,
+      "computadores": 3081,
+      "avanzatec": 20
+    },
+    {
+      "municipio": "PASTO",
+      "centros_digitales": 68,
+      "talento_tech": 3387,
+      "juntas_internet_prereg": 401,
+      "computadores": 1237,
+      "avanzatec": 241
+    },
+    {
+      "municipio": "POLICARPA",
+      "centros_digitales": 37,
+      "talento_tech": 24,
+      "juntas_internet_prereg": 90,
+      "computadores": 108,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "BARBACOAS",
+      "centros_digitales": 29,
+      "talento_tech": 28,
+      "juntas_internet_prereg": 20,
+      "computadores": 142,
+      "avanzatec": 5
+    },
+    {
+      "municipio": "SAN LORENZO",
+      "centros_digitales": 28,
+      "talento_tech": 36,
+      "juntas_internet_prereg": 48,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "SAMANIEGO",
+      "centros_digitales": 27,
+      "talento_tech": 42,
+      "juntas_internet_prereg": 11,
+      "computadores": 2,
+      "avanzatec": 2
+    },
+    {
+      "municipio": "BUESACO",
+      "centros_digitales": 26,
+      "talento_tech": 46,
+      "juntas_internet_prereg": 2,
+      "computadores": 2,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "TÚQUERRES",
+      "centros_digitales": 25,
+      "talento_tech": 150,
+      "juntas_internet_prereg": 83,
+      "computadores": 2,
+      "avanzatec": 5
+    },
+    {
+      "municipio": "LOS ANDES",
+      "centros_digitales": 23,
+      "talento_tech": 13,
+      "juntas_internet_prereg": 38,
+      "computadores": 20,
+      "avanzatec": 2
+    },
+    {
+      "municipio": "IPIALES",
+      "centros_digitales": 22,
+      "talento_tech": 488,
+      "juntas_internet_prereg": 38,
+      "computadores": 14,
+      "avanzatec": 29
+    },
+    {
+      "municipio": "CUMBAL",
+      "centros_digitales": 21,
+      "talento_tech": 83,
+      "juntas_internet_prereg": 28,
+      "computadores": 2,
+      "avanzatec": 5
+    },
+    {
+      "municipio": "CÓRDOBA",
+      "centros_digitales": 17,
+      "talento_tech": 61,
+      "juntas_internet_prereg": 11,
+      "computadores": 2,
+      "avanzatec": 1
+    }
+  ]
+}

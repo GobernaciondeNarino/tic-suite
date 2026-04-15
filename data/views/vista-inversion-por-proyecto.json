@@ -1,0 +1,48 @@
+{
+  "vista": "inversion_por_proyecto",
+  "titulo": "Inversión MinTIC por Programa – Nariño 2024",
+  "descripcion": "Distribución del presupuesto asignado a Nariño por cada programa MinTIC",
+  "tipo_grafico_sugerido": "doughnut",
+  "unidad": "millones COP",
+  "datos": [
+    {
+      "programa": "Centros Digitales",
+      "proyecto": "Centros Digitales",
+      "inversion": 147315
+    },
+    {
+      "programa": "Conectividad",
+      "proyecto": "Zonas Comunitarias para la Paz",
+      "inversion": 29205
+    },
+    {
+      "programa": "Conectividad",
+      "proyecto": "Escuelas Potencia 5G",
+      "inversion": 13894
+    },
+    {
+      "programa": "Educación Digital",
+      "proyecto": "Computadores para Educar",
+      "inversion": 11830
+    },
+    {
+      "programa": "Educación Digital",
+      "proyecto": "Talento Tech (Región 3)",
+      "inversion": 13700
+    },
+    {
+      "programa": "Educación Digital",
+      "proyecto": "Colombia Programa",
+      "inversion": 14900
+    }
+  ],
+  "total_inversion_millones_cop": 230844,
+  "colores_sugeridos": {
+    "Centros Digitales": "#1a5276",
+    "Zonas Comunitarias para la Paz": "#E8A020",
+    "Escuelas Potencia 5G": "#2e86c1",
+    "Computadores para Educar": "#17a589",
+    "Talento Tech (Región 3)": "#d35400",
+    "Colombia Programa": "#8e44ad"
+  }
+}

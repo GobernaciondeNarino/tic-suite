@@ -1,0 +1,88 @@
+{
+  "vista": "talento_tech_inscritos",
+  "titulo": "Talento Tech – Top 15 Municipios por Inscritos",
+  "descripcion": "Municipios con mayor cantidad de inscritos en Talento Tech (Bootcamp TIC)",
+  "tipo_grafico_sugerido": "bar",
+  "municipios": [
+    {
+      "municipio": "PASTO",
+      "inscritos": 3387,
+      "participacion_pct": 57.42
+    },
+    {
+      "municipio": "IPIALES",
+      "inscritos": 488,
+      "participacion_pct": 8.27
+    },
+    {
+      "municipio": "SAN ANDRÉS DE TUMACO",
+      "inscritos": 307,
+      "participacion_pct": 5.2
+    },
+    {
+      "municipio": "TÚQUERRES",
+      "inscritos": 150,
+      "participacion_pct": 2.54
+    },
+    {
+      "municipio": "CUMBAL",
+      "inscritos": 83,
+      "participacion_pct": 1.41
+    },
+    {
+      "municipio": "NARIÑO",
+      "inscritos": 83,
+      "participacion_pct": 1.41
+    },
+    {
+      "municipio": "SANDONÁ",
+      "inscritos": 70,
+      "participacion_pct": 1.19
+    },
+    {
+      "municipio": "ALBÁN",
+      "inscritos": 68,
+      "participacion_pct": 1.15
+    },
+    {
+      "municipio": "LA UNIÓN",
+      "inscritos": 62,
+      "participacion_pct": 1.05
+    },
+    {
+      "municipio": "CÓRDOBA",
+      "inscritos": 61,
+      "participacion_pct": 1.03
+    },
+    {
+      "municipio": "GUACHUCAL",
+      "inscritos": 55,
+      "participacion_pct": 0.93
+    },
+    {
+      "municipio": "CHACHAGÜÍ",
+      "inscritos": 50,
+      "participacion_pct": 0.85
+    },
+    {
+      "municipio": "BUESACO",
+      "inscritos": 46,
+      "participacion_pct": 0.78
+    },
+    {
+      "municipio": "YACUANQUER",
+      "inscritos": 46,
+      "participacion_pct": 0.78
+    },
+    {
+      "municipio": "SAMANIEGO",
+      "inscritos": 42,
+      "participacion_pct": 0.71
+    }
+  ],
+  "totales": {
+    "inscritos_narino": 5899,
+    "meta_certificados": 3898,
+    "avance_pct": 151.3
+  }
+}
