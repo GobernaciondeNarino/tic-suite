@@ -230,10 +230,19 @@ final class TSG_Plugin {
 			true
 		);
 
+		// Load the frontend stylesheet inside the admin too so the builder
+		// preview renders with the exact same look as the public output.
+		wp_enqueue_style(
+			'tsg-frontend',
+			TSG_PLUGIN_URL . 'assets/css/frontend.css',
+			[ 'dashicons' ],
+			TSG_VERSION
+		);
+
 		wp_enqueue_style(
 			'tsg-admin',
 			TSG_PLUGIN_URL . 'assets/css/admin.css',
-			[ 'dashicons' ],
+			[ 'tsg-frontend', 'dashicons' ],
 			TSG_VERSION
 		);
 

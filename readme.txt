@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,19 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.3.0 =
+* Topojson regenerado con detalle completo: toposimplify desactivado, solo quantización. El mapa ahora conserva todas las delimitaciones originales (49 KB, 188 arcs únicos, 349 referencias compartidas entre municipios vecinos).
+* Nuevas opciones de shortcode: `legend` (true/false), `legend_style` (text/icons), `toolbar` (true/false), `actions` (lista separada por comas con detalle, compartir, datos, imagen, descarga).
+* Modo "iconos" para la leyenda: tira de swatches de color sin texto, con tooltip mostrando la etiqueta.
+* Barra de acciones sobre el gráfico con 5 botones:
+  - Detalle: modal con metadatos (tipo, categoría, dimensiones, medidas, filas).
+  - Compartir: usa `navigator.share` si existe, sino copia la URL del gráfico al portapapeles.
+  - Datos: modal con tabla completa de los datos.
+  - Imagen: exporta el SVG a PNG en 2x (retina) usando canvas.
+  - Descarga: descarga el payload (vista + datos) como JSON.
+* Admin builder: nuevo fieldset "Opciones" con switches y chips para configurar todas las opciones anteriores. Los cambios se reflejan en vivo tanto en la vista previa como en el shortcode generado.
+* La preview del admin ahora usa el mismo CSS que el frontend para mostrar una réplica exacta del resultado final.
 
 = 1.2.0 =
 * Vistas: el data provider ahora acepta dos formatos — el nativo del plugin (id/name/category/dimensions/measures/data) y el formato de publicación TIC Suite (vista/titulo/descripcion/tipo_grafico_sugerido/municipios|datos). Dimensiones, medidas y categoría se infieren automáticamente de la primera fila.

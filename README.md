@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.2.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.3.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,19 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.3.0
+- **Topojson con detalle completo**: regenerado desde el geojson oficial sin `toposimplify`, solo con quantización. Los 64 municipios ahora conservan todas las delimitaciones originales (49 KB, 188 arcs únicos, 349 referencias compartidas entre vecinos — cada borde compartido aparece una sola vez).
+- **Opciones de shortcode**: `legend`, `legend_style` (text|icons), `toolbar`, `actions` (lista). Ejemplo: `[tsg_grafico view="..." type="..." legend_style="icons" actions="datos,imagen"]`.
+- **Leyenda en modo iconos**: tira de swatches de color sin texto, con tooltip al pasar el mouse (como en los dashboards de economia.gob).
+- **Barra de acciones** encima del gráfico con 5 botones:
+  - **Detalle** → modal con metadatos (tipo, categoría, dimensiones, medidas, filas)
+  - **Compartir** → `navigator.share` si existe, sino copia URL
+  - **Datos** → modal con tabla completa formateada (Intl.NumberFormat 'es-CO')
+  - **Imagen** → exporta a PNG 2x usando canvas
+  - **Descarga** → descarga payload (vista + datos) como JSON
+- **Admin builder**: fieldset "Opciones" con switches (toggle) y chips (acciones). Los cambios reconfiguran la preview en vivo y regeneran el shortcode.
+- **CSS compartido**: la preview del admin carga `frontend.css` para ser pixel-perfect idéntica al resultado publicado.
 
 ### 1.2.0
 - **Vistas TIC Suite nativas**: el data provider acepta dos formatos — el nativo del plugin y el formato de publicación TIC Suite (`vista` / `titulo` / `descripcion` / `tipo_grafico_sugerido` / `municipios` | `datos`). Dimensiones / medidas / categoría se infieren de la primera fila.

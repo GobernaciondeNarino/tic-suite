@@ -1,29 +1,41 @@
 /**
  * TIC Suite · Gráficos — public frontend styles.
- * Minimalist, theme-neutral, accessible.
+ * Minimalist, high-contrast, accessible.
  */
 
 .tsg-figure {
+	--tsg-bg:      #ffffff;
+	--tsg-surface: #f8fafc;
+	--tsg-border:  #e2e8f0;
+	--tsg-ink:     #0f172a;
+	--tsg-soft:    #64748b;
+	--tsg-accent:  #2563eb;
+	--tsg-accent-2:#0ea5e9;
+	--tsg-success: #16a34a;
+
+	position: relative;
 	margin: 1.6em 0;
 	padding: 0;
-	background: #ffffff;
-	border: 1px solid #e2e8f0;
+	background: var( --tsg-bg );
+	border: 1px solid var( --tsg-border );
 	border-radius: 14px;
 	box-shadow: 0 1px 2px rgba(15, 23, 42, .05), 0 6px 18px rgba(15, 23, 42, .04);
 	overflow: hidden;
 }
+.tsg-figure * { box-sizing: border-box; }
 
+/* Title */
 .tsg-figure__title {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 10px;
 	margin: 0;
 	padding: 14px 18px;
 	font-size: 15px;
 	font-weight: 600;
-	color: #0f172a;
-	background: linear-gradient( 180deg, #f8fafc 0%, #ffffff 100% );
-	border-bottom: 1px solid #e2e8f0;
+	color: var( --tsg-ink );
+	background: linear-gradient( 180deg, var( --tsg-surface ) 0%, var( --tsg-bg ) 100% );
+	border-bottom: 1px solid var( --tsg-border );
 }
 .tsg-figure__title::before {
 	content: "";
@@ -31,16 +43,77 @@
 	width: 10px;
 	height: 10px;
 	border-radius: 50%;
-	background: #2563eb;
+	background: var( --tsg-accent );
 	box-shadow: 0 0 0 3px rgba( 37, 99, 235, .18 );
 }
+
+/* ------------------------------------------------------------- */
+/* Toolbar                                                        */
+/* ------------------------------------------------------------- */
+
+.tsg-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	justify-content: flex-end;
+	padding: 10px 14px;
+	background: var( --tsg-surface );
+	border-bottom: 1px solid var( --tsg-border );
+}
+.tsg-action {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 7px 12px;
+	font: inherit;
+	font-size: 13px;
+	font-weight: 500;
+	color: var( --tsg-soft );
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all .15s ease;
+	line-height: 1;
+}
+.tsg-action .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	color: var( --tsg-accent );
+}
+.tsg-action:hover {
+	color: var( --tsg-ink );
+	background: #ffffff;
+	border-color: var( --tsg-border );
+	transform: translateY( -1px );
+}
+.tsg-action:focus-visible {
+	outline: 2px solid var( --tsg-accent );
+	outline-offset: 2px;
+}
+.tsg-action.is-success {
+	color: #ffffff;
+	background: var( --tsg-success );
+	border-color: var( --tsg-success );
+}
+.tsg-action.is-success .dashicons { color: #ffffff; }
+
+/* On mobile, hide labels and keep just icons. */
+@media ( max-width: 640px ) {
+	.tsg-action__label { display: none; }
+	.tsg-action { padding: 8px 10px; }
+}
+
+/* ------------------------------------------------------------- */
+/* Chart container                                                */
+/* ------------------------------------------------------------- */
 
 .tsg-chart {
 	position: relative;
 	display: block;
 	width: 100%;
 	padding: 12px;
-	box-sizing: border-box;
 }
 .tsg-chart svg {
 	display: block;
@@ -53,13 +126,192 @@
 	align-items: center;
 	justify-content: center;
 	min-height: 180px;
-	color: #64748b;
+	color: var( --tsg-soft );
 	font-size: 14px;
 	font-style: italic;
 }
 
-/* Responsive breakpoints — let charts breathe on small screens. */
-@media (max-width: 640px) {
+/* ------------------------------------------------------------- */
+/* Icon-strip legend                                              */
+/* ------------------------------------------------------------- */
+
+.tsg-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	padding: 12px 16px 16px;
+	border-top: 1px solid var( --tsg-border );
+	background: var( --tsg-surface );
+}
+.tsg-legend__item {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 8px;
+	cursor: default;
+	transition: transform .12s ease;
+}
+.tsg-legend__item:hover { transform: scale( 1.08 ); }
+.tsg-legend__swatch {
+	display: block;
+	width: 24px;
+	height: 24px;
+	border-radius: 4px;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, .15);
+}
+
+/* ------------------------------------------------------------- */
+/* Modal                                                          */
+/* ------------------------------------------------------------- */
+
+.tsg-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .2s ease;
+}
+.tsg-modal:not( [hidden] ) {
+	pointer-events: auto;
+	opacity: 1;
+}
+.tsg-modal__backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba( 15, 23, 42, .55 );
+	backdrop-filter: blur( 2px );
+}
+.tsg-modal__panel {
+	position: relative;
+	width: 100%;
+	max-width: 720px;
+	max-height: 85vh;
+	background: var( --tsg-bg );
+	border-radius: 14px;
+	box-shadow: 0 20px 60px rgba(15, 23, 42, .35);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+.tsg-modal__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px 20px;
+	border-bottom: 1px solid var( --tsg-border );
+	background: var( --tsg-surface );
+}
+.tsg-modal__title {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 600;
+	color: var( --tsg-ink );
+}
+.tsg-modal__close {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	background: transparent;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	color: var( --tsg-soft );
+}
+.tsg-modal__close:hover {
+	background: var( --tsg-border );
+	color: var( --tsg-ink );
+}
+.tsg-modal__body {
+	padding: 20px;
+	overflow: auto;
+	flex: 1;
+}
+.tsg-modal__lede {
+	margin: 0 0 12px;
+	font-size: 14px;
+	color: var( --tsg-ink );
+	font-weight: 600;
+}
+.tsg-modal__dl {
+	display: grid;
+	grid-template-columns: 160px 1fr;
+	gap: 8px 16px;
+	margin: 0;
+	font-size: 13px;
+}
+.tsg-modal__dl dt {
+	color: var( --tsg-soft );
+	font-weight: 500;
+}
+.tsg-modal__dl dd {
+	margin: 0;
+	color: var( --tsg-ink );
+}
+.tsg-modal__table-wrap {
+	overflow: auto;
+	border: 1px solid var( --tsg-border );
+	border-radius: 8px;
+}
+.tsg-modal__table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+.tsg-modal__table th,
+.tsg-modal__table td {
+	padding: 8px 12px;
+	text-align: left;
+	border-bottom: 1px solid var( --tsg-border );
+}
+.tsg-modal__table th {
+	position: sticky;
+	top: 0;
+	background: var( --tsg-surface );
+	font-weight: 600;
+	color: var( --tsg-ink );
+	z-index: 1;
+}
+.tsg-modal__table tbody tr:last-child td { border-bottom: none; }
+.tsg-modal__table tbody tr:nth-child( even ) { background: #fafbff; }
+
+/* ------------------------------------------------------------- */
+/* Empty state                                                    */
+/* ------------------------------------------------------------- */
+
+.tsg-empty {
+	margin: 0;
+	padding: 24px;
+	text-align: center;
+	color: var( --tsg-soft );
+	font-size: 14px;
+}
+
+/* ------------------------------------------------------------- */
+/* Dark theme variant                                             */
+/* ------------------------------------------------------------- */
+
+.tsg-theme-dark {
+	--tsg-bg:      #0f172a;
+	--tsg-surface: #1e293b;
+	--tsg-border:  #1e293b;
+	--tsg-ink:     #f8fafc;
+	--tsg-soft:    #94a3b8;
+}
+
+/* ------------------------------------------------------------- */
+/* Responsive                                                     */
+/* ------------------------------------------------------------- */
+
+@media ( max-width: 640px ) {
 	.tsg-figure {
 		margin: 1em 0;
 		border-radius: 10px;
@@ -68,33 +320,21 @@
 		padding: 12px 14px;
 		font-size: 14px;
 	}
+	.tsg-toolbar {
+		padding: 8px 10px;
+	}
 	.tsg-chart {
 		padding: 8px;
 	}
+	.tsg-modal__dl {
+		grid-template-columns: 1fr;
+	}
 }
 
-.tsg-empty {
-	margin: 0;
-	padding: 24px;
-	text-align: center;
-	color: #64748b;
-	font-size: 14px;
-}
-
-/* Optional dark theme — activated via [tsg_grafico theme="dark"] */
-.tsg-theme-dark {
-	background: #0f172a;
-	border-color: #1e293b;
-}
-.tsg-theme-dark .tsg-figure__title {
-	background: linear-gradient( 180deg, #1e293b 0%, #0f172a 100% );
-	color: #f8fafc;
-	border-bottom-color: #1e293b;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.tsg-figure,
-	.tsg-chart {
+@media ( prefers-reduced-motion: reduce ) {
+	.tsg-action,
+	.tsg-legend__item,
+	.tsg-modal {
 		transition: none !important;
 	}
 }

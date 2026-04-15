@@ -61,12 +61,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</section>
 
-		<!-- Panel 3: preview + shortcode -->
+		<!-- Panel 3: preview + options + shortcode -->
 		<section class="tsg-card tsg-card--preview" aria-labelledby="tsg-preview-heading">
 			<h2 id="tsg-preview-heading" class="tsg-card__title">
 				<span class="dashicons dashicons-visibility" aria-hidden="true"></span>
 				<?php esc_html_e( 'Vista previa', 'tic-suite-graficos' ); ?>
 			</h2>
+
+			<fieldset class="tsg-options" id="tsg-options">
+				<legend class="tsg-options__legend"><?php esc_html_e( 'Opciones', 'tic-suite-graficos' ); ?></legend>
+
+				<div class="tsg-options__row">
+					<label class="tsg-switch">
+						<input type="checkbox" data-tsg-opt="legend" checked />
+						<span class="tsg-switch__track"></span>
+						<span class="tsg-switch__label"><?php esc_html_e( 'Mostrar leyenda', 'tic-suite-graficos' ); ?></span>
+					</label>
+
+					<label class="tsg-select-inline">
+						<span><?php esc_html_e( 'Estilo:', 'tic-suite-graficos' ); ?></span>
+						<select data-tsg-opt="legend_style">
+							<option value="text"><?php esc_html_e( 'Texto', 'tic-suite-graficos' ); ?></option>
+							<option value="icons"><?php esc_html_e( 'Iconos', 'tic-suite-graficos' ); ?></option>
+						</select>
+					</label>
+				</div>
+
+				<div class="tsg-options__row">
+					<label class="tsg-switch">
+						<input type="checkbox" data-tsg-opt="toolbar" checked />
+						<span class="tsg-switch__track"></span>
+						<span class="tsg-switch__label"><?php esc_html_e( 'Barra de acciones', 'tic-suite-graficos' ); ?></span>
+					</label>
+				</div>
+
+				<div class="tsg-options__row tsg-options__actions">
+					<span class="tsg-options__label"><?php esc_html_e( 'Acciones:', 'tic-suite-graficos' ); ?></span>
+					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="detalle" checked /><span class="dashicons dashicons-info-outline" aria-hidden="true"></span><?php esc_html_e( 'Detalle', 'tic-suite-graficos' ); ?></label>
+					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="compartir" checked /><span class="dashicons dashicons-share" aria-hidden="true"></span><?php esc_html_e( 'Compartir', 'tic-suite-graficos' ); ?></label>
+					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="datos" checked /><span class="dashicons dashicons-editor-table" aria-hidden="true"></span><?php esc_html_e( 'Datos', 'tic-suite-graficos' ); ?></label>
+					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="imagen" checked /><span class="dashicons dashicons-format-image" aria-hidden="true"></span><?php esc_html_e( 'Imagen', 'tic-suite-graficos' ); ?></label>
+					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="descarga" checked /><span class="dashicons dashicons-download" aria-hidden="true"></span><?php esc_html_e( 'Descarga', 'tic-suite-graficos' ); ?></label>
+				</div>
+			</fieldset>
+
 			<div id="tsg-preview" class="tsg-preview" aria-live="polite">
 				<p class="tsg-empty"><?php esc_html_e( 'Aquí aparecerá tu gráfico.', 'tic-suite-graficos' ); ?></p>
 			</div>

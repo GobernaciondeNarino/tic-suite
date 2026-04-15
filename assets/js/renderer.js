@@ -40,12 +40,14 @@
 			} );
 		},
 
-		async render( containerId, payload ) {
+		async render( containerId, payload, options ) {
 			const el = document.getElementById( containerId );
 			if ( ! el || ! payload ) {
 				return;
 			}
 			el.innerHTML = '';
+
+			const opts = Object.assign( { legend: true }, options || {} );
 
 			try {
 				await this.waitForD3plus();
@@ -65,12 +67,11 @@
 
 				// Base config — applies to every chart type. `.data()` is
 				// NOT set here; each branch in configure() calls .data()
-				// itself, possibly after reshaping rows (e.g. wide→long for
-				// stacked bar / stacked area).
+				// itself, possibly after reshaping rows.
 				viz
 					.select( '#' + containerId )
 					.detectResize( true )
-					.legend( true );
+					.legend( Boolean( opts.legend ) );
 
 				this.configure( viz, payload );
 
