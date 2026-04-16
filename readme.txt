@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,12 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.4.2 =
+* Cobertura completa de los 12 proyectos TIC del Informe Gestión 2024. Vistas nuevas: Índice de Presencia, Conectividad (Hogares), Despliegue 5G, Escuelas Potencia 5G, Juntas (Pre-reg), Juntas (Diseño/Impl.), SENATIC (I.E.), Colombia Programa, AvanzaTEC.
+* `vista-comparativo-municipios.json` ahora incluye los 11 programas en formato wide (64 filas × 11 medidas), útil para barras apiladas y comparaciones multiproyecto.
+* Todas las vistas llevan los 64 municipios de Nariño + el flag booleano `pdet`.
+* Script `scripts/regen-views.py` extendido con 10 funciones `regen_*()` (una por programa + índice + comparativo).
 
 = 1.4.1 =
 * Vistas regeneradas sin filtro "Top N": las 4 vistas que mostraban recortes (Top 12/15/16/20) ahora incluyen los **64 municipios** de Nariño extraídos del archivo maestro `vista-analisis-municipios.json`.

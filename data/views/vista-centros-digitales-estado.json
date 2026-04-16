@@ -1,6 +1,6 @@
 {
   "vista": "centros_digitales_estado",
-  "titulo": "Centros Digitales – Estado de Implementación",
+  "titulo": "Centros Digitales - Estado de Implementación",
   "descripcion": "Centros Digitales asignados vs en operación vs en instalación por los 64 municipios de Nariño.",
   "tipo_grafico_sugerido": "bar_stacked",
   "total_municipios": 64,

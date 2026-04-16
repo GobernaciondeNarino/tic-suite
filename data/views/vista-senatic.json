@@ -1,398 +1,334 @@
 {
-  "vista": "talento_tech_inscritos",
-  "titulo": "Talento Tech - Inscritos por Municipio",
-  "descripcion": "Inscritos en Talento Tech (Bootcamp TIC) en los 64 municipios de Nariño.",
+  "vista": "senatic_ie",
+  "titulo": "SENATIC - Instituciones Educativas",
+  "descripcion": "Instituciones Educativas vinculadas al programa SENATIC en los 64 municipios de Nariño.",
   "tipo_grafico_sugerido": "bar",
   "total_municipios": 64,
   "municipios": [
     {
       "municipio": "ALBÁN",
-      "inscritos": 68,
-      "participacion_pct": 1.15,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "ALDANA",
-      "inscritos": 13,
-      "participacion_pct": 0.22,
+      "senatic_ie": 1,
       "pdet": false
     },
     {
       "municipio": "ANCUYA",
-      "inscritos": 16,
-      "participacion_pct": 0.27,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "ARBOLEDA",
-      "inscritos": 15,
-      "participacion_pct": 0.25,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "BARBACOAS",
-      "inscritos": 28,
-      "participacion_pct": 0.47,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "BELÉN",
-      "inscritos": 29,
-      "participacion_pct": 0.49,
+      "senatic_ie": 1,
       "pdet": false
     },
     {
       "municipio": "BUESACO",
-      "inscritos": 46,
-      "participacion_pct": 0.78,
+      "senatic_ie": 5,
       "pdet": false
     },
     {
       "municipio": "CHACHAGÜÍ",
-      "inscritos": 50,
-      "participacion_pct": 0.85,
+      "senatic_ie": 1,
       "pdet": false
     },
     {
       "municipio": "COLÓN",
-      "inscritos": 21,
-      "participacion_pct": 0.36,
+      "senatic_ie": 1,
       "pdet": false
     },
     {
       "municipio": "CONSACÁ",
-      "inscritos": 21,
-      "participacion_pct": 0.36,
+      "senatic_ie": 2,
       "pdet": false
     },
     {
       "municipio": "CONTADERO",
-      "inscritos": 12,
-      "participacion_pct": 0.2,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "CÓRDOBA",
-      "inscritos": 61,
-      "participacion_pct": 1.03,
+      "senatic_ie": 3,
       "pdet": false
     },
     {
       "municipio": "CUASPUD CARLOSAMA",
-      "inscritos": 19,
-      "participacion_pct": 0.32,
+      "senatic_ie": 1,
       "pdet": false
     },
     {
       "municipio": "CUMBAL",
-      "inscritos": 83,
-      "participacion_pct": 1.41,
+      "senatic_ie": 4,
       "pdet": false
     },
     {
       "municipio": "CUMBITARA",
-      "inscritos": 7,
-      "participacion_pct": 0.12,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "EL CHARCO",
-      "inscritos": 17,
-      "participacion_pct": 0.29,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "EL PEÑOL",
-      "inscritos": 21,
-      "participacion_pct": 0.36,
+      "senatic_ie": 1,
       "pdet": false
     },
     {
       "municipio": "EL ROSARIO",
-      "inscritos": 13,
-      "participacion_pct": 0.22,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "EL TABLÓN DE GÓMEZ",
-      "inscritos": 35,
-      "participacion_pct": 0.59,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "EL TAMBO",
-      "inscritos": 32,
-      "participacion_pct": 0.54,
+      "senatic_ie": 3,
       "pdet": false
     },
     {
       "municipio": "FRANCISCO PIZARRO",
-      "inscritos": 11,
-      "participacion_pct": 0.19,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "FUNES",
-      "inscritos": 19,
-      "participacion_pct": 0.32,
+      "senatic_ie": 1,
       "pdet": false
     },
     {
       "municipio": "GUACHUCAL",
-      "inscritos": 55,
-      "participacion_pct": 0.93,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "GUAITARILLA",
-      "inscritos": 18,
-      "participacion_pct": 0.31,
+      "senatic_ie": 3,
       "pdet": false
     },
     {
       "municipio": "GUALMATÁN",
-      "inscritos": 13,
-      "participacion_pct": 0.22,
+      "senatic_ie": 2,
       "pdet": false
     },
     {
       "municipio": "ILES",
-      "inscritos": 8,
-      "participacion_pct": 0.14,
+      "senatic_ie": 2,
       "pdet": false
     },
     {
       "municipio": "IMUÉS",
-      "inscritos": 12,
-      "participacion_pct": 0.2,
+      "senatic_ie": 2,
       "pdet": false
     },
     {
       "municipio": "IPIALES",
-      "inscritos": 488,
-      "participacion_pct": 8.27,
+      "senatic_ie": 6,
       "pdet": false
     },
     {
       "municipio": "LA CRUZ",
-      "inscritos": 32,
-      "participacion_pct": 0.54,
+      "senatic_ie": 1,
       "pdet": false
     },
     {
       "municipio": "LA FLORIDA",
-      "inscritos": 19,
-      "participacion_pct": 0.32,
+      "senatic_ie": 4,
       "pdet": false
     },
     {
       "municipio": "LA LLANADA",
-      "inscritos": 9,
-      "participacion_pct": 0.15,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "LA TOLA",
-      "inscritos": 10,
-      "participacion_pct": 0.17,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "LA UNIÓN",
-      "inscritos": 62,
-      "participacion_pct": 1.05,
+      "senatic_ie": 3,
       "pdet": false
     },
     {
       "municipio": "LEIVA",
-      "inscritos": 7,
-      "participacion_pct": 0.12,
+      "senatic_ie": 2,
       "pdet": true
     },
     {
       "municipio": "LINARES",
-      "inscritos": 19,
-      "participacion_pct": 0.32,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "LOS ANDES",
-      "inscritos": 13,
-      "participacion_pct": 0.22,
+      "senatic_ie": 1,
       "pdet": true
     },
     {
       "municipio": "MAGÜÍ",
-      "inscritos": 5,
-      "participacion_pct": 0.08,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "MALLAMA",
-      "inscritos": 18,
-      "participacion_pct": 0.31,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "MOSQUERA",
-      "inscritos": 17,
-      "participacion_pct": 0.29,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "NARIÑO",
-      "inscritos": 83,
-      "participacion_pct": 1.41,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "OLAYA HERRERA",
-      "inscritos": 15,
-      "participacion_pct": 0.25,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "OSPINA",
-      "inscritos": 8,
-      "participacion_pct": 0.14,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "PASTO",
-      "inscritos": 3387,
-      "participacion_pct": 57.42,
+      "senatic_ie": 17,
       "pdet": false
     },
     {
       "municipio": "POLICARPA",
-      "inscritos": 24,
-      "participacion_pct": 0.41,
+      "senatic_ie": 2,
       "pdet": true
     },
     {
       "municipio": "POTOSÍ",
-      "inscritos": 25,
-      "participacion_pct": 0.42,
+      "senatic_ie": 2,
       "pdet": false
     },
     {
       "municipio": "PROVIDENCIA",
-      "inscritos": 5,
-      "participacion_pct": 0.08,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "PUERRES",
-      "inscritos": 20,
-      "participacion_pct": 0.34,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "PUPIALES",
-      "inscritos": 33,
-      "participacion_pct": 0.56,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "RICAURTE",
-      "inscritos": 29,
-      "participacion_pct": 0.49,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "ROBERTO PAYÁN",
-      "inscritos": 1,
-      "participacion_pct": 0.02,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "SAMANIEGO",
-      "inscritos": 42,
-      "participacion_pct": 0.71,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "SAN ANDRÉS DE TUMACO",
-      "inscritos": 307,
-      "participacion_pct": 5.2,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "SAN BERNARDO",
-      "inscritos": 16,
-      "participacion_pct": 0.27,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "SAN LORENZO",
-      "inscritos": 36,
-      "participacion_pct": 0.61,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "SAN PABLO",
-      "inscritos": 38,
-      "participacion_pct": 0.64,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "SAN PEDRO DE CARTAGO",
-      "inscritos": 22,
-      "participacion_pct": 0.37,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "SANDONÁ",
-      "inscritos": 70,
-      "participacion_pct": 1.19,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "SANTA BÁRBARA",
-      "inscritos": 2,
-      "participacion_pct": 0.03,
+      "senatic_ie": 0,
       "pdet": true
     },
     {
       "municipio": "SANTACRUZ",
-      "inscritos": 17,
-      "participacion_pct": 0.29,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "SAPUYES",
-      "inscritos": 18,
-      "participacion_pct": 0.31,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "TAMINANGO",
-      "inscritos": 31,
-      "participacion_pct": 0.53,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "TANGUA",
-      "inscritos": 32,
-      "participacion_pct": 0.54,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "TÚQUERRES",
-      "inscritos": 150,
-      "participacion_pct": 2.54,
+      "senatic_ie": 0,
       "pdet": false
     },
     {
       "municipio": "YACUANQUER",
-      "inscritos": 46,
-      "participacion_pct": 0.78,
+      "senatic_ie": 0,
       "pdet": false
     }
   ],
   "totales": {
-    "inscritos_narino": 5899,
-    "meta_certificados": 5000,
-    "avance_pct": 117.98
+    "total_departamento": 71,
+    "municipios_con_presencia": 25,
+    "municipios_sin_presencia": 39
   }
 }

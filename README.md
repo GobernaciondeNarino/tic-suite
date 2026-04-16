@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.4.1** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.4.2** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,21 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.4.2
+- **Cobertura completa de los 12 proyectos TIC** del Informe Gestión 2024. Vistas nuevas:
+  - `vista-indice-presencia.json` — Índice compuesto 0–12 por municipio
+  - `vista-conectividad-hogares.json`
+  - `vista-despliegue-5g.json`
+  - `vista-escuelas-5g.json`
+  - `vista-juntas-prereg.json`
+  - `vista-juntas-diseno.json`
+  - `vista-senatic.json`
+  - `vista-colombia-programa.json`
+  - `vista-avanzatec.json`
+- **`vista-comparativo-municipios.json`** ampliada de 5 → 11 programas (wide-format, 64 × 11).
+- Todas las vistas llevan los **64 municipios** + flag `pdet` booleano.
+- `scripts/regen-views.py` extendido con 10 funciones `regen_*()` reproducibles desde el maestro.
 
 ### 1.4.1
 - **Alcance departamental completo**: las 4 vistas que antes llevaban "Top N" (Top 12 / 15 / 16 / 20) ahora incluyen los **64 municipios** de Nariño, extraídos del archivo maestro `vista-analisis-municipios.json`. Los títulos fueron actualizados para reflejar el alcance completo.
