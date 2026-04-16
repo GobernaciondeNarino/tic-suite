@@ -1,0 +1,3372 @@
+{
+  "meta": {
+    "programa": "Ondas Nariño",
+    "entidad": "Gobernación de Nariño - Secretaría de TIC, Innovación y Gobierno Abierto",
+    "fuente_primaria": "Información_Ondas.xlsx",
+    "vigencias_incluidas": [
+      "2024",
+      "2025"
+    ],
+    "fecha_generacion": "2026-04-16",
+    "lookup_municipios": "https://github.com/GobernaciondeNarino/tic-suite/blob/claude/add-charting-plugin-tKUUi/data/topo/narino_municipios.lookup.json",
+    "campos_excluidos_privacidad": [
+      "email",
+      "primer_nombre",
+      "segundo_nombre",
+      "primer_apellido",
+      "segundo_apellido",
+      "tipo_documento",
+      "documento",
+      "telefono",
+      "celular",
+      "fecha_nacimiento"
+    ],
+    "esquema_version": "1.0"
+  },
+  "totales_departamentales": {
+    "proyectos": {
+      "2024": 105,
+      "2025": 195
+    },
+    "profesores": {
+      "2024": 235,
+      "2025": 792
+    },
+    "ninos_2025": 7114,
+    "municipios_con_presencia": 38,
+    "municipios_solo_2024": 16,
+    "municipios_solo_2025": 21,
+    "municipios_ambos_anos": 1,
+    "distribucion_genero_ninos": {
+      "Femenino": 3750,
+      "Masculino": 3292,
+      "Sin dato": 67,
+      "Otro / No binario": 5
+    },
+    "distribucion_etnica_ninos": {
+      "Ninguno": 5065,
+      "Indígena": 965,
+      "Pastos": 498,
+      "Afrodescendiente": 343,
+      "Sin dato": 188,
+      "Mestizo": 46,
+      "Otro": 9
+    },
+    "distribucion_estrato_ninos": {
+      "1": 6096,
+      "Sin dato": 860,
+      "2": 136,
+      "3": 20,
+      "4": 2
+    },
+    "distribucion_grado_ninos": {
+      "9": 1163,
+      "8": 958,
+      "10": 957,
+      "7": 874,
+      "6": 846,
+      "11": 525,
+      "5": 497,
+      "2": 342,
+      "4": 334,
+      "3": 280,
+      "1": 226,
+      "0": 82,
+      "Sin dato": 30
+    },
+    "distribucion_genero_profesores": {
+      "Femenino": 434,
+      "Masculino": 356,
+      "Sin dato": 2
+    },
+    "distribucion_areas_profesores": {
+      "Ciencias Naturales": 108,
+      "Matemáticas": 90,
+      "Lengua Castellana": 78,
+      "Básica Primaria": 68,
+      "Ciencias Sociales": 58,
+      "Todas las áreas": 58,
+      "Química": 52,
+      "Tecnología e Informática": 34,
+      "Educación Física": 28,
+      "Inglés": 22,
+      "Física": 20,
+      "Biología": 16,
+      "Educación Artística": 14,
+      "Ética y Religión": 14,
+      "Preescolar": 12,
+      "Filosofía": 8,
+      "Docente orientadora": 6,
+      "Rector": 4,
+      "Pta": 4,
+      "Contabilidad": 4,
+      "Coordinador": 4,
+      "Ciencias agricolas": 4,
+      "Ciencias del mar": 4,
+      "Técnica en agropecuaria": 4,
+      "Zootecnista": 4,
+      "Idiomas": 4,
+      "Sociales": 4,
+      "Normalista superior": 4,
+      "Ciencias humanas": 4,
+      "Tutor programa pta": 4,
+      "Fi": 4,
+      "3.0": 4,
+      "Practica de psicologia": 4,
+      "Catedra para la paz": 2,
+      "Coordinador acadèmico": 2,
+      "Ingenieria agroforestal": 2,
+      "Agrícola": 2,
+      "Producción pecuaria": 2,
+      "Etnoeducación": 2,
+      "Orientación escolar": 2,
+      "Afroindigena": 2,
+      "Agropecuaria": 2,
+      "Ingeniero agroindustrial": 2,
+      "Licenciado": 2,
+      "C. naturales": 2,
+      "Docente en prescolar": 2,
+      "Lic. edu. prescolar": 2,
+      "Licenciada en pedagogía infantil": 2,
+      "Área técnica agropecuaria": 2,
+      "Técnica agricolas": 2,
+      "Licenciado en psicología": 2,
+      "Orientadora escolar": 2,
+      "Rectora": 2,
+      "Ciencias políticas": 2,
+      "Ciencias agrícolas": 2,
+      "Ing. agroindustrial": 2,
+      "Recreación y deporte": 2,
+      "Humanidades": 2,
+      "Coordinación": 2,
+      "Contaduría": 2,
+      "Técnica agrícola": 2,
+      "Tutor del programa pta3.0": 2,
+      "Técnica agropecuaria": 2,
+      "Docente tutora": 2,
+      "Docente orientadora de bachillerato": 2,
+      "Música": 2,
+      "Psicólogo": 2,
+      "Etnoeducación - especialista en pedagogía ambiental": 2,
+      "Ingeniera agroindustrial": 2,
+      "Geógrafia": 2,
+      "Coordinadora sede #2": 2,
+      "Rector de la instituciòn educativa": 2,
+      "Docente tutor pta 3.0 fi": 2,
+      "Estadistica y contabilidad": 2
+    },
+    "distribucion_jornada_profesores": {
+      "Mañana": 704,
+      "Única": 66,
+      "Tarde": 18,
+      "Diurna": 4
+    }
+  },
+  "municipios": [
+    {
+      "id": "PASTO",
+      "nombre": "PASTO",
+      "divipola": "52001",
+      "proyectos": {
+        "2024": 16,
+        "2025": 21,
+        "total": 37,
+        "variacion_abs": 5,
+        "variacion_pct": 31.2
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 16,
+        "2025_total_unicas": 19,
+        "total_unicas_combinadas": 32,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Municipal Santa Teresita",
+            "proyectos": 2
+          },
+          {
+            "institucion": "Institución Educativa Municipal Obonuco",
+            "proyectos": 2
+          },
+          {
+            "institucion": "Institución Educativa Técnico Industrial Pasto",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa Municipal Inem Sede 2 Agualongo",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa Municipal San Juan Bosco",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 41,
+        "2025": 86,
+        "total": 127,
+        "genero_2025": {
+          "Femenino": 64,
+          "Masculino": 22
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 86
+        },
+        "jornada_2025": {
+          "Mañana": 64,
+          "Tarde": 14,
+          "Diurna": 4,
+          "Única": 4
+        },
+        "areas_2025": {
+          "Ciencias Naturales": 24,
+          "Básica Primaria": 16,
+          "Química": 14,
+          "Matemáticas": 8,
+          "Física": 6,
+          "Ciencias Sociales": 4,
+          "Lengua Castellana": 4,
+          "Biología": 4,
+          "Educación Física": 2,
+          "Docente orientadora": 2,
+          "Catedra para la paz": 2,
+          "Educación Artística": 2,
+          "Coordinador acadèmico": 2,
+          "Tecnología e Informática": 2,
+          "Ingenieria agroforestal": 2
+        },
+        "discapacidad_2025": {
+          "No": 86
+        },
+        "victima_conflicto_2025": {
+          "No": 86
+        },
+        "ano_inicio_2025": {
+          "2025": 86
+        }
+      },
+      "ninos_2025": {
+        "total": 1043,
+        "genero": {
+          "Femenino": 531,
+          "Masculino": 511,
+          "Sin dato": 1
+        },
+        "grupo_etnico": {
+          "Ninguno": 970,
+          "Indígena": 72,
+          "Afrodescendiente": 1
+        },
+        "estrato": {
+          "1": 519,
+          "Sin dato": 524
+        },
+        "grado": {
+          "0": 6,
+          "1": 72,
+          "2": 104,
+          "3": 4,
+          "4": 7,
+          "5": 76,
+          "6": 101,
+          "7": 139,
+          "8": 140,
+          "9": 238,
+          "10": 82,
+          "11": 44,
+          "Sin dato": 30
+        },
+        "discapacidad": {
+          "Sí": 30,
+          "No": 1013
+        },
+        "victima_conflicto": {
+          "Sí": 6,
+          "No": 1037
+        },
+        "tipos_discapacidad": {
+          "No especificado": 21,
+          "Intelectual": 5,
+          "Psicosocial": 2,
+          "Múltiple": 2
+        },
+        "indicadores": {
+          "pct_femenino": 50.9,
+          "pct_masculino": 49.0,
+          "pct_etnico_no_ninguno": 7.0,
+          "pct_victima_conflicto": 0.6,
+          "pct_discapacidad": 2.9,
+          "pct_estrato_1": 49.8
+        }
+      }
+    },
+    {
+      "id": "CUMBAL",
+      "nombre": "CUMBAL",
+      "divipola": "52227",
+      "proyectos": {
+        "2024": 0,
+        "2025": 9,
+        "total": 9,
+        "variacion_abs": 9,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 5,
+        "total_unicas_combinadas": 5,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Divino Niño Jesús",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Técnica Agropecuaria Indígena Cumbe",
+            "proyectos": 2
+          },
+          {
+            "institucion": "Institución Nuestro Señor Del Río",
+            "proyectos": 2
+          },
+          {
+            "institucion": "Institución Educativa José Antonio Llorente",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa Colegio Agroecológico Sagrado corazón De Jesús De Cuetial",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 54,
+        "total": 54,
+        "genero_2025": {
+          "Femenino": 30,
+          "Masculino": 24
+        },
+        "grupo_etnico_2025": {
+          "Indígena": 36,
+          "Ninguno": 18
+        },
+        "jornada_2025": {
+          "Mañana": 44,
+          "Única": 10
+        },
+        "areas_2025": {
+          "Ciencias Naturales": 20,
+          "Matemáticas": 8,
+          "Ciencias Sociales": 6,
+          "Educación Artística": 4,
+          "Química": 2,
+          "Lengua Castellana": 2,
+          "Todas las áreas": 2,
+          "Agrícola": 2,
+          "Rector": 2,
+          "Producción pecuaria": 2,
+          "Pta": 2,
+          "Física": 2,
+          "Contabilidad": 2,
+          "Etnoeducación": 2
+        },
+        "discapacidad_2025": {
+          "No": 54
+        },
+        "victima_conflicto_2025": {
+          "Sí": 4,
+          "No": 50
+        },
+        "ano_inicio_2025": {
+          "2025": 54
+        }
+      },
+      "ninos_2025": {
+        "total": 519,
+        "genero": {
+          "Femenino": 299,
+          "Masculino": 220
+        },
+        "grupo_etnico": {
+          "Pastos": 436,
+          "Ninguno": 82,
+          "Otro": 1
+        },
+        "estrato": {
+          "1": 426,
+          "2": 9,
+          "Sin dato": 84
+        },
+        "grado": {
+          "1": 2,
+          "2": 6,
+          "3": 20,
+          "4": 19,
+          "5": 63,
+          "6": 90,
+          "7": 34,
+          "8": 130,
+          "9": 67,
+          "10": 72,
+          "11": 16
+        },
+        "discapacidad": {
+          "Sí": 11,
+          "No": 508
+        },
+        "victima_conflicto": {
+          "Sí": 25,
+          "No": 494
+        },
+        "tipos_discapacidad": {
+          "No especificado": 6,
+          "Intelectual": 3,
+          "Múltiple": 1,
+          "Psicosocial": 1
+        },
+        "indicadores": {
+          "pct_femenino": 57.6,
+          "pct_masculino": 42.4,
+          "pct_etnico_no_ninguno": 84.2,
+          "pct_victima_conflicto": 4.8,
+          "pct_discapacidad": 2.1,
+          "pct_estrato_1": 82.1
+        }
+      }
+    },
+    {
+      "id": "SAN PABLO",
+      "nombre": "SAN PABLO",
+      "divipola": "52693",
+      "proyectos": {
+        "2024": 0,
+        "2025": 12,
+        "total": 12,
+        "variacion_abs": 12,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 5,
+        "total_unicas_combinadas": 5,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Antonio Nariño",
+            "proyectos": 4
+          },
+          {
+            "institucion": "Institución Educativa Técnica Manuel Briceño",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Escuela Normal Superior Sagrado Corazón de Jesús – sede dos  primaria",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Escuela Normal Superior Sagrado Corazón de Jesús, sede uno",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa Antonio Nariño sede el Ramal",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 50,
+        "total": 50,
+        "genero_2025": {
+          "Femenino": 26,
+          "Masculino": 24
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 48,
+          "Sin dato": 2
+        },
+        "jornada_2025": {
+          "Mañana": 50
+        },
+        "areas_2025": {
+          "Todas las áreas": 18,
+          "Lengua Castellana": 12,
+          "Ética y Religión": 6,
+          "Matemáticas": 4,
+          "Educación Física": 4,
+          "Orientación escolar": 2,
+          "Ciencias Sociales": 2,
+          "Inglés": 2
+        },
+        "discapacidad_2025": {
+          "No": 50
+        },
+        "victima_conflicto_2025": {
+          "No": 50
+        },
+        "ano_inicio_2025": {
+          "2014": 2,
+          "2025": 48
+        }
+      },
+      "ninos_2025": {
+        "total": 494,
+        "genero": {
+          "Femenino": 263,
+          "Masculino": 230,
+          "Sin dato": 1
+        },
+        "grupo_etnico": {
+          "Ninguno": 492,
+          "Otro": 1,
+          "Sin dato": 1
+        },
+        "estrato": {
+          "1": 483,
+          "2": 4,
+          "3": 1,
+          "Sin dato": 6
+        },
+        "grado": {
+          "0": 1,
+          "1": 11,
+          "2": 83,
+          "3": 33,
+          "4": 45,
+          "5": 36,
+          "6": 75,
+          "7": 51,
+          "8": 58,
+          "9": 55,
+          "10": 46
+        },
+        "discapacidad": {
+          "Sí": 27,
+          "No": 436,
+          "Sin dato": 31
+        },
+        "victima_conflicto": {
+          "Sí": 51,
+          "No": 442,
+          "Sin dato": 1
+        },
+        "tipos_discapacidad": {
+          "8.0": 10,
+          "1.0": 10,
+          "10.0": 3,
+          "18.0": 2,
+          "3.0": 1,
+          "13.0": 1
+        },
+        "indicadores": {
+          "pct_femenino": 53.2,
+          "pct_masculino": 46.6,
+          "pct_etnico_no_ninguno": 0.2,
+          "pct_victima_conflicto": 10.3,
+          "pct_discapacidad": 5.5,
+          "pct_estrato_1": 97.8
+        }
+      }
+    },
+    {
+      "id": "LA UNION",
+      "nombre": "LA UNIÓN",
+      "divipola": "52399",
+      "proyectos": {
+        "2024": 0,
+        "2025": 13,
+        "total": 13,
+        "variacion_abs": 13,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 4,
+        "total_unicas_combinadas": 4,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Desarrollo Rural La Unión",
+            "proyectos": 6
+          },
+          {
+            "institucion": "Institución Educativa De Desarrollo Rural",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Juanambú",
+            "proyectos": 3
+          },
+          {
+            "institucion": "I.E. Normal Superior San Carlos",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 66,
+        "total": 66,
+        "genero_2025": {
+          "Femenino": 48,
+          "Masculino": 18
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 66
+        },
+        "jornada_2025": {
+          "Mañana": 62,
+          "Tarde": 4
+        },
+        "areas_2025": {
+          "Todas las áreas": 24,
+          "Matemáticas": 12,
+          "Ciencias Sociales": 8,
+          "Lengua Castellana": 4,
+          "Ciencias Naturales": 4,
+          "Tecnología e Informática": 4,
+          "Educación Artística": 2,
+          "Coordinador": 2,
+          "Inglés": 2,
+          "Ciencias agricolas": 2,
+          "Química": 2
+        },
+        "discapacidad_2025": {
+          "No": 66
+        },
+        "victima_conflicto_2025": {
+          "No": 66
+        },
+        "ano_inicio_2025": {
+          "2025": 66
+        }
+      },
+      "ninos_2025": {
+        "total": 447,
+        "genero": {
+          "Femenino": 218,
+          "Masculino": 224,
+          "Otro / No binario": 5
+        },
+        "grupo_etnico": {
+          "Ninguno": 442,
+          "Indígena": 4,
+          "Afrodescendiente": 1
+        },
+        "estrato": {
+          "1": 392,
+          "2": 46,
+          "3": 4,
+          "Sin dato": 5
+        },
+        "grado": {
+          "0": 8,
+          "1": 23,
+          "2": 4,
+          "3": 33,
+          "4": 27,
+          "5": 11,
+          "6": 20,
+          "7": 55,
+          "8": 45,
+          "9": 122,
+          "10": 60,
+          "11": 39
+        },
+        "discapacidad": {
+          "Sí": 12,
+          "No": 435
+        },
+        "victima_conflicto": {
+          "Sí": 50,
+          "No": 397
+        },
+        "tipos_discapacidad": {
+          "No especificado": 12
+        },
+        "indicadores": {
+          "pct_femenino": 48.8,
+          "pct_masculino": 50.1,
+          "pct_etnico_no_ninguno": 1.1,
+          "pct_victima_conflicto": 11.2,
+          "pct_discapacidad": 2.7,
+          "pct_estrato_1": 87.7
+        }
+      }
+    },
+    {
+      "id": "SAN ANDRES DE TUMACO",
+      "nombre": "SAN ANDRÉS DE TUMACO",
+      "divipola": "52835",
+      "proyectos": {
+        "2024": 0,
+        "2025": 12,
+        "total": 12,
+        "variacion_abs": 12,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 12,
+        "total_unicas_combinadas": 12,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Faustino Arias Reynel",
+            "proyectos": 1
+          },
+          {
+            "institucion": "I.E Técnica Agropecuaria Nuestra Señora Del Carmen de Espriella",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa Técnico Agropecuaria Tangareal Carretera",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa Misional Santa Teresita",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa General Santander",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 72,
+        "total": 72,
+        "genero_2025": {
+          "Femenino": 38,
+          "Masculino": 34
+        },
+        "grupo_etnico_2025": {
+          "Afrodescendiente": 58,
+          "Mestizo": 12,
+          "Indígena": 2
+        },
+        "jornada_2025": {
+          "Mañana": 72
+        },
+        "areas_2025": {
+          "Lengua Castellana": 10,
+          "Química": 10,
+          "Matemáticas": 10,
+          "Ciencias Naturales": 10,
+          "Tecnología e Informática": 6,
+          "Ciencias del mar": 4,
+          "Técnica en agropecuaria": 4,
+          "Afroindigena": 2,
+          "Agropecuaria": 2,
+          "Básica Primaria": 2,
+          "Zootecnista": 2,
+          "Ingeniero agroindustrial": 2,
+          "Licenciado": 2,
+          "C. naturales": 2,
+          "Docente en prescolar": 2,
+          "Lic. edu. prescolar": 2
+        },
+        "discapacidad_2025": {
+          "No": 72
+        },
+        "victima_conflicto_2025": {
+          "Sí": 38,
+          "No": 34
+        },
+        "ano_inicio_2025": {
+          "2025": 72
+        }
+      },
+      "ninos_2025": {
+        "total": 431,
+        "genero": {
+          "Femenino": 250,
+          "Masculino": 180,
+          "Sin dato": 1
+        },
+        "grupo_etnico": {
+          "Afrodescendiente": 340,
+          "Mestizo": 46,
+          "Indígena": 36,
+          "Otro": 5,
+          "Ninguno": 4
+        },
+        "estrato": {
+          "1": 431
+        },
+        "grado": {
+          "4": 6,
+          "5": 15,
+          "6": 72,
+          "7": 26,
+          "8": 65,
+          "9": 102,
+          "10": 99,
+          "11": 46
+        },
+        "discapacidad": {
+          "No": 431
+        },
+        "victima_conflicto": {
+          "No": 431
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 58.0,
+          "pct_masculino": 41.8,
+          "pct_etnico_no_ninguno": 99.1,
+          "pct_victima_conflicto": 0.0,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 100.0
+        }
+      }
+    },
+    {
+      "id": "SAN LORENZO",
+      "nombre": "SAN LORENZO",
+      "divipola": "52687",
+      "proyectos": {
+        "2024": 0,
+        "2025": 9,
+        "total": 9,
+        "variacion_abs": 9,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 5,
+        "total_unicas_combinadas": 5,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Santa Martha",
+            "proyectos": 4
+          },
+          {
+            "institucion": "Institución Educativa Técnica Agropecuaria Salinas",
+            "proyectos": 2
+          },
+          {
+            "institucion": "Institución Educativa Técnica Agropecuaria Santa Cecilia",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa Técnica Agropecuaria San Gerardo",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa Media Académica Sagrado Corazón de Jesús",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 76,
+        "total": 76,
+        "genero_2025": {
+          "Femenino": 30,
+          "Masculino": 44,
+          "Sin dato": 2
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 76
+        },
+        "jornada_2025": {
+          "Única": 38,
+          "Mañana": 38
+        },
+        "areas_2025": {
+          "Matemáticas": 8,
+          "Preescolar": 6,
+          "Educación Física": 6,
+          "Ciencias Naturales": 6,
+          "Lengua Castellana": 6,
+          "Básica Primaria": 6,
+          "Ciencias Sociales": 4,
+          "Inglés": 4,
+          "Tecnología e Informática": 4,
+          "Química": 4,
+          "Licenciada en pedagogía infantil": 2,
+          "Filosofía": 2,
+          "Zootecnista": 2,
+          "Física": 2,
+          "Área técnica agropecuaria": 2,
+          "Todas las áreas": 2,
+          "Técnica agricolas": 2,
+          "Idiomas": 2,
+          "Sociales": 2,
+          "Normalista superior": 2,
+          "Licenciado en psicología": 2
+        },
+        "discapacidad_2025": {
+          "No": 76
+        },
+        "victima_conflicto_2025": {
+          "No": 76
+        },
+        "ano_inicio_2025": {
+          "2025": 76
+        }
+      },
+      "ninos_2025": {
+        "total": 403,
+        "genero": {
+          "Femenino": 209,
+          "Masculino": 194
+        },
+        "grupo_etnico": {
+          "Ninguno": 403
+        },
+        "estrato": {
+          "1": 403
+        },
+        "grado": {
+          "0": 19,
+          "1": 18,
+          "2": 30,
+          "3": 27,
+          "4": 23,
+          "5": 20,
+          "6": 55,
+          "7": 55,
+          "8": 24,
+          "9": 48,
+          "10": 59,
+          "11": 25
+        },
+        "discapacidad": {
+          "Sí": 6,
+          "No": 397
+        },
+        "victima_conflicto": {
+          "Sí": 34,
+          "No": 369
+        },
+        "tipos_discapacidad": {
+          "No especificado": 6
+        },
+        "indicadores": {
+          "pct_femenino": 51.9,
+          "pct_masculino": 48.1,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 8.4,
+          "pct_discapacidad": 1.5,
+          "pct_estrato_1": 100.0
+        }
+      }
+    },
+    {
+      "id": "MALLAMA",
+      "nombre": "MALLAMA",
+      "divipola": "52435",
+      "proyectos": {
+        "2024": 0,
+        "2025": 10,
+        "total": 10,
+        "variacion_abs": 10,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 4,
+        "total_unicas_combinadas": 4,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Municipio De Mallama",
+            "proyectos": 5
+          },
+          {
+            "institucion": "Institución Educativa Técnica San Juan Bautista De La Salle",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa indígena Agroambiental Puspued",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa técnica San Juan Bautista De La Salle Sede Pususquer",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 54,
+        "total": 54,
+        "genero_2025": {
+          "Femenino": 28,
+          "Masculino": 26
+        },
+        "grupo_etnico_2025": {
+          "Indígena": 52,
+          "Mestizo": 2
+        },
+        "jornada_2025": {
+          "Mañana": 54
+        },
+        "areas_2025": {
+          "Ciencias Naturales": 8,
+          "Básica Primaria": 8,
+          "Lengua Castellana": 6,
+          "Ciencias Sociales": 6,
+          "Matemáticas": 4,
+          "Filosofía": 4,
+          "Física": 2,
+          "Inglés": 2,
+          "Orientadora escolar": 2,
+          "Rectora": 2,
+          "Biología": 2,
+          "Química": 2,
+          "Tecnología e Informática": 2,
+          "Ciencias políticas": 2,
+          "Ciencias agrícolas": 2
+        },
+        "discapacidad_2025": {
+          "No": 54
+        },
+        "victima_conflicto_2025": {
+          "Sí": 4,
+          "No": 50
+        },
+        "ano_inicio_2025": {
+          "2025": 54
+        }
+      },
+      "ninos_2025": {
+        "total": 403,
+        "genero": {
+          "Femenino": 223,
+          "Masculino": 180
+        },
+        "grupo_etnico": {
+          "Indígena": 400,
+          "Ninguno": 3
+        },
+        "estrato": {
+          "1": 348,
+          "2": 4,
+          "3": 1,
+          "Sin dato": 50
+        },
+        "grado": {
+          "2": 35,
+          "3": 43,
+          "4": 35,
+          "5": 39,
+          "6": 40,
+          "7": 43,
+          "8": 16,
+          "9": 75,
+          "10": 55,
+          "11": 22
+        },
+        "discapacidad": {
+          "Sí": 2,
+          "No": 401
+        },
+        "victima_conflicto": {
+          "Sí": 46,
+          "No": 357
+        },
+        "tipos_discapacidad": {
+          "8 intelectual": 2
+        },
+        "indicadores": {
+          "pct_femenino": 55.3,
+          "pct_masculino": 44.7,
+          "pct_etnico_no_ninguno": 99.3,
+          "pct_victima_conflicto": 11.4,
+          "pct_discapacidad": 0.5,
+          "pct_estrato_1": 86.4
+        }
+      }
+    },
+    {
+      "id": "RICAURTE",
+      "nombre": "RICAURTE",
+      "divipola": "52612",
+      "proyectos": {
+        "2024": 0,
+        "2025": 10,
+        "total": 10,
+        "variacion_abs": 10,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 3,
+        "total_unicas_combinadas": 3,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Ospina Pérez",
+            "proyectos": 7
+          },
+          {
+            "institucion": "Institución Educativa Ricaurte",
+            "proyectos": 2
+          },
+          {
+            "institucion": "Institución Educativa Ospina Pérez.",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 42,
+        "total": 42,
+        "genero_2025": {
+          "Femenino": 16,
+          "Masculino": 26
+        },
+        "grupo_etnico_2025": {
+          "Indígena": 20,
+          "Ninguno": 18,
+          "Afrodescendiente": 4
+        },
+        "jornada_2025": {
+          "Mañana": 42
+        },
+        "areas_2025": {
+          "Matemáticas": 6,
+          "Ciencias Naturales": 6,
+          "Ciencias humanas": 4,
+          "Básica Primaria": 4,
+          "Educación Física": 4,
+          "Lengua Castellana": 4,
+          "Normalista superior": 2,
+          "Ing. agroindustrial": 2,
+          "Ciencias Sociales": 2,
+          "Ética y Religión": 2,
+          "Recreación y deporte": 2,
+          "Humanidades": 2,
+          "Educación Artística": 2,
+          "Tecnología e Informática": 2
+        },
+        "discapacidad_2025": {
+          "Sí": 2,
+          "No": 40
+        },
+        "victima_conflicto_2025": {
+          "Sí": 10,
+          "No": 32
+        },
+        "ano_inicio_2025": {
+          "2025": 20
+        }
+      },
+      "ninos_2025": {
+        "total": 354,
+        "genero": {
+          "Femenino": 168,
+          "Masculino": 186
+        },
+        "grupo_etnico": {
+          "Sin dato": 186,
+          "Indígena": 125,
+          "Ninguno": 42,
+          "Otro": 1
+        },
+        "estrato": {
+          "1": 303,
+          "3": 2,
+          "Sin dato": 49
+        },
+        "grado": {
+          "0": 13,
+          "1": 12,
+          "2": 15,
+          "3": 19,
+          "4": 15,
+          "5": 15,
+          "6": 30,
+          "7": 56,
+          "8": 27,
+          "9": 74,
+          "10": 32,
+          "11": 46
+        },
+        "discapacidad": {
+          "Sí": 2,
+          "No": 312,
+          "Sin dato": 40
+        },
+        "victima_conflicto": {
+          "Sí": 172,
+          "No": 142,
+          "Sin dato": 40
+        },
+        "tipos_discapacidad": {
+          "12 auditiva": 1,
+          "10 d multiple": 1
+        },
+        "indicadores": {
+          "pct_femenino": 47.5,
+          "pct_masculino": 52.5,
+          "pct_etnico_no_ninguno": 35.6,
+          "pct_victima_conflicto": 48.6,
+          "pct_discapacidad": 0.6,
+          "pct_estrato_1": 85.6
+        }
+      }
+    },
+    {
+      "id": "LINARES",
+      "nombre": "LINARES",
+      "divipola": "52411",
+      "proyectos": {
+        "2024": 0,
+        "2025": 10,
+        "total": 10,
+        "variacion_abs": 10,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 3,
+        "total_unicas_combinadas": 3,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Diego Luís Córdoba",
+            "proyectos": 6
+          },
+          {
+            "institucion": "Institución Educativa San Francisco De Asís",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Luis Carlos Galán",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 68,
+        "total": 68,
+        "genero_2025": {
+          "Femenino": 36,
+          "Masculino": 32
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 66,
+          "Pastos": 2
+        },
+        "jornada_2025": {
+          "Mañana": 68
+        },
+        "areas_2025": {
+          "Ciencias Sociales": 10,
+          "Matemáticas": 8,
+          "Lengua Castellana": 8,
+          "Química": 4,
+          "Ciencias Naturales": 4,
+          "Básica Primaria": 4,
+          "Educación Artística": 4,
+          "Todas las áreas": 4,
+          "Tutor programa pta": 4,
+          "Fi": 4,
+          "3.0": 4,
+          "Practica de psicologia": 4,
+          "Coordinador": 2,
+          "Tecnología e Informática": 2,
+          "Rector": 2,
+          "Ética y Religión": 2,
+          "Física": 2,
+          "Biología": 2,
+          "Docente orientadora": 2
+        },
+        "discapacidad_2025": {
+          "No": 68
+        },
+        "victima_conflicto_2025": {
+          "Sí": 6,
+          "No": 62
+        },
+        "ano_inicio_2025": {
+          "2025": 68
+        }
+      },
+      "ninos_2025": {
+        "total": 283,
+        "genero": {
+          "Femenino": 121,
+          "Masculino": 102,
+          "Sin dato": 60
+        },
+        "grupo_etnico": {
+          "Ninguno": 283
+        },
+        "estrato": {
+          "1": 269,
+          "2": 7,
+          "4": 1,
+          "Sin dato": 6
+        },
+        "grado": {
+          "0": 2,
+          "1": 4,
+          "2": 2,
+          "3": 5,
+          "4": 6,
+          "5": 8,
+          "6": 43,
+          "7": 35,
+          "8": 55,
+          "9": 28,
+          "10": 77,
+          "11": 18
+        },
+        "discapacidad": {
+          "Sí": 9,
+          "No": 274
+        },
+        "victima_conflicto": {
+          "Sí": 168,
+          "No": 115
+        },
+        "tipos_discapacidad": {
+          "Discapacidad psicosocial (mental)": 4,
+          "Discapacidad intelectual": 2,
+          "No especificado": 2,
+          "Visual-baja visión irreversible": 1
+        },
+        "indicadores": {
+          "pct_femenino": 42.8,
+          "pct_masculino": 36.0,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 59.4,
+          "pct_discapacidad": 3.2,
+          "pct_estrato_1": 95.1
+        }
+      }
+    },
+    {
+      "id": "PUERRES",
+      "nombre": "PUERRES",
+      "divipola": "52573",
+      "proyectos": {
+        "2024": 0,
+        "2025": 10,
+        "total": 10,
+        "variacion_abs": 10,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 5,
+        "total_unicas_combinadas": 5,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Monopamba",
+            "proyectos": 4
+          },
+          {
+            "institucion": "Institución Educativa Juan XXIII",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Monopamba - Sede Desmontes Altos",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa Juan XXIII - Sede Secundaria",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa San Mateo",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 22,
+        "total": 22,
+        "genero_2025": {
+          "Femenino": 12,
+          "Masculino": 10
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 18,
+          "Indígena": 4
+        },
+        "jornada_2025": {
+          "Mañana": 14,
+          "Única": 8
+        },
+        "areas_2025": {
+          "Básica Primaria": 4,
+          "Preescolar": 2,
+          "Educación Física": 2,
+          "Física": 2,
+          "Biología": 2,
+          "Química": 2,
+          "Pta": 2,
+          "Coordinación": 2,
+          "Lengua Castellana": 2,
+          "Idiomas": 2
+        },
+        "discapacidad_2025": {
+          "No": 22
+        },
+        "victima_conflicto_2025": {
+          "No": 22
+        },
+        "ano_inicio_2025": {
+          "2025": 22
+        }
+      },
+      "ninos_2025": {
+        "total": 321,
+        "genero": {
+          "Femenino": 170,
+          "Masculino": 151
+        },
+        "grupo_etnico": {
+          "Ninguno": 295,
+          "Pastos": 25,
+          "Sin dato": 1
+        },
+        "estrato": {
+          "1": 274,
+          "2": 25,
+          "3": 2,
+          "Sin dato": 20
+        },
+        "grado": {
+          "0": 2,
+          "1": 3,
+          "2": 7,
+          "3": 4,
+          "4": 39,
+          "5": 39,
+          "6": 38,
+          "7": 100,
+          "8": 7,
+          "9": 9,
+          "10": 19,
+          "11": 54
+        },
+        "discapacidad": {
+          "Sí": 5,
+          "No": 316
+        },
+        "victima_conflicto": {
+          "Sí": 46,
+          "No": 275
+        },
+        "tipos_discapacidad": {
+          "No especificado": 5
+        },
+        "indicadores": {
+          "pct_femenino": 53.0,
+          "pct_masculino": 47.0,
+          "pct_etnico_no_ninguno": 7.8,
+          "pct_victima_conflicto": 14.3,
+          "pct_discapacidad": 1.6,
+          "pct_estrato_1": 85.4
+        }
+      }
+    },
+    {
+      "id": "CUASPUD CARLOSAMA",
+      "nombre": "CUASPUD CARLOSAMA",
+      "divipola": "52224",
+      "proyectos": {
+        "2024": 0,
+        "2025": 7,
+        "total": 7,
+        "variacion_abs": 7,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 2,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Camilo Torres",
+            "proyectos": 6
+          },
+          {
+            "institucion": "Institución Educativa Agropecuaria Indígena Sebastián García Carlosama–\nSede Providencia",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 20,
+        "total": 20,
+        "genero_2025": {
+          "Femenino": 10,
+          "Masculino": 10
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 16,
+          "Indígena": 4
+        },
+        "jornada_2025": {
+          "Mañana": 20
+        },
+        "areas_2025": {
+          "Ciencias Naturales": 8,
+          "Todas las áreas": 4,
+          "Ciencias Sociales": 2,
+          "Lengua Castellana": 2,
+          "Inglés": 2,
+          "Contaduría": 2
+        },
+        "discapacidad_2025": {
+          "No": 20
+        },
+        "victima_conflicto_2025": {
+          "No": 20
+        },
+        "ano_inicio_2025": {
+          "2025": 20
+        }
+      },
+      "ninos_2025": {
+        "total": 295,
+        "genero": {
+          "Femenino": 168,
+          "Masculino": 127
+        },
+        "grupo_etnico": {
+          "Indígena": 295
+        },
+        "estrato": {
+          "1": 243,
+          "2": 8,
+          "Sin dato": 44
+        },
+        "grado": {
+          "0": 14,
+          "1": 13,
+          "2": 11,
+          "3": 25,
+          "4": 20,
+          "5": 34,
+          "6": 14,
+          "7": 2,
+          "8": 37,
+          "9": 33,
+          "10": 66,
+          "11": 26
+        },
+        "discapacidad": {
+          "No": 295
+        },
+        "victima_conflicto": {
+          "No": 295
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 56.9,
+          "pct_masculino": 43.1,
+          "pct_etnico_no_ninguno": 100.0,
+          "pct_victima_conflicto": 0.0,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 82.4
+        }
+      }
+    },
+    {
+      "id": "FUNES",
+      "nombre": "FUNES",
+      "divipola": "52287",
+      "proyectos": {
+        "2024": 0,
+        "2025": 10,
+        "total": 10,
+        "variacion_abs": 10,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 3,
+        "total_unicas_combinadas": 3,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Municipio de Funes",
+            "proyectos": 5
+          },
+          {
+            "institucion": "Institución Educativa Guapuscal Alto",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Agropecuaria Mariscal Sucre",
+            "proyectos": 2
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 46,
+        "total": 46,
+        "genero_2025": {
+          "Femenino": 24,
+          "Masculino": 22
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 44,
+          "Indígena": 2
+        },
+        "jornada_2025": {
+          "Mañana": 46
+        },
+        "areas_2025": {
+          "Básica Primaria": 10,
+          "Ciencias Sociales": 8,
+          "Matemáticas": 6,
+          "Educación Física": 4,
+          "Inglés": 4,
+          "Tecnología e Informática": 4,
+          "Lengua Castellana": 4,
+          "Técnica agrícola": 2,
+          "Filosofía": 2,
+          "Docente orientadora": 2,
+          "Biología": 2,
+          "Ética y Religión": 2,
+          "Contabilidad": 2,
+          "Ciencias Naturales": 2
+        },
+        "discapacidad_2025": {
+          "No": 46
+        },
+        "victima_conflicto_2025": {
+          "No": 46
+        },
+        "ano_inicio_2025": {
+          "2010": 2,
+          "2025": 44
+        }
+      },
+      "ninos_2025": {
+        "total": 251,
+        "genero": {
+          "Femenino": 128,
+          "Masculino": 123
+        },
+        "grupo_etnico": {
+          "Ninguno": 212,
+          "Pastos": 37,
+          "Afrodescendiente": 1,
+          "Otro": 1
+        },
+        "estrato": {
+          "1": 225,
+          "2": 6,
+          "3": 3,
+          "Sin dato": 17
+        },
+        "grado": {
+          "2": 5,
+          "3": 3,
+          "4": 30,
+          "5": 6,
+          "6": 40,
+          "7": 55,
+          "8": 44,
+          "9": 29,
+          "10": 27,
+          "11": 12
+        },
+        "discapacidad": {
+          "Sí": 7,
+          "No": 244
+        },
+        "victima_conflicto": {
+          "Sí": 25,
+          "No": 226
+        },
+        "tipos_discapacidad": {
+          "Intelectual": 5,
+          "Auditiva": 2
+        },
+        "indicadores": {
+          "pct_femenino": 51.0,
+          "pct_masculino": 49.0,
+          "pct_etnico_no_ninguno": 15.5,
+          "pct_victima_conflicto": 10.0,
+          "pct_discapacidad": 2.8,
+          "pct_estrato_1": 89.6
+        }
+      }
+    },
+    {
+      "id": "EL PENOL",
+      "nombre": "EL PEÑOL",
+      "divipola": "52254",
+      "proyectos": {
+        "2024": 0,
+        "2025": 6,
+        "total": 6,
+        "variacion_abs": 6,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 2,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa San Francisco de Asís.",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Jorge Eliécer Gaitán",
+            "proyectos": 3
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 14,
+        "total": 14,
+        "genero_2025": {
+          "Femenino": 6,
+          "Masculino": 8
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 14
+        },
+        "jornada_2025": {
+          "Mañana": 8,
+          "Única": 6
+        },
+        "areas_2025": {
+          "Ciencias Naturales": 4,
+          "Lengua Castellana": 2,
+          "Química": 2,
+          "Matemáticas": 2,
+          "Tutor del programa pta3.0": 2,
+          "Física": 2
+        },
+        "discapacidad_2025": {
+          "No": 14
+        },
+        "victima_conflicto_2025": {
+          "Sí": 8,
+          "No": 6
+        },
+        "ano_inicio_2025": {
+          "2025": 14
+        }
+      },
+      "ninos_2025": {
+        "total": 250,
+        "genero": {
+          "Femenino": 121,
+          "Masculino": 129
+        },
+        "grupo_etnico": {
+          "Ninguno": 250
+        },
+        "estrato": {
+          "1": 242,
+          "2": 4,
+          "Sin dato": 4
+        },
+        "grado": {
+          "4": 9,
+          "5": 38,
+          "6": 21,
+          "7": 60,
+          "8": 37,
+          "9": 48,
+          "10": 37
+        },
+        "discapacidad": {
+          "No": 250
+        },
+        "victima_conflicto": {
+          "Sí": 3,
+          "No": 247
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 48.4,
+          "pct_masculino": 51.6,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 1.2,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 96.8
+        }
+      }
+    },
+    {
+      "id": "SAMANIEGO",
+      "nombre": "SAMANIEGO",
+      "divipola": "52678",
+      "proyectos": {
+        "2024": 0,
+        "2025": 8,
+        "total": 8,
+        "variacion_abs": 8,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 2,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Policarpa Salavarrieta",
+            "proyectos": 7
+          },
+          {
+            "institucion": "Institución Educativa Agropecuaria San Martin De Porres",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 0,
+        "total": 0,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 251,
+        "genero": {
+          "Femenino": 156,
+          "Masculino": 95
+        },
+        "grupo_etnico": {
+          "Ninguno": 218,
+          "Indígena": 33
+        },
+        "estrato": {
+          "1": 200,
+          "2": 15,
+          "Sin dato": 36
+        },
+        "grado": {
+          "4": 11,
+          "5": 21,
+          "6": 72,
+          "7": 28,
+          "8": 20,
+          "9": 33,
+          "10": 47,
+          "11": 19
+        },
+        "discapacidad": {
+          "Sí": 4,
+          "No": 246,
+          "Sin dato": 1
+        },
+        "victima_conflicto": {
+          "Sí": 168,
+          "No": 83
+        },
+        "tipos_discapacidad": {
+          "Discapacidad fisica": 1,
+          "Discapacidad auditiva-usuario lengua de señas colombia": 1,
+          "Discapacidad intelectual": 1,
+          "Discapacidad psicosocial (mental)": 1
+        },
+        "indicadores": {
+          "pct_femenino": 62.2,
+          "pct_masculino": 37.8,
+          "pct_etnico_no_ninguno": 13.1,
+          "pct_victima_conflicto": 66.9,
+          "pct_discapacidad": 1.6,
+          "pct_estrato_1": 79.7
+        }
+      }
+    },
+    {
+      "id": "ARBOLEDA",
+      "nombre": "ARBOLEDA",
+      "divipola": "52051",
+      "proyectos": {
+        "2024": 0,
+        "2025": 6,
+        "total": 6,
+        "variacion_abs": 6,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 1,
+        "total_unicas_combinadas": 1,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Rosaflorida",
+            "proyectos": 6
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 12,
+        "total": 12,
+        "genero_2025": {
+          "Femenino": 8,
+          "Masculino": 4
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 12
+        },
+        "jornada_2025": {
+          "Mañana": 12
+        },
+        "areas_2025": {
+          "Lengua Castellana": 2,
+          "Tecnología e Informática": 2,
+          "Técnica agropecuaria": 2,
+          "Química": 2,
+          "Preescolar": 2,
+          "Docente tutora": 2
+        },
+        "discapacidad_2025": {
+          "No": 12
+        },
+        "victima_conflicto_2025": {
+          "No": 12
+        },
+        "ano_inicio_2025": {
+          "2025": 12
+        }
+      },
+      "ninos_2025": {
+        "total": 235,
+        "genero": {
+          "Femenino": 134,
+          "Masculino": 101
+        },
+        "grupo_etnico": {
+          "Ninguno": 235
+        },
+        "estrato": {
+          "1": 235
+        },
+        "grado": {
+          "0": 12,
+          "1": 13,
+          "2": 9,
+          "3": 11,
+          "4": 13,
+          "5": 13,
+          "6": 35,
+          "7": 32,
+          "8": 31,
+          "9": 31,
+          "10": 35
+        },
+        "discapacidad": {
+          "No": 235
+        },
+        "victima_conflicto": {
+          "Sí": 43,
+          "No": 192
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 57.0,
+          "pct_masculino": 43.0,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 18.3,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 100.0
+        }
+      }
+    },
+    {
+      "id": "CUMBITARA",
+      "nombre": "CUMBITARA",
+      "divipola": "52233",
+      "proyectos": {
+        "2024": 4,
+        "2025": 0,
+        "total": 4,
+        "variacion_abs": -4,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 3,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 3,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 9,
+        "2025": 0,
+        "total": 9,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 245,
+        "genero": {
+          "Femenino": 132,
+          "Masculino": 112,
+          "Sin dato": 1
+        },
+        "grupo_etnico": {
+          "Ninguno": 245
+        },
+        "estrato": {
+          "1": 229,
+          "2": 3,
+          "3": 3,
+          "Sin dato": 10
+        },
+        "grado": {
+          "5": 26,
+          "6": 72,
+          "7": 31,
+          "8": 25,
+          "9": 25,
+          "10": 40,
+          "11": 26
+        },
+        "discapacidad": {
+          "Sí": 5,
+          "No": 240
+        },
+        "victima_conflicto": {
+          "Sí": 36,
+          "No": 209
+        },
+        "tipos_discapacidad": {
+          "No especificado": 5
+        },
+        "indicadores": {
+          "pct_femenino": 53.9,
+          "pct_masculino": 45.7,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 14.7,
+          "pct_discapacidad": 2.0,
+          "pct_estrato_1": 93.5
+        }
+      }
+    },
+    {
+      "id": "ALBAN",
+      "nombre": "ALBÁN",
+      "divipola": "52019",
+      "proyectos": {
+        "2024": 0,
+        "2025": 6,
+        "total": 6,
+        "variacion_abs": 6,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 3,
+        "total_unicas_combinadas": 3,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Juan Ignacio Ortiz",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Politécnico Juan Bolaños",
+            "proyectos": 2
+          },
+          {
+            "institucion": "Institución Educativa Juan Ignacio Ortiz- Sede Primara Guillermo Vizzuete",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 12,
+        "total": 12,
+        "genero_2025": {
+          "Femenino": 6,
+          "Masculino": 6
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 12
+        },
+        "jornada_2025": {
+          "Mañana": 12
+        },
+        "areas_2025": {
+          "Todas las áreas": 2,
+          "Docente orientadora de bachillerato": 2,
+          "Música": 2,
+          "Tecnología e Informática": 2,
+          "Ciencias Naturales": 2,
+          "Psicólogo": 2
+        },
+        "discapacidad_2025": {
+          "No": 12
+        },
+        "victima_conflicto_2025": {
+          "No": 12
+        },
+        "ano_inicio_2025": {
+          "2025": 12
+        }
+      },
+      "ninos_2025": {
+        "total": 189,
+        "genero": {
+          "Femenino": 102,
+          "Masculino": 87
+        },
+        "grupo_etnico": {
+          "Ninguno": 189
+        },
+        "estrato": {
+          "1": 176,
+          "2": 4,
+          "3": 4,
+          "4": 1,
+          "Sin dato": 4
+        },
+        "grado": {
+          "3": 2,
+          "4": 12,
+          "5": 26,
+          "6": 5,
+          "7": 14,
+          "8": 21,
+          "9": 44,
+          "10": 46,
+          "11": 19
+        },
+        "discapacidad": {
+          "No": 189
+        },
+        "victima_conflicto": {
+          "Sí": 54,
+          "No": 135
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 54.0,
+          "pct_masculino": 46.0,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 28.6,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 93.1
+        }
+      }
+    },
+    {
+      "id": "SAN PEDRO DE CARTAGO",
+      "nombre": "SAN PEDRO DE CARTAGO",
+      "divipola": "52694",
+      "proyectos": {
+        "2024": 0,
+        "2025": 5,
+        "total": 5,
+        "variacion_abs": 5,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 2,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa San Pedro de Cartago",
+            "proyectos": 4
+          },
+          {
+            "institucion": "Institución Educativa La Estancia",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 16,
+        "total": 16,
+        "genero_2025": {
+          "Femenino": 12,
+          "Masculino": 4
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 16
+        },
+        "jornada_2025": {
+          "Mañana": 16
+        },
+        "areas_2025": {
+          "Matemáticas": 4,
+          "Ciencias Sociales": 4,
+          "Ciencias Naturales": 4,
+          "Educación Física": 2,
+          "Lengua Castellana": 2,
+          "Química": 2,
+          "Preescolar": 2,
+          "Ciencias agricolas": 2,
+          "Biología": 2
+        },
+        "discapacidad_2025": {
+          "No": 16
+        },
+        "victima_conflicto_2025": {
+          "No": 16
+        },
+        "ano_inicio_2025": {
+          "2025": 16
+        }
+      },
+      "ninos_2025": {
+        "total": 147,
+        "genero": {
+          "Femenino": 72,
+          "Masculino": 75
+        },
+        "grupo_etnico": {
+          "Ninguno": 147
+        },
+        "estrato": {
+          "1": 145,
+          "2": 1,
+          "Sin dato": 1
+        },
+        "grado": {
+          "6": 2,
+          "7": 31,
+          "8": 64,
+          "9": 39,
+          "10": 11
+        },
+        "discapacidad": {
+          "Sí": 13,
+          "No": 134
+        },
+        "victima_conflicto": {
+          "Sí": 19,
+          "No": 128
+        },
+        "tipos_discapacidad": {
+          "No especificado": 13
+        },
+        "indicadores": {
+          "pct_femenino": 49.0,
+          "pct_masculino": 51.0,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 12.9,
+          "pct_discapacidad": 8.8,
+          "pct_estrato_1": 98.6
+        }
+      }
+    },
+    {
+      "id": "ROBERTO PAYAN",
+      "nombre": "ROBERTO PAYÁN",
+      "divipola": "52621",
+      "proyectos": {
+        "2024": 0,
+        "2025": 4,
+        "total": 4,
+        "variacion_abs": 4,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 1,
+        "total_unicas_combinadas": 1,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa San José del Telembí",
+            "proyectos": 4
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 16,
+        "total": 16,
+        "genero_2025": {
+          "Femenino": 6,
+          "Masculino": 10
+        },
+        "grupo_etnico_2025": {
+          "Afrodescendiente": 16
+        },
+        "jornada_2025": {
+          "Mañana": 16
+        },
+        "areas_2025": {
+          "Básica Primaria": 4,
+          "Inglés": 2,
+          "Lengua Castellana": 2,
+          "Etnoeducación - especialista en pedagogía ambiental": 2,
+          "Sociales": 2,
+          "Química": 2,
+          "Educación Física": 2
+        },
+        "discapacidad_2025": {
+          "No": 16
+        },
+        "victima_conflicto_2025": {
+          "Sí": 16
+        },
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 135,
+        "genero": {
+          "Femenino": 69,
+          "Masculino": 63,
+          "Sin dato": 3
+        },
+        "grupo_etnico": {
+          "Ninguno": 135
+        },
+        "estrato": {
+          "1": 135
+        },
+        "grado": {
+          "1": 31,
+          "2": 24,
+          "8": 60,
+          "9": 20
+        },
+        "discapacidad": {
+          "No": 135
+        },
+        "victima_conflicto": {
+          "Sí": 94,
+          "No": 41
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 51.1,
+          "pct_masculino": 46.7,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 69.6,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 100.0
+        }
+      }
+    },
+    {
+      "id": "CONTADERO",
+      "nombre": "CONTADERO",
+      "divipola": "52210",
+      "proyectos": {
+        "2024": 0,
+        "2025": 5,
+        "total": 5,
+        "variacion_abs": 5,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 2,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa San Carlos",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Las Delicias",
+            "proyectos": 2
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 10,
+        "total": 10,
+        "genero_2025": {
+          "Femenino": 10
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 10
+        },
+        "jornada_2025": {
+          "Mañana": 10
+        },
+        "areas_2025": {
+          "Básica Primaria": 6,
+          "Ingeniera agroindustrial": 2,
+          "Lengua Castellana": 2
+        },
+        "discapacidad_2025": {
+          "No": 10
+        },
+        "victima_conflicto_2025": {
+          "No": 10
+        },
+        "ano_inicio_2025": {
+          "2025": 10
+        }
+      },
+      "ninos_2025": {
+        "total": 138,
+        "genero": {
+          "Femenino": 64,
+          "Masculino": 74
+        },
+        "grupo_etnico": {
+          "Ninguno": 138
+        },
+        "estrato": {
+          "1": 138
+        },
+        "grado": {
+          "0": 3,
+          "1": 22,
+          "2": 3,
+          "3": 37,
+          "4": 3,
+          "5": 3,
+          "6": 6,
+          "7": 7,
+          "8": 3,
+          "9": 43,
+          "10": 3,
+          "11": 5
+        },
+        "discapacidad": {
+          "No": 138
+        },
+        "victima_conflicto": {
+          "No": 138
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 46.4,
+          "pct_masculino": 53.6,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 0.0,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 100.0
+        }
+      }
+    },
+    {
+      "id": "EL TAMBO",
+      "nombre": "EL TAMBO",
+      "divipola": "52260",
+      "proyectos": {
+        "2024": 0,
+        "2025": 6,
+        "total": 6,
+        "variacion_abs": 6,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 4,
+        "total_unicas_combinadas": 4,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Jesús Nazareno",
+            "proyectos": 2
+          },
+          {
+            "institucion": "Institución Educativa San Pedro",
+            "proyectos": 2
+          },
+          {
+            "institucion": "Institución Educativa Sagrado Corazón de Jesús - Sede El Chaquín",
+            "proyectos": 1
+          },
+          {
+            "institucion": "Institución Educativa San Pedro - Sede 7 San Pablo",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 12,
+        "total": 12,
+        "genero_2025": {
+          "Femenino": 6,
+          "Masculino": 6
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 12
+        },
+        "jornada_2025": {
+          "Mañana": 12
+        },
+        "areas_2025": {
+          "Ciencias Naturales": 2,
+          "Tecnología e Informática": 2,
+          "Física": 2,
+          "Todas las áreas": 2,
+          "Geógrafia": 2,
+          "Química": 2
+        },
+        "discapacidad_2025": {
+          "No": 12
+        },
+        "victima_conflicto_2025": {
+          "No": 12
+        },
+        "ano_inicio_2025": {
+          "2025": 12
+        }
+      },
+      "ninos_2025": {
+        "total": 134,
+        "genero": {
+          "Femenino": 63,
+          "Masculino": 71
+        },
+        "grupo_etnico": {
+          "Ninguno": 134
+        },
+        "estrato": {
+          "1": 134
+        },
+        "grado": {
+          "0": 2,
+          "1": 2,
+          "2": 4,
+          "3": 14,
+          "4": 14,
+          "5": 8,
+          "6": 15,
+          "8": 31,
+          "10": 44
+        },
+        "discapacidad": {
+          "No": 134
+        },
+        "victima_conflicto": {
+          "No": 134
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 47.0,
+          "pct_masculino": 53.0,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 0.0,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 100.0
+        }
+      }
+    },
+    {
+      "id": "BARBACOAS",
+      "nombre": "BARBACOAS",
+      "divipola": "52079",
+      "proyectos": {
+        "2024": 0,
+        "2025": 6,
+        "total": 6,
+        "variacion_abs": 6,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 2,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Luis Irizar Salazar",
+            "proyectos": 3
+          },
+          {
+            "institucion": "Institución Educativa Escuela Normal Superior La Inmaculada",
+            "proyectos": 3
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 20,
+        "total": 20,
+        "genero_2025": {
+          "Femenino": 8,
+          "Masculino": 12
+        },
+        "grupo_etnico_2025": {
+          "Afrodescendiente": 16,
+          "Ninguno": 2,
+          "Mestizo": 2
+        },
+        "jornada_2025": {
+          "Mañana": 20
+        },
+        "areas_2025": {
+          "Básica Primaria": 4,
+          "Coordinadora sede #2": 2,
+          "Biología": 2,
+          "Tecnología e Informática": 2,
+          "Lengua Castellana": 2,
+          "Ética y Religión": 2,
+          "Matemáticas": 2,
+          "Inglés": 2,
+          "Química": 2
+        },
+        "discapacidad_2025": {
+          "No": 20
+        },
+        "victima_conflicto_2025": {
+          "Sí": 6,
+          "No": 14
+        },
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 108,
+        "genero": {
+          "Femenino": 72,
+          "Masculino": 36
+        },
+        "grupo_etnico": {
+          "Ninguno": 108
+        },
+        "estrato": {
+          "1": 108
+        },
+        "grado": {
+          "11": 108
+        },
+        "discapacidad": {
+          "No": 108
+        },
+        "victima_conflicto": {
+          "Sí": 61,
+          "No": 47
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 66.7,
+          "pct_masculino": 33.3,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 56.5,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 100.0
+        }
+      }
+    },
+    {
+      "id": "COLON",
+      "nombre": "COLÓN",
+      "divipola": "52203",
+      "proyectos": {
+        "2024": 0,
+        "2025": 10,
+        "total": 10,
+        "variacion_abs": 10,
+        "variacion_pct": null
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 0,
+        "2025_total_unicas": 3,
+        "total_unicas_combinadas": 3,
+        "top_5_ie_2025": [
+          {
+            "institucion": "Institución Educativa Técnico Divino Niño",
+            "proyectos": 5
+          },
+          {
+            "institucion": "Institución Educativa Nuestra Señora del Rosario Villanueva",
+            "proyectos": 4
+          },
+          {
+            "institucion": "Institución Educativa Leopoldo López Álvarez",
+            "proyectos": 1
+          }
+        ]
+      },
+      "profesores": {
+        "2024": 0,
+        "2025": 24,
+        "total": 24,
+        "genero_2025": {
+          "Femenino": 10,
+          "Masculino": 14
+        },
+        "grupo_etnico_2025": {
+          "Ninguno": 24
+        },
+        "jornada_2025": {
+          "Mañana": 24
+        },
+        "areas_2025": {
+          "Matemáticas": 8,
+          "Ciencias Naturales": 4,
+          "Ciencias Sociales": 2,
+          "Educación Física": 2,
+          "Rector de la instituciòn educativa": 2,
+          "Inglés": 2,
+          "Docente tutor pta 3.0 fi": 2,
+          "Lengua Castellana": 2,
+          "Estadistica y contabilidad": 2
+        },
+        "discapacidad_2025": {
+          "No": 24
+        },
+        "victima_conflicto_2025": {
+          "No": 24
+        },
+        "ano_inicio_2025": {
+          "2015": 2,
+          "2025": 22
+        }
+      },
+      "ninos_2025": {
+        "total": 38,
+        "genero": {
+          "Femenino": 17,
+          "Masculino": 21
+        },
+        "grupo_etnico": {
+          "Ninguno": 38
+        },
+        "estrato": {
+          "1": 38
+        },
+        "grado": {
+          "7": 20,
+          "8": 18
+        },
+        "discapacidad": {
+          "No": 38
+        },
+        "victima_conflicto": {
+          "No": 38
+        },
+        "tipos_discapacidad": {},
+        "indicadores": {
+          "pct_femenino": 44.7,
+          "pct_masculino": 55.3,
+          "pct_etnico_no_ninguno": 0.0,
+          "pct_victima_conflicto": 0.0,
+          "pct_discapacidad": 0.0,
+          "pct_estrato_1": 100.0
+        }
+      }
+    },
+    {
+      "id": "ALDANA",
+      "nombre": "ALDANA",
+      "divipola": "52022",
+      "proyectos": {
+        "2024": 6,
+        "2025": 0,
+        "total": 6,
+        "variacion_abs": -6,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 4,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 4,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 24,
+        "2025": 0,
+        "total": 24,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "CORDOBA",
+      "nombre": "CÓRDOBA",
+      "divipola": "52215",
+      "proyectos": {
+        "2024": 6,
+        "2025": 0,
+        "total": 6,
+        "variacion_abs": -6,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 5,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 5,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 7,
+        "2025": 0,
+        "total": 7,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "GUACHUCAL",
+      "nombre": "GUACHUCAL",
+      "divipola": "52317",
+      "proyectos": {
+        "2024": 8,
+        "2025": 0,
+        "total": 8,
+        "variacion_abs": -8,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 5,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 5,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 15,
+        "2025": 0,
+        "total": 15,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "GUALMATAN",
+      "nombre": "GUALMATÁN",
+      "divipola": "52323",
+      "proyectos": {
+        "2024": 4,
+        "2025": 0,
+        "total": 4,
+        "variacion_abs": -4,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 2,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 9,
+        "2025": 0,
+        "total": 9,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "ILES",
+      "nombre": "ILES",
+      "divipola": "52352",
+      "proyectos": {
+        "2024": 2,
+        "2025": 0,
+        "total": 2,
+        "variacion_abs": -2,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 2,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 4,
+        "2025": 0,
+        "total": 4,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "IPIALES",
+      "nombre": "IPIALES",
+      "divipola": "52356",
+      "proyectos": {
+        "2024": 14,
+        "2025": 0,
+        "total": 14,
+        "variacion_abs": -14,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 13,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 13,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 30,
+        "2025": 0,
+        "total": 30,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "LA LLANADA",
+      "nombre": "LA LLANADA",
+      "divipola": "52385",
+      "proyectos": {
+        "2024": 2,
+        "2025": 0,
+        "total": 2,
+        "variacion_abs": -2,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 2,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 2,
+        "2025": 0,
+        "total": 2,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "LOS ANDES",
+      "nombre": "LOS ANDES",
+      "divipola": "52418",
+      "proyectos": {
+        "2024": 5,
+        "2025": 0,
+        "total": 5,
+        "variacion_abs": -5,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 5,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 5,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 3,
+        "2025": 0,
+        "total": 3,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "OSPINA",
+      "nombre": "OSPINA",
+      "divipola": "52506",
+      "proyectos": {
+        "2024": 5,
+        "2025": 0,
+        "total": 5,
+        "variacion_abs": -5,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 3,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 3,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 15,
+        "2025": 0,
+        "total": 15,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "POLICARPA",
+      "nombre": "POLICARPA",
+      "divipola": "52540",
+      "proyectos": {
+        "2024": 4,
+        "2025": 0,
+        "total": 4,
+        "variacion_abs": -4,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 4,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 4,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 5,
+        "2025": 0,
+        "total": 5,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "POTOSI",
+      "nombre": "POTOSÍ",
+      "divipola": "52560",
+      "proyectos": {
+        "2024": 7,
+        "2025": 0,
+        "total": 7,
+        "variacion_abs": -7,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 5,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 5,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 16,
+        "2025": 0,
+        "total": 16,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "PUPIALES",
+      "nombre": "PUPIALES",
+      "divipola": "52585",
+      "proyectos": {
+        "2024": 6,
+        "2025": 0,
+        "total": 6,
+        "variacion_abs": -6,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 2,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 13,
+        "2025": 0,
+        "total": 13,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "SANTACRUZ",
+      "nombre": "SANTACRUZ",
+      "divipola": "52699",
+      "proyectos": {
+        "2024": 2,
+        "2025": 0,
+        "total": 2,
+        "variacion_abs": -2,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 2,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 2,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 13,
+        "2025": 0,
+        "total": 13,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "SAPUYES",
+      "nombre": "SAPUYES",
+      "divipola": "52720",
+      "proyectos": {
+        "2024": 4,
+        "2025": 0,
+        "total": 4,
+        "variacion_abs": -4,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 3,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 3,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 6,
+        "2025": 0,
+        "total": 6,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    },
+    {
+      "id": "TUQUERRES",
+      "nombre": "TÚQUERRES",
+      "divipola": "52838",
+      "proyectos": {
+        "2024": 10,
+        "2025": 0,
+        "total": 10,
+        "variacion_abs": -10,
+        "variacion_pct": -100.0
+      },
+      "instituciones_educativas": {
+        "2024_total_unicas": 10,
+        "2025_total_unicas": 0,
+        "total_unicas_combinadas": 10,
+        "top_5_ie_2025": []
+      },
+      "profesores": {
+        "2024": 23,
+        "2025": 0,
+        "total": 23,
+        "genero_2025": {},
+        "grupo_etnico_2025": {},
+        "jornada_2025": {},
+        "areas_2025": {},
+        "discapacidad_2025": {},
+        "victima_conflicto_2025": {},
+        "ano_inicio_2025": {}
+      },
+      "ninos_2025": {
+        "total": 0,
+        "genero": {},
+        "grupo_etnico": {},
+        "estrato": {},
+        "grado": {},
+        "discapacidad": {},
+        "victima_conflicto": {},
+        "tipos_discapacidad": {},
+        "indicadores": null
+      }
+    }
+  ]
+}
