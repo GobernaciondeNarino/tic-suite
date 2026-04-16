@@ -1,0 +1,33 @@
+{
+  "vista": "ondas_profesores_genero",
+  "titulo": "Ondas - Profesores por Género (2025)",
+  "descripcion": "Distribución de género de los profesores vinculados a Ondas 2025.",
+  "tipo_grafico_sugerido": "donut",
+  "data": [
+    {
+      "genero": "Femenino",
+      "profesores": 434
+    },
+    {
+      "genero": "Masculino",
+      "profesores": 356
+    },
+    {
+      "genero": "Sin dato",
+      "profesores": 2
+    }
+  ],
+  "totales": {
+    "total": 792,
+    "categorias": 3
+  },
+  "id": "ondas_profesores_genero",
+  "name": "Ondas - Profesores por Género (2025)",
+  "category": "categorical",
+  "dimensions": [
+    "genero"
+  ],
+  "measures": [
+    "profesores"
+  ]
+}

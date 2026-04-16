@@ -1,23 +1,34 @@
 <?php
 /**
- * Admin screen: chart builder.
+ * Admin screen: chart builder (project-scoped).
  *
  * @package TicSuite\Graficos
- * @var array $views Summaries of registered views (passed from TSG_Admin).
+ * @var array  $views   View summaries for the current project.
+ * @var string $project Current project slug (nacion|ondas|…).
+ * @var string $label   Human label for the current project.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<div class="wrap tsg-wrap">
+<div class="wrap tsg-wrap" data-tsg-project="<?php echo esc_attr( $project ); ?>">
 	<header class="tsg-header">
 		<div class="tsg-header__title">
 			<span class="dashicons dashicons-chart-area" aria-hidden="true"></span>
-			<h1><?php esc_html_e( 'Constructor de gráficos', 'tic-suite-graficos' ); ?></h1>
+			<h1>
+				<?php esc_html_e( 'TIC Suite', 'tic-suite-graficos' ); ?>
+				<span class="tsg-header__sub">· <?php echo esc_html( $label ); ?></span>
+			</h1>
 		</div>
 		<p class="tsg-header__lede">
-			<?php esc_html_e( 'Selecciona una vista de TIC Suite, elige uno de los tipos de gráfico compatibles y obtén el shortcode para insertarlo en cualquier página.', 'tic-suite-graficos' ); ?>
+			<?php
+			printf(
+				/* translators: %s: project label */
+				esc_html__( 'Selecciona una vista del proyecto %s, elige un tipo de gráfico compatible y obtén el shortcode para insertarlo en cualquier página.', 'tic-suite-graficos' ),
+				'<strong>' . esc_html( $label ) . '</strong>'
+			);
+			?>
 		</p>
 	</header>
 

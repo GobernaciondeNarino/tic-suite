@@ -1,0 +1,280 @@
+{
+  "vista": "ondas_proyectos_municipio",
+  "titulo": "Ondas - Proyectos por Municipio (2024-2025)",
+  "descripcion": "Proyectos Ondas por municipio de Nariño, comparando las vigencias 2024 y 2025.",
+  "tipo_grafico_sugerido": "bar_stacked",
+  "total_municipios": 38,
+  "municipios": [
+    {
+      "municipio": "PASTO",
+      "proyectos_2024": 16,
+      "proyectos_2025": 21,
+      "total": 37,
+      "variacion_pct": 31.2
+    },
+    {
+      "municipio": "CUMBAL",
+      "proyectos_2024": 0,
+      "proyectos_2025": 9,
+      "total": 9,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "SAN PABLO",
+      "proyectos_2024": 0,
+      "proyectos_2025": 12,
+      "total": 12,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "LA UNIÓN",
+      "proyectos_2024": 0,
+      "proyectos_2025": 13,
+      "total": 13,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "SAN ANDRÉS DE TUMACO",
+      "proyectos_2024": 0,
+      "proyectos_2025": 12,
+      "total": 12,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "SAN LORENZO",
+      "proyectos_2024": 0,
+      "proyectos_2025": 9,
+      "total": 9,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "MALLAMA",
+      "proyectos_2024": 0,
+      "proyectos_2025": 10,
+      "total": 10,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "RICAURTE",
+      "proyectos_2024": 0,
+      "proyectos_2025": 10,
+      "total": 10,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "LINARES",
+      "proyectos_2024": 0,
+      "proyectos_2025": 10,
+      "total": 10,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "PUERRES",
+      "proyectos_2024": 0,
+      "proyectos_2025": 10,
+      "total": 10,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "CUASPUD CARLOSAMA",
+      "proyectos_2024": 0,
+      "proyectos_2025": 7,
+      "total": 7,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "FUNES",
+      "proyectos_2024": 0,
+      "proyectos_2025": 10,
+      "total": 10,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "EL PEÑOL",
+      "proyectos_2024": 0,
+      "proyectos_2025": 6,
+      "total": 6,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "SAMANIEGO",
+      "proyectos_2024": 0,
+      "proyectos_2025": 8,
+      "total": 8,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "ARBOLEDA",
+      "proyectos_2024": 0,
+      "proyectos_2025": 6,
+      "total": 6,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "CUMBITARA",
+      "proyectos_2024": 4,
+      "proyectos_2025": 0,
+      "total": 4,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "ALBÁN",
+      "proyectos_2024": 0,
+      "proyectos_2025": 6,
+      "total": 6,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "SAN PEDRO DE CARTAGO",
+      "proyectos_2024": 0,
+      "proyectos_2025": 5,
+      "total": 5,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "ROBERTO PAYÁN",
+      "proyectos_2024": 0,
+      "proyectos_2025": 4,
+      "total": 4,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "CONTADERO",
+      "proyectos_2024": 0,
+      "proyectos_2025": 5,
+      "total": 5,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "EL TAMBO",
+      "proyectos_2024": 0,
+      "proyectos_2025": 6,
+      "total": 6,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "BARBACOAS",
+      "proyectos_2024": 0,
+      "proyectos_2025": 6,
+      "total": 6,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "COLÓN",
+      "proyectos_2024": 0,
+      "proyectos_2025": 10,
+      "total": 10,
+      "variacion_pct": 0.0
+    },
+    {
+      "municipio": "ALDANA",
+      "proyectos_2024": 6,
+      "proyectos_2025": 0,
+      "total": 6,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "CÓRDOBA",
+      "proyectos_2024": 6,
+      "proyectos_2025": 0,
+      "total": 6,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "GUACHUCAL",
+      "proyectos_2024": 8,
+      "proyectos_2025": 0,
+      "total": 8,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "GUALMATÁN",
+      "proyectos_2024": 4,
+      "proyectos_2025": 0,
+      "total": 4,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "ILES",
+      "proyectos_2024": 2,
+      "proyectos_2025": 0,
+      "total": 2,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "IPIALES",
+      "proyectos_2024": 14,
+      "proyectos_2025": 0,
+      "total": 14,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "LA LLANADA",
+      "proyectos_2024": 2,
+      "proyectos_2025": 0,
+      "total": 2,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "LOS ANDES",
+      "proyectos_2024": 5,
+      "proyectos_2025": 0,
+      "total": 5,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "OSPINA",
+      "proyectos_2024": 5,
+      "proyectos_2025": 0,
+      "total": 5,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "POLICARPA",
+      "proyectos_2024": 4,
+      "proyectos_2025": 0,
+      "total": 4,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "POTOSÍ",
+      "proyectos_2024": 7,
+      "proyectos_2025": 0,
+      "total": 7,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "PUPIALES",
+      "proyectos_2024": 6,
+      "proyectos_2025": 0,
+      "total": 6,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "SANTACRUZ",
+      "proyectos_2024": 2,
+      "proyectos_2025": 0,
+      "total": 2,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "SAPUYES",
+      "proyectos_2024": 4,
+      "proyectos_2025": 0,
+      "total": 4,
+      "variacion_pct": -100.0
+    },
+    {
+      "municipio": "TÚQUERRES",
+      "proyectos_2024": 10,
+      "proyectos_2025": 0,
+      "total": 10,
+      "variacion_pct": -100.0
+    }
+  ],
+  "totales": {
+    "proyectos_2024": 105,
+    "proyectos_2025": 195,
+    "total_departamento": 300
+  }
+}

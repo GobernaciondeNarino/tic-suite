@@ -1,10 +1,10 @@
-=== TIC Suite · Gráficos ===
+=== TIC Suite ===
 Contributors: gobernaciondenarino
 Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.5.1
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,18 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.6.0 =
+* Plugin renombrado a "TIC Suite" (antes "TIC Suite · Gráficos"). Aparece así en el menú lateral de WordPress.
+* Arquitectura multi-proyecto: el plugin ahora gestiona dos proyectos hermanos de Proyectos Nación:
+  - "Py Nación" — 15 vistas del Informe Gestión TIC (los 12 programas + índice + comparativo + inversión).
+  - "Py Ondas" — 10 vistas nuevas derivadas de `proyecto-ondas.json`: proyectos/profesores/niños/IE por municipio + distribuciones categóricas de género, etnia, estrato, grado y áreas docentes.
+* Vistas físicamente separadas en `data/views/nacion/` y `data/views/ondas/`.
+* Menú admin reorganizado: top-level "TIC Suite" → submenús "Py Nación", "Py Ondas", "Shortcodes", "Datos de vista" (los dos últimos con selector de proyecto).
+* Nuevo atributo de shortcode: `project="nacion|ondas"` (default: "nacion"). Ejemplo: `[tsg_grafico view="ondas_ninos_municipio" type="bar" project="ondas"]`.
+* REST API: parámetro `project` en todas las rutas (`/views`, `/views/{id}`, `/render`) — whitelist contra TSG_Plugin::PROJECTS.
+* Adapter del data provider mejorado: acepta el formato master de Py Ondas (`{meta, totales_departamentales, municipios}`). `is_int/is_float` sustituye a `is_numeric` para que IDs como `divipola: "52001"` queden como dimensiones.
+* Script nuevo: `scripts/regen-ondas.py` regenera las 10 vistas de Py Ondas desde `proyecto-ondas.json`.
 
 = 1.5.1 =
 * Filtro automático de municipios sin datos: en bar, pie, donut, treemap, tree, box_whisker, line y area, los municipios con la medida principal en 0 / null / NaN se excluyen del gráfico.

@@ -17,7 +17,7 @@ import pathlib
 from typing import Callable
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-VIEWS = ROOT / 'data' / 'views'
+VIEWS = ROOT / 'data' / 'views' / 'nacion'
 MASTER = VIEWS / 'vista-analisis-municipios.json'
 
 

@@ -45,6 +45,12 @@
 	font-weight: 600;
 	line-height: 1.2;
 }
+.tsg-header__sub {
+	font-weight: 400;
+	font-size: 16px;
+	color: var(--tsg-ink-soft);
+	margin-left: 4px;
+}
 .tsg-header__title .dashicons {
 	color: var(--tsg-accent);
 	font-size: 26px;

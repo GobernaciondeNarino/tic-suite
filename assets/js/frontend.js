@@ -39,12 +39,13 @@
 		// Wire toolbar now (works even before data loads).
 		wireToolbar( figure );
 
+		const project     = figure.getAttribute( 'data-project' ) || 'nacion';
 		const legendOn    = figure.getAttribute( 'data-legend' ) === '1';
 		const legendStyle = figure.getAttribute( 'data-legend-style' ) || 'text';
 		const xTitle      = figure.getAttribute( 'data-x-title' ) || '';
 		const yTitle      = figure.getAttribute( 'data-y-title' ) || '';
 
-		const url = `${ TSG_FRONTEND.restUrl }?view=${ encodeURIComponent( viewId ) }&type=${ encodeURIComponent( type ) }`;
+		const url = `${ TSG_FRONTEND.restUrl }?view=${ encodeURIComponent( viewId ) }&type=${ encodeURIComponent( type ) }&project=${ encodeURIComponent( project ) }`;
 
 		fetch( url, {
 			headers:     { 'X-WP-Nonce': TSG_FRONTEND.nonce },
@@ -62,7 +63,7 @@
 					return;
 				}
 
-				cache.set( figure.id, { payload, viewId, type, legendOn, legendStyle, xTitle, yTitle } );
+				cache.set( figure.id, { payload, project, viewId, type, legendOn, legendStyle, xTitle, yTitle } );
 
 				// Tell the renderer whether to attach d3plus's own legend.
 				// When icons mode is selected we hide d3plus' native legend
@@ -147,7 +148,8 @@
 		chartEl.classList.add( 'is-loading' );
 		chartEl.innerHTML = `<div class="tsg-chart__loading">${ TSG_FRONTEND.i18n.loading }</div>`;
 
-		const url = `${ TSG_FRONTEND.restUrl }?view=${ encodeURIComponent( entry.viewId ) }&type=${ encodeURIComponent( newType ) }`;
+		const proj = entry.project || 'nacion';
+		const url  = `${ TSG_FRONTEND.restUrl }?view=${ encodeURIComponent( entry.viewId ) }&type=${ encodeURIComponent( newType ) }&project=${ encodeURIComponent( proj ) }`;
 		try {
 			const r = await fetch( url, {
 				headers:     { 'X-WP-Nonce': TSG_FRONTEND.nonce },

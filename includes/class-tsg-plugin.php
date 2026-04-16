@@ -14,9 +14,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class TSG_Plugin
  *
- * Wires every sub-module of the plugin once WordPress is ready.
+ * Wires every sub-module of the plugin once WordPress is ready. Manages
+ * one TSG_Data_Provider per project (nacion, ondas, …).
  */
 final class TSG_Plugin {
+
+	/**
+	 * Project registry — slug → human label. The first one is the default.
+	 */
+	public const PROJECTS = [
+		'nacion' => 'Py Nación',
+		'ondas'  => 'Py Ondas',
+	];
+
+	public const DEFAULT_PROJECT = 'nacion';
 
 	/**
 	 * Singleton instance.
@@ -25,47 +36,18 @@ final class TSG_Plugin {
 	 */
 	private static ?TSG_Plugin $instance = null;
 
-	/**
-	 * Security helper.
-	 *
-	 * @var TSG_Security
-	 */
 	public TSG_Security $security;
-
-	/**
-	 * Chart types registry.
-	 *
-	 * @var TSG_Chart_Types
-	 */
 	public TSG_Chart_Types $chart_types;
-
-	/**
-	 * Data provider.
-	 *
-	 * @var TSG_Data_Provider
-	 */
-	public TSG_Data_Provider $data_provider;
-
-	/**
-	 * Shortcode handler.
-	 *
-	 * @var TSG_Shortcode
-	 */
 	public TSG_Shortcode $shortcode;
-
-	/**
-	 * Admin menu & screens.
-	 *
-	 * @var TSG_Admin
-	 */
 	public TSG_Admin $admin;
+	public TSG_Rest_Api $rest_api;
 
 	/**
-	 * REST API controller.
+	 * Data providers keyed by project slug.
 	 *
-	 * @var TSG_Rest_Api
+	 * @var array<string, TSG_Data_Provider>
 	 */
-	public TSG_Rest_Api $rest_api;
+	private array $data_providers = [];
 
 	/**
 	 * Get the singleton.
@@ -81,12 +63,42 @@ final class TSG_Plugin {
 	 * Private constructor.
 	 */
 	private function __construct() {
-		$this->security      = new TSG_Security();
-		$this->chart_types   = new TSG_Chart_Types();
-		$this->data_provider = new TSG_Data_Provider( $this->security );
-		$this->shortcode     = new TSG_Shortcode( $this->data_provider, $this->chart_types, $this->security );
-		$this->admin         = new TSG_Admin( $this->data_provider, $this->chart_types, $this->security );
-		$this->rest_api      = new TSG_Rest_Api( $this->data_provider, $this->chart_types, $this->security );
+		$this->security    = new TSG_Security();
+		$this->chart_types = new TSG_Chart_Types();
+
+		foreach ( array_keys( self::PROJECTS ) as $project ) {
+			$this->data_providers[ $project ] = new TSG_Data_Provider( $this->security, $project );
+		}
+
+		$this->shortcode = new TSG_Shortcode( $this, $this->chart_types, $this->security );
+		$this->admin     = new TSG_Admin( $this, $this->chart_types, $this->security );
+		$this->rest_api  = new TSG_Rest_Api( $this, $this->chart_types, $this->security );
+	}
+
+	/**
+	 * Return the data provider for the given project (or the default).
+	 */
+	public function data_provider( ?string $project = null ): TSG_Data_Provider {
+		$slug = $this->normalize_project( $project );
+		return $this->data_providers[ $slug ];
+	}
+
+	/**
+	 * Whitelist a project slug against PROJECTS — returns the default slug
+	 * when the input is unknown.
+	 */
+	public function normalize_project( ?string $project ): string {
+		$slug = sanitize_key( (string) ( $project ?? self::DEFAULT_PROJECT ) );
+		return isset( self::PROJECTS[ $slug ] ) ? $slug : self::DEFAULT_PROJECT;
+	}
+
+	/**
+	 * List every project as [ slug => label, … ].
+	 *
+	 * @return array<string, string>
+	 */
+	public function projects(): array {
+		return self::PROJECTS;
 	}
 
 	/**
@@ -275,13 +287,13 @@ final class TSG_Plugin {
 	 * @param array $links Existing links.
 	 */
 	public function plugin_action_links( array $links ): array {
-		$url = admin_url( 'admin.php?page=tic-suite-graficos' );
+		$url = admin_url( 'admin.php?page=tic-suite-nacion' );
 		array_unshift(
 			$links,
 			sprintf(
 				'<a href="%1$s">%2$s</a>',
 				esc_url( $url ),
-				esc_html__( 'Abrir constructor', 'tic-suite-graficos' )
+				esc_html__( 'Abrir TIC Suite', 'tic-suite-graficos' )
 			)
 		);
 		return $links;

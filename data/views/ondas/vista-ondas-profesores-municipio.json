@@ -1,0 +1,242 @@
+{
+  "vista": "ondas_profesores_municipio",
+  "titulo": "Ondas - Profesores por Municipio (2024-2025)",
+  "descripcion": "Profesores vinculados a Ondas por municipio de Nariño para las vigencias 2024 y 2025.",
+  "tipo_grafico_sugerido": "bar_stacked",
+  "total_municipios": 38,
+  "municipios": [
+    {
+      "municipio": "PASTO",
+      "profesores_2024": 41,
+      "profesores_2025": 86,
+      "total": 127
+    },
+    {
+      "municipio": "CUMBAL",
+      "profesores_2024": 0,
+      "profesores_2025": 54,
+      "total": 54
+    },
+    {
+      "municipio": "SAN PABLO",
+      "profesores_2024": 0,
+      "profesores_2025": 50,
+      "total": 50
+    },
+    {
+      "municipio": "LA UNIÓN",
+      "profesores_2024": 0,
+      "profesores_2025": 66,
+      "total": 66
+    },
+    {
+      "municipio": "SAN ANDRÉS DE TUMACO",
+      "profesores_2024": 0,
+      "profesores_2025": 72,
+      "total": 72
+    },
+    {
+      "municipio": "SAN LORENZO",
+      "profesores_2024": 0,
+      "profesores_2025": 76,
+      "total": 76
+    },
+    {
+      "municipio": "MALLAMA",
+      "profesores_2024": 0,
+      "profesores_2025": 54,
+      "total": 54
+    },
+    {
+      "municipio": "RICAURTE",
+      "profesores_2024": 0,
+      "profesores_2025": 42,
+      "total": 42
+    },
+    {
+      "municipio": "LINARES",
+      "profesores_2024": 0,
+      "profesores_2025": 68,
+      "total": 68
+    },
+    {
+      "municipio": "PUERRES",
+      "profesores_2024": 0,
+      "profesores_2025": 22,
+      "total": 22
+    },
+    {
+      "municipio": "CUASPUD CARLOSAMA",
+      "profesores_2024": 0,
+      "profesores_2025": 20,
+      "total": 20
+    },
+    {
+      "municipio": "FUNES",
+      "profesores_2024": 0,
+      "profesores_2025": 46,
+      "total": 46
+    },
+    {
+      "municipio": "EL PEÑOL",
+      "profesores_2024": 0,
+      "profesores_2025": 14,
+      "total": 14
+    },
+    {
+      "municipio": "SAMANIEGO",
+      "profesores_2024": 0,
+      "profesores_2025": 0,
+      "total": 0
+    },
+    {
+      "municipio": "ARBOLEDA",
+      "profesores_2024": 0,
+      "profesores_2025": 12,
+      "total": 12
+    },
+    {
+      "municipio": "CUMBITARA",
+      "profesores_2024": 9,
+      "profesores_2025": 0,
+      "total": 9
+    },
+    {
+      "municipio": "ALBÁN",
+      "profesores_2024": 0,
+      "profesores_2025": 12,
+      "total": 12
+    },
+    {
+      "municipio": "SAN PEDRO DE CARTAGO",
+      "profesores_2024": 0,
+      "profesores_2025": 16,
+      "total": 16
+    },
+    {
+      "municipio": "ROBERTO PAYÁN",
+      "profesores_2024": 0,
+      "profesores_2025": 16,
+      "total": 16
+    },
+    {
+      "municipio": "CONTADERO",
+      "profesores_2024": 0,
+      "profesores_2025": 10,
+      "total": 10
+    },
+    {
+      "municipio": "EL TAMBO",
+      "profesores_2024": 0,
+      "profesores_2025": 12,
+      "total": 12
+    },
+    {
+      "municipio": "BARBACOAS",
+      "profesores_2024": 0,
+      "profesores_2025": 20,
+      "total": 20
+    },
+    {
+      "municipio": "COLÓN",
+      "profesores_2024": 0,
+      "profesores_2025": 24,
+      "total": 24
+    },
+    {
+      "municipio": "ALDANA",
+      "profesores_2024": 24,
+      "profesores_2025": 0,
+      "total": 24
+    },
+    {
+      "municipio": "CÓRDOBA",
+      "profesores_2024": 7,
+      "profesores_2025": 0,
+      "total": 7
+    },
+    {
+      "municipio": "GUACHUCAL",
+      "profesores_2024": 15,
+      "profesores_2025": 0,
+      "total": 15
+    },
+    {
+      "municipio": "GUALMATÁN",
+      "profesores_2024": 9,
+      "profesores_2025": 0,
+      "total": 9
+    },
+    {
+      "municipio": "ILES",
+      "profesores_2024": 4,
+      "profesores_2025": 0,
+      "total": 4
+    },
+    {
+      "municipio": "IPIALES",
+      "profesores_2024": 30,
+      "profesores_2025": 0,
+      "total": 30
+    },
+    {
+      "municipio": "LA LLANADA",
+      "profesores_2024": 2,
+      "profesores_2025": 0,
+      "total": 2
+    },
+    {
+      "municipio": "LOS ANDES",
+      "profesores_2024": 3,
+      "profesores_2025": 0,
+      "total": 3
+    },
+    {
+      "municipio": "OSPINA",
+      "profesores_2024": 15,
+      "profesores_2025": 0,
+      "total": 15
+    },
+    {
+      "municipio": "POLICARPA",
+      "profesores_2024": 5,
+      "profesores_2025": 0,
+      "total": 5
+    },
+    {
+      "municipio": "POTOSÍ",
+      "profesores_2024": 16,
+      "profesores_2025": 0,
+      "total": 16
+    },
+    {
+      "municipio": "PUPIALES",
+      "profesores_2024": 13,
+      "profesores_2025": 0,
+      "total": 13
+    },
+    {
+      "municipio": "SANTACRUZ",
+      "profesores_2024": 13,
+      "profesores_2025": 0,
+      "total": 13
+    },
+    {
+      "municipio": "SAPUYES",
+      "profesores_2024": 6,
+      "profesores_2025": 0,
+      "total": 6
+    },
+    {
+      "municipio": "TÚQUERRES",
+      "profesores_2024": 23,
+      "profesores_2025": 0,
+      "total": 23
+    }
+  ],
+  "totales": {
+    "profesores_2024": 235,
+    "profesores_2025": 792,
+    "total_departamento": 1027
+  }
+}

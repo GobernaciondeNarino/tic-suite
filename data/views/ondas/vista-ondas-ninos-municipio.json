@@ -1,0 +1,164 @@
+{
+  "vista": "ondas_ninos_municipio",
+  "titulo": "Ondas - Niños Inscritos por Municipio (2025)",
+  "descripcion": "Niños y niñas inscritos en Ondas por municipio de Nariño en la vigencia 2025.",
+  "tipo_grafico_sugerido": "bar",
+  "total_municipios": 38,
+  "municipios": [
+    {
+      "municipio": "PASTO",
+      "ninos_2025": 1043
+    },
+    {
+      "municipio": "CUMBAL",
+      "ninos_2025": 519
+    },
+    {
+      "municipio": "SAN PABLO",
+      "ninos_2025": 494
+    },
+    {
+      "municipio": "LA UNIÓN",
+      "ninos_2025": 447
+    },
+    {
+      "municipio": "SAN ANDRÉS DE TUMACO",
+      "ninos_2025": 431
+    },
+    {
+      "municipio": "SAN LORENZO",
+      "ninos_2025": 403
+    },
+    {
+      "municipio": "MALLAMA",
+      "ninos_2025": 403
+    },
+    {
+      "municipio": "RICAURTE",
+      "ninos_2025": 354
+    },
+    {
+      "municipio": "LINARES",
+      "ninos_2025": 283
+    },
+    {
+      "municipio": "PUERRES",
+      "ninos_2025": 321
+    },
+    {
+      "municipio": "CUASPUD CARLOSAMA",
+      "ninos_2025": 295
+    },
+    {
+      "municipio": "FUNES",
+      "ninos_2025": 251
+    },
+    {
+      "municipio": "EL PEÑOL",
+      "ninos_2025": 250
+    },
+    {
+      "municipio": "SAMANIEGO",
+      "ninos_2025": 251
+    },
+    {
+      "municipio": "ARBOLEDA",
+      "ninos_2025": 235
+    },
+    {
+      "municipio": "CUMBITARA",
+      "ninos_2025": 245
+    },
+    {
+      "municipio": "ALBÁN",
+      "ninos_2025": 189
+    },
+    {
+      "municipio": "SAN PEDRO DE CARTAGO",
+      "ninos_2025": 147
+    },
+    {
+      "municipio": "ROBERTO PAYÁN",
+      "ninos_2025": 135
+    },
+    {
+      "municipio": "CONTADERO",
+      "ninos_2025": 138
+    },
+    {
+      "municipio": "EL TAMBO",
+      "ninos_2025": 134
+    },
+    {
+      "municipio": "BARBACOAS",
+      "ninos_2025": 108
+    },
+    {
+      "municipio": "COLÓN",
+      "ninos_2025": 38
+    },
+    {
+      "municipio": "ALDANA",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "CÓRDOBA",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "GUACHUCAL",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "GUALMATÁN",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "ILES",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "IPIALES",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "LA LLANADA",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "LOS ANDES",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "OSPINA",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "POLICARPA",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "POTOSÍ",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "PUPIALES",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "SANTACRUZ",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "SAPUYES",
+      "ninos_2025": 0
+    },
+    {
+      "municipio": "TÚQUERRES",
+      "ninos_2025": 0
+    }
+  ],
+  "totales": {
+    "ninos_departamento": 7114
+  }
+}

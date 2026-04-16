@@ -15,6 +15,7 @@
 	const DEFAULT_ACTIONS = [ 'detalle', 'compartir', 'datos', 'imagen', 'descarga', 'cambiar' ];
 
 	const state = {
+		project:  'nacion',
 		viewId:   null,
 		chartKey: null,
 		view:     null,
@@ -30,6 +31,14 @@
 		},
 	};
 
+	/**
+	 * Append ?project=… (or &project=…) to a REST url.
+	 */
+	function withProject( url ) {
+		const sep = url.indexOf( '?' ) === -1 ? '?' : '&';
+		return url + sep + 'project=' + encodeURIComponent( state.project );
+	}
+
 	const els = {};
 
 	const $  = ( sel, root = document ) => root.querySelector( sel );
@@ -38,6 +47,13 @@
 	document.addEventListener( 'DOMContentLoaded', init );
 
 	function init() {
+		// Resolve the active project from the page wrap so every REST call
+		// is scoped correctly.
+		const wrap = $( '.tsg-wrap[data-tsg-project]' );
+		if ( wrap ) {
+			state.project = wrap.getAttribute( 'data-tsg-project' ) || 'nacion';
+		}
+
 		els.viewList       = $( '.tsg-views-list' );
 		els.typesWrap      = $( '#tsg-chart-types' );
 		els.preview        = $( '#tsg-preview' );
@@ -149,7 +165,7 @@
 		els.shortcodeBox.hidden = true;
 
 		try {
-			const res = await fetch( `${ TSG_ADMIN.restUrl }/views/${ encodeURIComponent( state.viewId ) }`, {
+			const res = await fetch( withProject( `${ TSG_ADMIN.restUrl }/views/${ encodeURIComponent( state.viewId ) }` ), {
 				headers:     { 'X-WP-Nonce': TSG_ADMIN.nonce },
 				credentials: 'same-origin',
 			} );
@@ -200,7 +216,7 @@
 		els.preview.innerHTML = `<p class="tsg-empty">${ TSG_ADMIN.i18n.loading }</p>`;
 
 		try {
-			const url = `${ TSG_ADMIN.restUrl }/render?view=${ encodeURIComponent( state.viewId ) }&type=${ encodeURIComponent( key ) }`;
+			const url = withProject( `${ TSG_ADMIN.restUrl }/render?view=${ encodeURIComponent( state.viewId ) }&type=${ encodeURIComponent( key ) }` );
 			const res = await fetch( url, {
 				headers:     { 'X-WP-Nonce': TSG_ADMIN.nonce },
 				credentials: 'same-origin',
@@ -279,7 +295,7 @@
 		state.chartKey = newType;
 
 		try {
-			const url = `${ TSG_ADMIN.restUrl }/render?view=${ encodeURIComponent( state.viewId ) }&type=${ encodeURIComponent( newType ) }`;
+			const url = withProject( `${ TSG_ADMIN.restUrl }/render?view=${ encodeURIComponent( state.viewId ) }&type=${ encodeURIComponent( newType ) }` );
 			const res = await fetch( url, {
 				headers:     { 'X-WP-Nonce': TSG_ADMIN.nonce },
 				credentials: 'same-origin',
@@ -394,9 +410,13 @@
 		const parts = [
 			`view="${ state.viewId }"`,
 			`type="${ state.chartKey }"`,
-			`height="420"`,
-			`title="${ String( state.view.name || '' ).replace( /"/g, "'" ) }"`,
 		];
+		// Only emit project if it's not the default (nacion).
+		if ( state.project && state.project !== 'nacion' ) {
+			parts.push( `project="${ state.project }"` );
+		}
+		parts.push( `height="420"` );
+		parts.push( `title="${ String( state.view.name || '' ).replace( /"/g, "'" ) }"` );
 		// Only emit options that differ from the default to keep the
 		// shortcode short.
 		if ( opts.legend === false ) {

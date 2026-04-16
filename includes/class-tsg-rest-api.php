@@ -3,9 +3,13 @@
  * REST API controller.
  *
  * Routes:
- *  GET  /tic-suite/v1/views                 → list views (admin)
+ *  GET  /tic-suite/v1/views                       → list views (admin)
  *  GET  /tic-suite/v1/views/(?P<id>[a-z0-9_\-]+)  → single view + compatible charts (admin)
- *  GET  /tic-suite/v1/render?view=…&type=…  → public render payload (d3plus config + data)
+ *  GET  /tic-suite/v1/render?view=…&type=…        → public render payload (d3plus config + data)
+ *
+ * Every route accepts an optional `project` query param (default: "nacion")
+ * that scopes the data provider. Valid values are the keys of
+ * TSG_Plugin::PROJECTS (currently: nacion, ondas).
  *
  * @package TicSuite\Graficos
  */
@@ -21,21 +25,27 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class TSG_Rest_Api {
 
-	private TSG_Data_Provider $data_provider;
+	private TSG_Plugin $plugin;
 	private TSG_Chart_Types $chart_types;
 	private TSG_Security $security;
 
 	public function __construct(
-		TSG_Data_Provider $data_provider,
+		TSG_Plugin $plugin,
 		TSG_Chart_Types $chart_types,
 		TSG_Security $security
 	) {
-		$this->data_provider = $data_provider;
-		$this->chart_types   = $chart_types;
-		$this->security      = $security;
+		$this->plugin      = $plugin;
+		$this->chart_types = $chart_types;
+		$this->security    = $security;
 	}
 
 	public function register_routes(): void {
+		$project_arg = [
+			'required'          => false,
+			'default'           => TSG_Plugin::DEFAULT_PROJECT,
+			'sanitize_callback' => 'sanitize_key',
+		];
+
 		register_rest_route(
 			TSG_REST_NAMESPACE,
 			'/views',
@@ -43,6 +53,7 @@ class TSG_Rest_Api {
 				'methods'             => 'GET',
 				'callback'            => [ $this, 'list_views' ],
 				'permission_callback' => [ $this->security, 'rest_admin_permission' ],
+				'args'                => [ 'project' => $project_arg ],
 			]
 		);
 
@@ -54,10 +65,11 @@ class TSG_Rest_Api {
 				'callback'            => [ $this, 'get_view' ],
 				'permission_callback' => [ $this->security, 'rest_admin_permission' ],
 				'args'                => [
-					'id' => [
+					'id'      => [
 						'required'          => true,
 						'sanitize_callback' => 'sanitize_key',
 					],
+					'project' => $project_arg,
 				],
 			]
 		);
@@ -70,32 +82,44 @@ class TSG_Rest_Api {
 				'callback'            => [ $this, 'render_payload' ],
 				'permission_callback' => [ $this->security, 'rest_public_permission' ],
 				'args'                => [
-					'view' => [
+					'view'    => [
 						'required'          => true,
 						'sanitize_callback' => 'sanitize_key',
 					],
-					'type' => [
+					'type'    => [
 						'required'          => true,
 						'sanitize_callback' => 'sanitize_key',
 					],
+					'project' => $project_arg,
 				],
 			]
 		);
 	}
 
 	/**
+	 * Resolve the requested project slug against the whitelist.
+	 */
+	private function project_from( WP_REST_Request $request ): string {
+		return $this->plugin->normalize_project( (string) $request->get_param( 'project' ) );
+	}
+
+	/**
 	 * GET /views
 	 */
-	public function list_views(): WP_REST_Response {
-		return new WP_REST_Response( $this->data_provider->list_views(), 200 );
+	public function list_views( WP_REST_Request $request ): WP_REST_Response {
+		$project = $this->project_from( $request );
+		$dp      = $this->plugin->data_provider( $project );
+		return new WP_REST_Response( $dp->list_views(), 200 );
 	}
 
 	/**
 	 * GET /views/{id}
 	 */
 	public function get_view( WP_REST_Request $request ) {
-		$id   = $this->security->sanitize_view_id( (string) $request->get_param( 'id' ) );
-		$view = $this->data_provider->get_view( $id );
+		$project = $this->project_from( $request );
+		$dp      = $this->plugin->data_provider( $project );
+		$id      = $this->security->sanitize_view_id( (string) $request->get_param( 'id' ) );
+		$view    = $dp->get_view( $id );
 		if ( empty( $view ) ) {
 			return new WP_Error( 'tsg_view_not_found', __( 'Vista no encontrada.', 'tic-suite-graficos' ), [ 'status' => 404 ] );
 		}
@@ -116,6 +140,8 @@ class TSG_Rest_Api {
 	 * Returns a minimal, whitelisted payload safe to consume client-side.
 	 */
 	public function render_payload( WP_REST_Request $request ) {
+		$project    = $this->project_from( $request );
+		$dp         = $this->plugin->data_provider( $project );
 		$view_id    = $this->security->sanitize_view_id( (string) $request->get_param( 'view' ) );
 		$chart_type = $this->security->sanitize_chart_type( (string) $request->get_param( 'type' ), $this->chart_types );
 
@@ -123,7 +149,7 @@ class TSG_Rest_Api {
 			return new WP_Error( 'tsg_bad_request', __( 'Parámetros inválidos.', 'tic-suite-graficos' ), [ 'status' => 400 ] );
 		}
 
-		$view = $this->data_provider->get_view( $view_id );
+		$view = $dp->get_view( $view_id );
 		if ( empty( $view ) ) {
 			return new WP_Error( 'tsg_view_not_found', __( 'Vista no encontrada.', 'tic-suite-graficos' ), [ 'status' => 404 ] );
 		}
@@ -150,10 +176,8 @@ class TSG_Rest_Api {
 			],
 			'data'       => $view['data'],
 			'mapping'    => $this->build_mapping( $view, $chart_type ),
-			// List of chart types compatible with this view so the client
-			// can populate the in-toolbar "change chart type" selector
-			// without a second round-trip.
 			'compatible' => $this->chart_types->compatible_with_view( $view ),
+			'project'    => $project,
 		];
 
 		return new WP_REST_Response( $payload, 200 );
@@ -197,11 +221,6 @@ class TSG_Rest_Api {
 				$mapping['topojson']    = plugins_url( 'data/topo/narino_municipios.topojson', TSG_PLUGIN_FILE );
 				$mapping['topojsonId']  = 'id';
 				$mapping['topojsonKey'] = 'objects.municipios';
-				// The join key on each data row. Views store municipio names
-				// as "SAN ANDRÉS DE TUMACO"; the topojson id is "SAN ANDRES
-				// DE TUMACO" (accents stripped), so the renderer computes a
-				// derived _municipio_id field on the client with the same
-				// normalization and uses that for groupBy.
 				$mapping['join']        = 'municipio';
 				break;
 		}

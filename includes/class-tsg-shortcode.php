@@ -36,7 +36,7 @@ class TSG_Shortcode {
 
 	private const VALID_ACTIONS = [ 'detalle', 'compartir', 'datos', 'imagen', 'descarga', 'cambiar' ];
 
-	private TSG_Data_Provider $data_provider;
+	private TSG_Plugin $plugin;
 	private TSG_Chart_Types $chart_types;
 	private TSG_Security $security;
 
@@ -47,13 +47,13 @@ class TSG_Shortcode {
 	private bool $needs_assets = false;
 
 	public function __construct(
-		TSG_Data_Provider $data_provider,
+		TSG_Plugin $plugin,
 		TSG_Chart_Types $chart_types,
 		TSG_Security $security
 	) {
-		$this->data_provider = $data_provider;
-		$this->chart_types   = $chart_types;
-		$this->security      = $security;
+		$this->plugin      = $plugin;
+		$this->chart_types = $chart_types;
+		$this->security    = $security;
 	}
 
 	public function register(): void {
@@ -72,6 +72,7 @@ class TSG_Shortcode {
 			[
 				'view'         => '',
 				'type'         => '',
+				'project'      => TSG_Plugin::DEFAULT_PROJECT,
 				'height'       => '420',
 				'title'        => '',
 				'theme'        => 'tic-suite',
@@ -86,6 +87,8 @@ class TSG_Shortcode {
 			'tsg_grafico'
 		);
 
+		$project     = $this->plugin->normalize_project( (string) $atts['project'] );
+		$dp          = $this->plugin->data_provider( $project );
 		$view_id     = $this->security->sanitize_view_id( (string) $atts['view'] );
 		$chart_type  = $this->security->sanitize_chart_type( (string) $atts['type'], $this->chart_types );
 		$height      = max( 160, min( 1600, absint( $atts['height'] ) ) );
@@ -105,7 +108,7 @@ class TSG_Shortcode {
 			);
 		}
 
-		$view = $this->data_provider->get_view( $view_id );
+		$view = $dp->get_view( $view_id );
 		if ( empty( $view ) ) {
 			return sprintf(
 				'<div class="tsg-empty" role="note">%s</div>',
@@ -131,6 +134,7 @@ class TSG_Shortcode {
 			id="<?php echo esc_attr( $figure_id ); ?>"
 			class="tsg-figure tsg-theme-<?php echo esc_attr( $theme ); ?>"
 			data-tsg-figure="1"
+			data-project="<?php echo esc_attr( $project ); ?>"
 			data-view="<?php echo esc_attr( $view_id ); ?>"
 			data-type="<?php echo esc_attr( $chart_type ); ?>"
 			data-legend="<?php echo $show_legend ? '1' : '0'; ?>"

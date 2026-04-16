@@ -1,6 +1,6 @@
-# TIC Suite · Gráficos
+# TIC Suite
 
-**v1.5.1** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.6.0** — Plugin WordPress para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,22 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.6.0
+- **Plugin renombrado a "TIC Suite"** — así aparece en el menú lateral de WordPress.
+- **Arquitectura multi-proyecto** de Proyectos Nación:
+  - **Py Nación** — 15 vistas del Informe Gestión TIC 2024.
+  - **Py Ondas** — 10 vistas nuevas derivadas de `proyecto-ondas.json` (38 municipios con presencia del programa Ondas):
+    - Proyectos / Profesores / Niños / IE por municipio (geographic)
+    - Niños por género, grupo étnico, estrato, grado escolar (categórica)
+    - Profesores por género, áreas (Top 15) (categórica)
+- **Menú admin**: top-level "TIC Suite" → submenús **Py Nación** • **Py Ondas** • Shortcodes • Datos de vista. Los dos últimos llevan selector de proyecto.
+- **Shortcode**: nuevo atributo `project="nacion|ondas"` (default: `nacion`). El builder de cada proyecto genera automáticamente `project="ondas"` cuando corresponde.
+- **REST API**: parámetro `project` en todas las rutas, validado contra la whitelist `TSG_Plugin::PROJECTS`.
+- **Data provider multi-instancia**: uno por proyecto, caché aislado (prefix `nacion:` / `ondas:`), path aislado (`data/views/nacion/` / `data/views/ondas/`).
+- **Fix de adapter**: `is_int`/`is_float` reemplaza `is_numeric` → IDs numéricos string como DIVIPOLA `"52001"` ya no son promovidos a medidas por accidente.
+- **Fix**: files maestros (con solo campos nested) ya no aparecen como vistas vacías; se filtran por "sin medidas promovidas".
+- **`scripts/regen-ondas.py`**: regenerador reproducible de las 10 vistas de Py Ondas desde el maestro.
 
 ### 1.5.1
 - **Municipios sin datos excluidos** del gráfico (excepto mapa + grafos):

@@ -1,12 +1,11 @@
 <?php
 /**
- * Admin screen: shortcode gallery.
- *
- * For every registered view, list the compatible chart types and, for each,
- * show the ready-to-paste shortcode plus a preview of the underlying data.
+ * Admin screen: shortcode gallery (project-scoped).
  *
  * @package TicSuite\Graficos
- * @var array $views Summaries of registered views.
+ * @var array  $views   Summaries of registered views for this project.
+ * @var string $project Current project slug.
+ * @var string $label   Human label for the current project.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,26 +13,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $registry      = TSG_Plugin::instance()->chart_types;
-$data_provider = TSG_Plugin::instance()->data_provider;
+$data_provider = TSG_Plugin::instance()->data_provider( $project );
+$projects      = TSG_Plugin::instance()->projects();
 ?>
-<div class="wrap tsg-wrap">
+<div class="wrap tsg-wrap" data-tsg-project="<?php echo esc_attr( $project ); ?>">
 	<header class="tsg-header">
 		<div class="tsg-header__title">
 			<span class="dashicons dashicons-shortcode" aria-hidden="true"></span>
-			<h1><?php esc_html_e( 'Galería de shortcodes', 'tic-suite-graficos' ); ?></h1>
+			<h1>
+				<?php esc_html_e( 'Galería de shortcodes', 'tic-suite-graficos' ); ?>
+				<span class="tsg-header__sub">· <?php echo esc_html( $label ); ?></span>
+			</h1>
 		</div>
 		<p class="tsg-header__lede">
-			<?php esc_html_e( 'Cada vista de TIC Suite aparece acompañada de sus gráficos compatibles. Copia el shortcode y, debajo, revisa los datos exactos que se graficarán.', 'tic-suite-graficos' ); ?>
+			<?php esc_html_e( 'Cada vista aparece acompañada de sus gráficos compatibles. Copia el shortcode y, debajo, revisa los datos exactos que se graficarán.', 'tic-suite-graficos' ); ?>
 		</p>
 	</header>
 
+	<form method="get" class="tsg-form-inline">
+		<input type="hidden" name="page" value="tic-suite-shortcodes" />
+		<label for="tsg-project-select"><?php esc_html_e( 'Proyecto:', 'tic-suite-graficos' ); ?></label>
+		<select name="project" id="tsg-project-select" onchange="this.form.submit()">
+			<?php foreach ( $projects as $slug => $name ) : ?>
+				<option value="<?php echo esc_attr( $slug ); ?>" <?php selected( $project, $slug ); ?>>
+					<?php echo esc_html( $name ); ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+	</form>
+
 	<?php if ( empty( $views ) ) : ?>
-		<p class="tsg-empty"><?php esc_html_e( 'No hay vistas registradas todavía.', 'tic-suite-graficos' ); ?></p>
+		<p class="tsg-empty"><?php esc_html_e( 'No hay vistas registradas todavía en este proyecto.', 'tic-suite-graficos' ); ?></p>
 	<?php endif; ?>
 
 	<?php foreach ( $views as $summary ) :
-		$full        = $data_provider->get_view( $summary['id'] );
-		$compatible  = $registry->compatible_with_view( $full );
+		$full       = $data_provider->get_view( $summary['id'] );
+		$compatible = $registry->compatible_with_view( $full );
+		$project_attr = 'nacion' === $project ? '' : sprintf( ' project="%s"', esc_attr( $project ) );
 		?>
 		<details class="tsg-view-block" open>
 			<summary class="tsg-view-block__summary">
@@ -49,9 +65,10 @@ $data_provider = TSG_Plugin::instance()->data_provider;
 				<div class="tsg-shortcode-grid">
 					<?php foreach ( $compatible as $chart ) :
 						$shortcode = sprintf(
-							'[tsg_grafico view="%s" type="%s" height="420" title="%s"]',
+							'[tsg_grafico view="%s" type="%s"%s height="420" title="%s"]',
 							esc_attr( $summary['id'] ),
 							esc_attr( $chart['key'] ),
+							$project_attr,
 							esc_attr( $summary['name'] )
 						);
 						?>

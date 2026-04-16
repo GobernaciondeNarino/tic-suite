@@ -48,6 +48,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class TSG_Data_Provider
+ *
+ * One instance per TIC Suite project (`nacion`, `ondas`, …). Each instance
+ * scans its own /data/views/{project}/ directory so projects stay isolated
+ * — view ids can even collide across projects.
  */
 class TSG_Data_Provider {
 
@@ -61,23 +65,48 @@ class TSG_Data_Provider {
 	private const DATA_KEY_CANDIDATES = [ 'data', 'datos', 'municipios', 'items', 'rows' ];
 
 	private TSG_Security $security;
+	private string $project;
 
-	public function __construct( TSG_Security $security ) {
+	public function __construct( TSG_Security $security, string $project = 'nacion' ) {
 		$this->security = $security;
+		$this->project  = $this->sanitize_project( $project );
 	}
 
 	/**
-	 * Return the absolute path to the views directory.
+	 * Return this provider's project slug.
+	 */
+	public function project(): string {
+		return $this->project;
+	}
+
+	/**
+	 * Return the absolute path to this project's views directory.
 	 */
 	public function views_path(): string {
-		return TSG_DATA_DIR . self::VIEWS_DIR . '/';
+		return TSG_DATA_DIR . self::VIEWS_DIR . '/' . $this->project . '/';
 	}
 
 	/**
-	 * Return the absolute path to the topo directory (topojson + lookups).
+	 * Return the absolute path to the shared topo directory.
 	 */
 	public function topo_path(): string {
 		return TSG_DATA_DIR . 'topo/';
+	}
+
+	/**
+	 * Whitelist project slugs — only lowercase letters, digits and hyphens.
+	 */
+	private function sanitize_project( string $slug ): string {
+		$slug = strtolower( $slug );
+		$slug = preg_replace( '/[^a-z0-9\-]/', '', $slug );
+		return $slug ?: 'nacion';
+	}
+
+	/**
+	 * Cache key, project-scoped.
+	 */
+	private function cache_key( string $suffix ): string {
+		return $this->project . ':' . $suffix;
 	}
 
 	/**
@@ -86,7 +115,7 @@ class TSG_Data_Provider {
 	 * @return array<int, array<string, mixed>>
 	 */
 	public function list_views(): array {
-		$cached = wp_cache_get( 'all_summaries', self::CACHE_GROUP );
+		$cached = wp_cache_get( $this->cache_key( 'all_summaries' ), self::CACHE_GROUP );
 		if ( is_array( $cached ) ) {
 			return $cached;
 		}
@@ -122,7 +151,7 @@ class TSG_Data_Provider {
 			static fn( $a, $b ) => strcasecmp( (string) $a['name'], (string) $b['name'] )
 		);
 
-		wp_cache_set( 'all_summaries', $out, self::CACHE_GROUP, 300 );
+		wp_cache_set( $this->cache_key( 'all_summaries' ), $out, self::CACHE_GROUP, 300 );
 		return $out;
 	}
 
@@ -137,7 +166,7 @@ class TSG_Data_Provider {
 			return [];
 		}
 
-		$cached = wp_cache_get( 'view_' . $id, self::CACHE_GROUP );
+		$cached = wp_cache_get( $this->cache_key( 'view_' . $id ), self::CACHE_GROUP );
 		if ( is_array( $cached ) ) {
 			return $cached;
 		}
@@ -155,7 +184,7 @@ class TSG_Data_Provider {
 				continue;
 			}
 			if ( $view['id'] === $id ) {
-				wp_cache_set( 'view_' . $id, $view, self::CACHE_GROUP, 300 );
+				wp_cache_set( $this->cache_key( 'view_' . $id ), $view, self::CACHE_GROUP, 300 );
 				return $view;
 			}
 		}
@@ -231,9 +260,14 @@ class TSG_Data_Provider {
 
 		// C) Anonymous dataset — no vista/titulo/id but has a row array.
 		// Use the filename as id and a prettified version as name.
+		// Skip files whose rows have no numeric measures at top level
+		// (they're nested master files like proyecto-ondas.json).
 		$data = $this->extract_rows( $raw );
 		if ( ! empty( $data ) ) {
 			$fields   = $this->infer_fields( $data[0] );
+			if ( empty( $fields['measures'] ) ) {
+				return [];
+			}
 			$category = $this->infer_category( $fields['dimensions'] );
 			return [
 				'id'          => $fallback,
@@ -307,15 +341,15 @@ class TSG_Data_Provider {
 			if ( is_string( $field ) === false ) {
 				continue;
 			}
-			if ( is_numeric( $value ) ) {
+			// Use is_int/is_float (not is_numeric) so ID-like numeric
+			// strings such as "52001" (DIVIPOLA code) stay as dimensions
+			// instead of being promoted to measures.
+			if ( is_int( $value ) || is_float( $value ) ) {
 				$measures[] = $field;
-			} elseif ( is_string( $value ) ) {
-				$dimensions[] = $field;
-			} elseif ( is_bool( $value ) ) {
+			} elseif ( is_string( $value ) || is_bool( $value ) ) {
 				$dimensions[] = $field;
 			}
-			// Nested arrays/objects are not auto-flattened here; they remain
-			// available in $data but are not promoted as dimensions/measures.
+			// Nested arrays/objects are not auto-flattened here.
 		}
 		return [ 'dimensions' => $dimensions, 'measures' => $measures ];
 	}

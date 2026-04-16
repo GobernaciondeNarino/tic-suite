@@ -1,0 +1,81 @@
+{
+  "vista": "ondas_profesores_areas",
+  "titulo": "Ondas - Áreas de Profesores (Top 15, 2025)",
+  "descripcion": "Las 15 áreas con más profesores vinculados a Ondas 2025.",
+  "tipo_grafico_sugerido": "bar",
+  "data": [
+    {
+      "area": "Ciencias Naturales",
+      "profesores": 108
+    },
+    {
+      "area": "Matemáticas",
+      "profesores": 90
+    },
+    {
+      "area": "Lengua Castellana",
+      "profesores": 78
+    },
+    {
+      "area": "Básica Primaria",
+      "profesores": 68
+    },
+    {
+      "area": "Ciencias Sociales",
+      "profesores": 58
+    },
+    {
+      "area": "Todas las áreas",
+      "profesores": 58
+    },
+    {
+      "area": "Química",
+      "profesores": 52
+    },
+    {
+      "area": "Tecnología e Informática",
+      "profesores": 34
+    },
+    {
+      "area": "Educación Física",
+      "profesores": 28
+    },
+    {
+      "area": "Inglés",
+      "profesores": 22
+    },
+    {
+      "area": "Física",
+      "profesores": 20
+    },
+    {
+      "area": "Biología",
+      "profesores": 16
+    },
+    {
+      "area": "Educación Artística",
+      "profesores": 14
+    },
+    {
+      "area": "Ética y Religión",
+      "profesores": 14
+    },
+    {
+      "area": "Preescolar",
+      "profesores": 12
+    }
+  ],
+  "totales": {
+    "total": 672,
+    "categorias": 15
+  },
+  "id": "ondas_profesores_areas",
+  "name": "Ondas - Áreas de Profesores (Top 15, 2025)",
+  "category": "categorical",
+  "dimensions": [
+    "area"
+  ],
+  "measures": [
+    "profesores"
+  ]
+}
