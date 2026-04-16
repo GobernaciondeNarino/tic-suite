@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.4.3** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.4.4** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,9 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.4.4
+- **Geomap sin basemap**: `viz.tiles(false)` oculta la capa de tiles CARTO/OSM (`light_all`) que d3plus trae activa por defecto y que mostraba etiquetas de departamentos vecinos (Cauca, Huila, Putumayo, etc.). Ahora los mapas muestran solo los polígonos de los 64 municipios de Nariño sobre fondo transparente.
 
 ### 1.4.3
 - **Leyenda anclada al bottom**: `viz.legendPosition("bottom")` en el base config del renderer, para que toda la flota de charts (bar, line, pie, donut, treemap, geomap, etc.) muestre la leyenda debajo del SVG, sin depender del aspect ratio. El modo "iconos" ya estaba debajo por orden del DOM.

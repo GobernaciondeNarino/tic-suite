@@ -242,6 +242,11 @@
 						.data( normData )
 						.groupBy( '_municipio_id' )
 						.colorScale( measures[ 0 ] );
+					// Hide the CARTO / OpenStreetMap basemap; we only want
+					// the municipio polygons of Nariño to show.
+					if ( typeof viz.tiles === 'function' ) {
+						viz.tiles( false );
+					}
 					if ( typeof viz.topojson === 'function' && mapping.topojson ) {
 						viz.topojson( mapping.topojson );
 					}

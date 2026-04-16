@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,9 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.4.4 =
+* Geomap sin basemap OSM/CARTO: el renderer ahora llama `viz.tiles(false)` para ocultar la capa de tiles de terceros (CARTO/light_all con atribución OpenStreetMap). Los mapas muestran únicamente los polígonos de los 64 municipios de Nariño sobre fondo transparente, tal como corresponde a una vista departamental.
 
 = 1.4.3 =
 * Leyenda fijada siempre al borde inferior: `viz.legendPosition("bottom")` se llama en el base config del renderer para que todos los gráficos (bar, line, pie, donut, treemap, geomap, etc.) muestren la leyenda debajo del SVG, independiente del aspect ratio del contenedor. El modo "iconos" ya estaba debajo por orden del DOM.
