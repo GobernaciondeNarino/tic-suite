@@ -228,9 +228,15 @@
 	}
 
 	function computeLegendItems( payload ) {
-		const { chart, view, data } = payload;
+		const { chart, view } = payload;
 		const dims     = view.dimensions || [];
 		const measures = view.measures || [];
+
+		// Match the renderer's zero-pruning so the legend stays in sync
+		// with the visible bars/slices/polygons.
+		const data = ( window.TSGRenderer && window.TSGRenderer.filterMeaningful )
+			? window.TSGRenderer.filterMeaningful( payload.data, chart.key, measures )
+			: ( payload.data || [] );
 
 		switch ( chart.key ) {
 			case 'stacked_bar':
@@ -263,7 +269,6 @@
 			}
 			case 'line':
 			case 'area':
-			case 'stacked_area':
 				return measures.map( ( m ) => ( { label: humanize( m ) } ) );
 			case 'network':
 			case 'rings':

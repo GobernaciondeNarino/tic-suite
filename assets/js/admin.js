@@ -343,9 +343,15 @@
 	}
 
 	function computeLegendItems( payload ) {
-		const { chart, view, data } = payload;
+		const { chart, view } = payload;
 		const dims     = view.dimensions || [];
 		const measures = view.measures || [];
+
+		// Match the renderer's zero-pruning.
+		const data = ( window.TSGRenderer && window.TSGRenderer.filterMeaningful )
+			? window.TSGRenderer.filterMeaningful( payload.data, chart.key, measures )
+			: ( payload.data || [] );
+
 		switch ( chart.key ) {
 			case 'stacked_bar':
 			case 'stacked_area': {

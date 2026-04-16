@@ -113,9 +113,15 @@
 		// ==============================================================
 
 		configure( viz, payload /* , opts */ ) {
-			const { mapping, data, view, chart } = payload;
+			const { mapping, view, chart } = payload;
 			const dims     = view.dimensions || [];
 			const measures = view.measures   || [];
+
+			// Prune rows whose primary measure(s) are 0 / null / NaN so the
+			// chart only shows municipios with actual data. Geomap keeps
+			// the prune too — polygons without matching data fall back to
+			// `topojsonFill` (set below to #fffcf3).
+			const data = this.filterMeaningful( payload.data, chart.key, measures );
 
 			switch ( chart.key ) {
 				case 'bar':
@@ -252,6 +258,11 @@
 					// background shows through.
 					if ( typeof viz.ocean === 'function' ) {
 						viz.ocean( 'transparent' );
+					}
+					// Paint polygons whose municipio has no matching data
+					// (or was pruned as zero) with a soft neutral color.
+					if ( typeof viz.topojsonFill === 'function' ) {
+						viz.topojsonFill( '#fffcf3' );
 					}
 					if ( typeof viz.topojson === 'function' && mapping.topojson ) {
 						viz.topojson( mapping.topojson );
@@ -584,6 +595,47 @@
 					fill: ( _d, i ) => PALETTE[ i % PALETTE.length ],
 				} );
 			}
+		},
+
+		/**
+		 * Drop rows that have no meaningful data — primary measure is 0,
+		 * null, undefined or NaN. For stacked charts the rule is "all
+		 * stackable measures are zero"; if any has data the row stays.
+		 *
+		 * Geomap gets the same treatment: a municipio with a zero measure
+		 * disappears from the data so d3plus falls back to topojsonFill
+		 * (set to #fffcf3) on its polygon — visually marking "no data".
+		 *
+		 * Network/graph charts skip the filter because the graph structure
+		 * itself carries meaning even when individual measures are 0.
+		 */
+		filterMeaningful( rows, chartKey, measures ) {
+			if ( ! Array.isArray( rows ) || ! rows.length ) {
+				return rows || [];
+			}
+			if ( ! Array.isArray( measures ) || ! measures.length ) {
+				return rows;
+			}
+			if ( chartKey === 'network' || chartKey === 'rings' || chartKey === 'sankey' ) {
+				return rows;
+			}
+
+			let relevant;
+			if ( chartKey === 'stacked_bar' || chartKey === 'stacked_area' ) {
+				const stackable = measures.filter(
+					( m ) => ! /^(total|pct_|participacion|cobertura)/i.test( m )
+				);
+				relevant = stackable.length >= 2 ? stackable : measures.slice( 0, 3 );
+			} else {
+				relevant = [ measures[ 0 ] ];
+			}
+
+			return rows.filter( ( row ) => {
+				return relevant.some( ( m ) => {
+					const n = Number( row && row[ m ] );
+					return Number.isFinite( n ) && n !== 0;
+				} );
+			} );
 		},
 
 		reshapeWideToLong( data, dims, measures ) {

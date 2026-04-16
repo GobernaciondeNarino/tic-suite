@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.5.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.5.1** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,15 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.5.1
+- **Municipios sin datos excluidos** del gráfico (excepto mapa + grafos):
+  - `bar`, `pie`, `donut`, `treemap`, `tree`, `box_whisker`, `line`, `area` → se filtran rows con la medida principal en `0 / null / NaN`.
+  - `stacked_bar`, `stacked_area` → se filtran solo los rows donde *todas* las medidas apilables son `0`.
+  - `network`, `rings`, `sankey` → pass-through (la estructura del grafo tiene valor por sí misma).
+- **Geomap**: los municipios con `0` o sin datos caen al fill de "polígono sin datos", ahora configurado como **`#fffcf3`** via `viz.topojsonFill("#fffcf3")`. Los municipios con datos reales se colorean según la escala normal.
+- La leyenda en modo iconos aplica el mismo filtro para quedar sincronizada con el gráfico.
+- Ventaja colateral: la escala de color del geomap ya no se ve aplastada por muchos ceros — los municipios con valores pequeños se distinguen mejor.
 
 ### 1.5.0
 - **Chart-type swap en vivo** vía nueva acción `cambiar`: la toolbar del gráfico incluye un `<select>` con los tipos compatibles de la vista. Al cambiar, un fetch AJAX a `/render?view=…&type=…` trae el nuevo payload y reemplaza el SVG in-place (sin recargar la página ni el resto de la figura).

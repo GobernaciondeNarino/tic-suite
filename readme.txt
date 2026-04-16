@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,13 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.5.1 =
+* Filtro automático de municipios sin datos: en bar, pie, donut, treemap, tree, box_whisker, line y area, los municipios con la medida principal en 0 / null / NaN se excluyen del gráfico.
+* Stacked bar y stacked area: se excluyen solo los municipios donde TODAS las medidas apilables son 0; si al menos una tiene valor, la fila se mantiene.
+* Network/rings/sankey: sin filtro — la estructura del grafo tiene valor por sí misma.
+* Geomap: los municipios con 0 (o ausentes del dataset) ya no distorsionan la escala de color; caen al fill de polígono sin datos, ahora configurado como `#fffcf3` via `viz.topojsonFill("#fffcf3")`.
+* Leyenda (modo iconos): `computeLegendItems()` aplica el mismo filtro para que la tira muestre solo los municipios que aparecen en el chart.
 
 = 1.5.0 =
 * Swap de tipo de gráfico en vivo: nueva acción `cambiar` en la barra que renderiza un `<select>` con los tipos compatibles de la vista. Al cambiar la selección, se hace un fetch AJAX al endpoint `/render?view=…&type=…` y se reemplaza el SVG en el mismo contenedor sin recargar la página.
