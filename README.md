@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.4.4** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.4.5** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,9 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.4.5
+- **Geomap totalmente transparente**: el `<rect class="d3plus-geomap-ocean">` que d3plus pinta como fondo (gris azulado `#d4dadc`) ahora se emite con `fill="transparent"` via `viz.ocean("transparent")`. Los polígonos de los municipios quedan sobre la superficie de la figura contenedora sin rectángulo intermedio.
 
 ### 1.4.4
 - **Geomap sin basemap**: `viz.tiles(false)` oculta la capa de tiles CARTO/OSM (`light_all`) que d3plus trae activa por defecto y que mostraba etiquetas de departamentos vecinos (Cauca, Huila, Putumayo, etc.). Ahora los mapas muestran solo los polígonos de los 64 municipios de Nariño sobre fondo transparente.

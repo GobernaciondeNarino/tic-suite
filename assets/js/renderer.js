@@ -247,6 +247,12 @@
 					if ( typeof viz.tiles === 'function' ) {
 						viz.tiles( false );
 					}
+					// d3plus defaults the "ocean" background rect to #d4dadc;
+					// make it fully transparent so the figure's own
+					// background shows through.
+					if ( typeof viz.ocean === 'function' ) {
+						viz.ocean( 'transparent' );
+					}
 					if ( typeof viz.topojson === 'function' && mapping.topojson ) {
 						viz.topojson( mapping.topojson );
 					}

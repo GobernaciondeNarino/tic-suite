@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,9 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.4.5 =
+* Geomap: `<rect class="d3plus-geomap-ocean">` pasa a `fill="transparent"` via `viz.ocean("transparent")`. Antes d3plus dibujaba el fondo en `#d4dadc` (un gris azulado de "océano") que tapaba el fondo de la figura. Ahora los polígonos de los municipios flotan sobre la superficie de la figura contenedora.
 
 = 1.4.4 =
 * Geomap sin basemap OSM/CARTO: el renderer ahora llama `viz.tiles(false)` para ocultar la capa de tiles de terceros (CARTO/light_all con atribución OpenStreetMap). Los mapas muestran únicamente los polígonos de los 64 municipios de Nariño sobre fondo transparente, tal como corresponde a una vista departamental.
