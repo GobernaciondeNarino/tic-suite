@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.4.5** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.5.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,13 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.5.0
+- **Chart-type swap en vivo** vía nueva acción `cambiar`: la toolbar del gráfico incluye un `<select>` con los tipos compatibles de la vista. Al cambiar, un fetch AJAX a `/render?view=…&type=…` trae el nuevo payload y reemplaza el SVG in-place (sin recargar la página ni el resto de la figura).
+- **REST `/render`** ahora incluye el array `compatible` con la lista de tipos compatibles — el selector se pobla sin un segundo round-trip.
+- **Builder admin**: nuevo chip "Cambiar tipo" en la fila de Acciones. Al habilitarlo, la preview muestra el select en la toolbar, y al elegir otro tipo se sincroniza la preview + el Panel 2 de chart types + el shortcode generado.
+- **CSS**: nueva variante `.tsg-action--select` que superpone un `<select>` invisible sobre un `<label>` estilizado como botón, con indicador caret.
+- Default de `actions` extendido de 5 → 6 elementos (`detalle,compartir,datos,imagen,descarga,cambiar`).
 
 ### 1.4.5
 - **Geomap totalmente transparente**: el `<rect class="d3plus-geomap-ocean">` que d3plus pinta como fondo (gris azulado `#d4dadc`) ahora se emite con `fill="transparent"` via `viz.ocean("transparent")`. Los polígonos de los municipios quedan sobre la superficie de la figura contenedora sin rectángulo intermedio.

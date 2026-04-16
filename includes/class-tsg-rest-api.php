@@ -150,6 +150,10 @@ class TSG_Rest_Api {
 			],
 			'data'       => $view['data'],
 			'mapping'    => $this->build_mapping( $view, $chart_type ),
+			// List of chart types compatible with this view so the client
+			// can populate the in-toolbar "change chart type" selector
+			// without a second round-trip.
+			'compatible' => $this->chart_types->compatible_with_view( $view ),
 		];
 
 		return new WP_REST_Response( $payload, 200 );

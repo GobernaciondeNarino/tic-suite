@@ -113,6 +113,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="datos" checked /><span class="dashicons dashicons-editor-table" aria-hidden="true"></span><?php esc_html_e( 'Datos', 'tic-suite-graficos' ); ?></label>
 					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="imagen" checked /><span class="dashicons dashicons-format-image" aria-hidden="true"></span><?php esc_html_e( 'Imagen', 'tic-suite-graficos' ); ?></label>
 					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="descarga" checked /><span class="dashicons dashicons-download" aria-hidden="true"></span><?php esc_html_e( 'Descarga', 'tic-suite-graficos' ); ?></label>
+					<label class="tsg-chip"><input type="checkbox" data-tsg-action-opt="cambiar" checked /><span class="dashicons dashicons-update" aria-hidden="true"></span><?php esc_html_e( 'Cambiar tipo', 'tic-suite-graficos' ); ?></label>
 				</div>
 			</fieldset>
 

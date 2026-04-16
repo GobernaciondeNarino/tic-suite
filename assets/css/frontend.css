@@ -99,10 +99,65 @@
 }
 .tsg-action.is-success .dashicons { color: #ffffff; }
 
+/* Select-as-action: the "cambiar" action wraps a <select> inside a
+   <label> styled like a button. The native <select> remains clickable
+   but visually blends in. */
+.tsg-action--select {
+	position: relative;
+	padding-right: 28px;
+	cursor: pointer;
+}
+.tsg-action__select {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	border: none;
+	color: transparent;
+	opacity: 0;
+	cursor: pointer;
+	font: inherit;
+}
+.tsg-action__select:focus { outline: none; }
+.tsg-action__select:focus-visible + span,
+.tsg-action--select:has( :focus-visible ) {
+	outline: 2px solid var( --tsg-accent );
+	outline-offset: 2px;
+	border-radius: 8px;
+}
+.tsg-action__select option {
+	color: var( --tsg-ink );
+	background: #ffffff;
+}
+/* Caret indicator */
+.tsg-action--select::after {
+	content: "";
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	width: 8px;
+	height: 8px;
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: translateY( -70%) rotate( 45deg );
+	pointer-events: none;
+	opacity: .7;
+}
+
+/* Chart loading state triggered by the AJAX swap. */
+.tsg-chart.is-loading {
+	opacity: .55;
+	transition: opacity .15s ease;
+}
+
 /* On mobile, hide labels and keep just icons. */
 @media ( max-width: 640px ) {
 	.tsg-action__label { display: none; }
 	.tsg-action { padding: 8px 10px; }
+	.tsg-action--select { padding-right: 24px; }
 }
 
 /* ------------------------------------------------------------- */

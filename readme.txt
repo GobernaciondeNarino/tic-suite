@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.4.5
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,13 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.5.0 =
+* Swap de tipo de gráfico en vivo: nueva acción `cambiar` en la barra que renderiza un `<select>` con los tipos compatibles de la vista. Al cambiar la selección, se hace un fetch AJAX al endpoint `/render?view=…&type=…` y se reemplaza el SVG en el mismo contenedor sin recargar la página.
+* REST `/render` ahora incluye el array `compatible` (lista de tipos de gráfico compatibles con la vista) para que el selector se pueble sin un segundo round-trip.
+* Builder admin: nuevo chip "Cambiar tipo" en la fila de Acciones. Cuando está activo, la preview muestra el select en la toolbar; al elegir otro tipo, la preview y el shortcode generado se sincronizan (incluido el Panel 2 de chart types).
+* CSS: nueva variante `.tsg-action--select` que estiliza un `<label>` con un `<select>` invisible superpuesto para que se vea como los demás botones.
+* Default de `actions` extendido a 6 elementos (agrega `cambiar` al final).
 
 = 1.4.5 =
 * Geomap: `<rect class="d3plus-geomap-ocean">` pasa a `fill="transparent"` via `viz.ocean("transparent")`. Antes d3plus dibujaba el fondo en `#d4dadc` (un gris azulado de "océano") que tapaba el fondo de la figura. Ahora los polígonos de los municipios flotan sobre la superficie de la figura contenedora.

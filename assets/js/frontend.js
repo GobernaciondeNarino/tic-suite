@@ -62,7 +62,7 @@
 					return;
 				}
 
-				cache.set( figure.id, { payload, viewId, type } );
+				cache.set( figure.id, { payload, viewId, type, legendOn, legendStyle, xTitle, yTitle } );
 
 				// Tell the renderer whether to attach d3plus's own legend.
 				// When icons mode is selected we hide d3plus' native legend
@@ -89,11 +89,115 @@
 						legendEl.hidden = true;
 					}
 				}
+
+				// Populate the chart-type selector with the compatible
+				// types and wire the AJAX swap.
+				populateTypeSelector( figure, payload );
 			} )
 			.catch( ( err ) => {
 				console.error( '[TSG]', err );
 				chartEl.innerHTML = `<p class="tsg-empty">${ TSG_FRONTEND.i18n.error }</p>`;
 			} );
+	}
+
+	// ------------------------------------------------------------------
+	// Chart-type selector (AJAX swap)
+	// ------------------------------------------------------------------
+
+	function populateTypeSelector( figure, payload ) {
+		const sel = figure.querySelector( '[data-tsg-type-selector="1"]' );
+		if ( ! sel ) {
+			return;
+		}
+		const compatible = Array.isArray( payload.compatible ) ? payload.compatible : [];
+		if ( ! compatible.length ) {
+			// Hide the control if there's nothing to switch to.
+			const wrap = sel.closest( '.tsg-action--select' );
+			if ( wrap ) {
+				wrap.hidden = true;
+			}
+			return;
+		}
+
+		const currentKey = payload.chart.key;
+		sel.innerHTML = compatible.map( ( c ) => {
+			const selAttr = c.key === currentKey ? ' selected' : '';
+			return `<option value="${ escapeAttr( c.key ) }"${ selAttr }>${ escapeHtml( c.label ) }</option>`;
+		} ).join( '' );
+
+		// Remove any previous listener by cloning (we re-populate on every
+		// successful fetch).
+		const fresh = sel.cloneNode( true );
+		sel.parentNode.replaceChild( fresh, sel );
+		fresh.addEventListener( 'change', ( ev ) => onTypeSelectChange( figure, ev.target.value ) );
+	}
+
+	async function onTypeSelectChange( figure, newType ) {
+		const entry = cache.get( figure.id );
+		if ( ! entry || ! newType || newType === entry.type ) {
+			return;
+		}
+		const chartEl  = figure.querySelector( '.tsg-chart' );
+		const legendEl = figure.querySelector( '[data-tsg-legend="1"]' );
+		if ( ! chartEl ) {
+			return;
+		}
+
+		const prevHtml = chartEl.innerHTML;
+		chartEl.classList.add( 'is-loading' );
+		chartEl.innerHTML = `<div class="tsg-chart__loading">${ TSG_FRONTEND.i18n.loading }</div>`;
+
+		const url = `${ TSG_FRONTEND.restUrl }?view=${ encodeURIComponent( entry.viewId ) }&type=${ encodeURIComponent( newType ) }`;
+		try {
+			const r = await fetch( url, {
+				headers:     { 'X-WP-Nonce': TSG_FRONTEND.nonce },
+				credentials: 'same-origin',
+			} );
+			if ( ! r.ok ) {
+				throw new Error( `HTTP ${ r.status }` );
+			}
+			const payload = await r.json();
+			if ( ! payload || ! payload.data || ! payload.data.length ) {
+				chartEl.innerHTML = `<p class="tsg-empty">${ TSG_FRONTEND.i18n.empty }</p>`;
+				return;
+			}
+
+			// Update cache with the new chart type + payload.
+			entry.type    = newType;
+			entry.payload = payload;
+
+			// Re-sync the figure/chart data-* attributes (downstream code
+			// that relies on them — e.g. legend rendering — stays correct).
+			figure.setAttribute( 'data-type', newType );
+			chartEl.setAttribute( 'data-type', newType );
+
+			chartEl.innerHTML = '';
+			chartEl.classList.remove( 'is-loading' );
+
+			const rendererOpts = {
+				legend: entry.legendOn && entry.legendStyle === 'text',
+				xTitle: entry.xTitle,
+				yTitle: entry.yTitle,
+			};
+			window.TSGRenderer.render( chartEl.id, payload, rendererOpts );
+
+			// Refresh the legend strip to match the new chart type.
+			if ( legendEl ) {
+				if ( entry.legendOn && entry.legendStyle === 'icons' ) {
+					renderIconLegend( legendEl, payload );
+				} else {
+					legendEl.hidden = true;
+				}
+			}
+
+			// Re-populate the selector — keeps the currently-selected
+			// option in sync after the swap.
+			populateTypeSelector( figure, payload );
+		} catch ( err ) {
+			console.error( '[TSG] swap error', err );
+			chartEl.innerHTML = prevHtml;
+			chartEl.classList.remove( 'is-loading' );
+		}
 	}
 
 	// ------------------------------------------------------------------
@@ -424,6 +528,10 @@
 			.replace( />/g, '&gt;' )
 			.replace( /"/g, '&quot;' )
 			.replace( /'/g, '&#39;' );
+	}
+
+	function escapeAttr( s ) {
+		return String( s == null ? '' : s ).replace( /[^a-z0-9_\-]/gi, '' );
 	}
 
 	function t( key ) {

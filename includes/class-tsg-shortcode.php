@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class TSG_Shortcode {
 
-	private const VALID_ACTIONS = [ 'detalle', 'compartir', 'datos', 'imagen', 'descarga' ];
+	private const VALID_ACTIONS = [ 'detalle', 'compartir', 'datos', 'imagen', 'descarga', 'cambiar' ];
 
 	private TSG_Data_Provider $data_provider;
 	private TSG_Chart_Types $chart_types;
@@ -78,7 +78,7 @@ class TSG_Shortcode {
 				'legend'       => 'true',
 				'legend_style' => 'text',
 				'toolbar'      => 'true',
-				'actions'      => 'detalle,compartir,datos,imagen,descarga',
+				'actions'      => 'detalle,compartir,datos,imagen,descarga,cambiar',
 				'x_title'      => '',
 				'y_title'      => '',
 			],
@@ -145,16 +145,31 @@ class TSG_Shortcode {
 			<?php if ( $show_tools && ! empty( $actions ) ) : ?>
 				<div class="tsg-toolbar" role="toolbar" aria-label="<?php esc_attr_e( 'Acciones del gráfico', 'tic-suite-graficos' ); ?>">
 					<?php foreach ( $actions as $action ) : ?>
-						<button
-							type="button"
-							class="tsg-action"
-							data-tsg-action="<?php echo esc_attr( $action ); ?>"
-							title="<?php echo esc_attr( $this->action_label( $action ) ); ?>"
-							aria-label="<?php echo esc_attr( $this->action_label( $action ) ); ?>"
-						>
-							<span class="dashicons dashicons-<?php echo esc_attr( $this->action_icon( $action ) ); ?>" aria-hidden="true"></span>
-							<span class="tsg-action__label"><?php echo esc_html( $this->action_label( $action ) ); ?></span>
-						</button>
+						<?php if ( 'cambiar' === $action ) : ?>
+							<label class="tsg-action tsg-action--select"
+								title="<?php esc_attr_e( 'Cambiar tipo de gráfico', 'tic-suite-graficos' ); ?>">
+								<span class="dashicons dashicons-update" aria-hidden="true"></span>
+								<span class="tsg-action__label"><?php esc_html_e( 'Tipo', 'tic-suite-graficos' ); ?></span>
+								<select class="tsg-action__select"
+									data-tsg-type-selector="1"
+									aria-label="<?php esc_attr_e( 'Tipo de gráfico', 'tic-suite-graficos' ); ?>">
+									<option value="<?php echo esc_attr( $chart_type ); ?>" selected>
+										<?php echo esc_html( $this->chart_types->get( $chart_type )['label'] ?? $chart_type ); ?>
+									</option>
+								</select>
+							</label>
+						<?php else : ?>
+							<button
+								type="button"
+								class="tsg-action"
+								data-tsg-action="<?php echo esc_attr( $action ); ?>"
+								title="<?php echo esc_attr( $this->action_label( $action ) ); ?>"
+								aria-label="<?php echo esc_attr( $this->action_label( $action ) ); ?>"
+							>
+								<span class="dashicons dashicons-<?php echo esc_attr( $this->action_icon( $action ) ); ?>" aria-hidden="true"></span>
+								<span class="tsg-action__label"><?php echo esc_html( $this->action_label( $action ) ); ?></span>
+							</button>
+						<?php endif; ?>
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
@@ -242,6 +257,7 @@ class TSG_Shortcode {
 			'datos'     => __( 'Datos', 'tic-suite-graficos' ),
 			'imagen'    => __( 'Imagen', 'tic-suite-graficos' ),
 			'descarga'  => __( 'Descarga', 'tic-suite-graficos' ),
+			'cambiar'   => __( 'Tipo', 'tic-suite-graficos' ),
 		];
 		return $map[ $action ] ?? $action;
 	}
@@ -253,6 +269,7 @@ class TSG_Shortcode {
 			'datos'     => 'editor-table',
 			'imagen'    => 'format-image',
 			'descarga'  => 'download',
+			'cambiar'   => 'update',
 		];
 		return $map[ $action ] ?? 'admin-generic';
 	}

@@ -12,7 +12,7 @@
 ( function () {
 	'use strict';
 
-	const DEFAULT_ACTIONS = [ 'detalle', 'compartir', 'datos', 'imagen', 'descarga' ];
+	const DEFAULT_ACTIONS = [ 'detalle', 'compartir', 'datos', 'imagen', 'descarga', 'cambiar' ];
 
 	const state = {
 		viewId:   null,
@@ -252,9 +252,59 @@
 		if ( useIcons ) {
 			renderIconLegend( $( '[data-tsg-legend="1"]', els.preview ), payload );
 		}
+
+		// Populate the chart-type selector (if rendered) with the compatible
+		// types and wire the live swap.
+		const sel = $( '[data-tsg-type-selector="1"]', els.preview );
+		if ( sel ) {
+			sel.innerHTML = state.compatible.map( ( c ) => {
+				const selAttr = c.key === state.chartKey ? ' selected' : '';
+				return `<option value="${ escapeAttr( c.key ) }"${ selAttr }>${ escapeHtml( c.label ) }</option>`;
+			} ).join( '' );
+			sel.addEventListener( 'change', ( ev ) => onPreviewTypeChange( ev.target.value ) );
+		}
+	}
+
+	async function onPreviewTypeChange( newType ) {
+		if ( ! newType || newType === state.chartKey ) {
+			return;
+		}
+		// Sync the selection with Panel 2's cards so the admin sees
+		// consistent active state.
+		const card = $( `.tsg-type-card[data-type-key="${ newType }"]`, els.typesWrap );
+		if ( card ) {
+			$$( '.tsg-type-card', els.typesWrap ).forEach( ( el ) => el.classList.remove( 'is-active' ) );
+			card.classList.add( 'is-active' );
+		}
+		state.chartKey = newType;
+
+		try {
+			const url = `${ TSG_ADMIN.restUrl }/render?view=${ encodeURIComponent( state.viewId ) }&type=${ encodeURIComponent( newType ) }`;
+			const res = await fetch( url, {
+				headers:     { 'X-WP-Nonce': TSG_ADMIN.nonce },
+				credentials: 'same-origin',
+			} );
+			if ( ! res.ok ) {
+				throw new Error( `HTTP ${ res.status }` );
+			}
+			state.lastPayload = await res.json();
+			renderPreview( state.lastPayload );
+			renderShortcode();
+		} catch ( err ) {
+			console.error( '[TSG] preview swap error', err );
+		}
 	}
 
 	function toolbarButtonHtml( action ) {
+		if ( action === 'cambiar' ) {
+			return `
+				<label class="tsg-action tsg-action--select" title="${ escapeHtml( TSG_ADMIN.i18n.changeChart || 'Cambiar tipo' ) }">
+					<span class="dashicons dashicons-update" aria-hidden="true"></span>
+					<span class="tsg-action__label">${ escapeHtml( TSG_ADMIN.i18n.typeLabel || 'Tipo' ) }</span>
+					<select class="tsg-action__select" data-tsg-type-selector="1"></select>
+				</label>
+			`;
+		}
 		const meta = ACTION_META[ action ];
 		if ( ! meta ) {
 			return '';

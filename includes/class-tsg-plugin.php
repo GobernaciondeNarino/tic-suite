@@ -262,6 +262,8 @@ final class TSG_Plugin {
 					'noCompatible'    => __( 'Esta vista no tiene gráficos compatibles.', 'tic-suite-graficos' ),
 					'loading'         => __( 'Cargando…', 'tic-suite-graficos' ),
 					'preview'         => __( 'Vista previa', 'tic-suite-graficos' ),
+					'changeChart'     => __( 'Cambiar tipo de gráfico', 'tic-suite-graficos' ),
+					'typeLabel'       => __( 'Tipo', 'tic-suite-graficos' ),
 				],
 			]
 		);
