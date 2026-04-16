@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.4.0** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.4.1** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,11 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.4.1
+- **Alcance departamental completo**: las 4 vistas que antes llevaban "Top N" (Top 12 / 15 / 16 / 20) ahora incluyen los **64 municipios** de Nariño, extraídos del archivo maestro `vista-analisis-municipios.json`. Los títulos fueron actualizados para reflejar el alcance completo.
+- **`scripts/regen-views.py`**: script de sincronización que regenera las 4 vistas derivadas desde el maestro. Volver a correrlo cuando el maestro cambie.
+- **`zcp_por_municipio`**: incluye los 64 municipios con un flag `pdet` booleano — los no-PDET muestran `zcp_asignadas = 0`.
 
 ### 1.4.0
 - **Tooltips informativos**: cada gráfico ahora muestra un `tbody` con todas las dimensiones y medidas. Etiquetas en español (humanizadas + unidad detectada del nombre del campo: `(Millones COP)`, `(%)`); valores con `Intl.NumberFormat('es-CO')` (separadores de miles correctos); porcentajes con 1 decimal forzado.

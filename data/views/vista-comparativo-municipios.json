@@ -1,37 +1,418 @@
 {
   "vista": "comparativo_programas_municipios",
-  "titulo": "Cobertura Multiproyecto – Top 12 Municipios",
-  "descripcion": "Comparativo de participación de los principales municipios en los 5 proyectos TIC de Nariño",
+  "titulo": "Cobertura Multiproyecto por Municipio",
+  "descripcion": "Comparativo de participación de los 64 municipios de Nariño en los 5 proyectos TIC principales.",
   "tipo_grafico_sugerido": "radar",
+  "total_municipios": 64,
   "municipios": [
-    "SAN ANDRÉS DE TUMACO",
+    "ALBÁN",
+    "ALDANA",
+    "ANCUYA",
+    "ARBOLEDA",
+    "BARBACOAS",
+    "BELÉN",
+    "BUESACO",
+    "CHACHAGÜÍ",
+    "COLÓN",
+    "CONSACÁ",
+    "CONTADERO",
+    "CÓRDOBA",
+    "CUASPUD CARLOSAMA",
+    "CUMBAL",
+    "CUMBITARA",
+    "EL CHARCO",
+    "EL PEÑOL",
+    "EL ROSARIO",
+    "EL TABLÓN DE GÓMEZ",
+    "EL TAMBO",
+    "FRANCISCO PIZARRO",
+    "FUNES",
+    "GUACHUCAL",
+    "GUAITARILLA",
+    "GUALMATÁN",
+    "ILES",
+    "IMUÉS",
+    "IPIALES",
+    "LA CRUZ",
+    "LA FLORIDA",
+    "LA LLANADA",
+    "LA TOLA",
+    "LA UNIÓN",
+    "LEIVA",
+    "LINARES",
+    "LOS ANDES",
+    "MAGÜÍ",
+    "MALLAMA",
+    "MOSQUERA",
+    "NARIÑO",
+    "OLAYA HERRERA",
+    "OSPINA",
     "PASTO",
     "POLICARPA",
-    "BARBACOAS",
-    "SAN LORENZO",
+    "POTOSÍ",
+    "PROVIDENCIA",
+    "PUERRES",
+    "PUPIALES",
+    "RICAURTE",
+    "ROBERTO PAYÁN",
     "SAMANIEGO",
-    "BUESACO",
+    "SAN ANDRÉS DE TUMACO",
+    "SAN BERNARDO",
+    "SAN LORENZO",
+    "SAN PABLO",
+    "SAN PEDRO DE CARTAGO",
+    "SANDONÁ",
+    "SANTA BÁRBARA",
+    "SANTACRUZ",
+    "SAPUYES",
+    "TAMINANGO",
+    "TANGUA",
     "TÚQUERRES",
-    "LOS ANDES",
-    "IPIALES",
-    "CUMBAL",
-    "CÓRDOBA"
+    "YACUANQUER"
   ],
   "programas": [
     "Centros Digitales",
     "Talento Tech",
-    "Juntas Internet (pre-reg)",
-    "Computadores",
-    "AvanzaTEC"
+    "Juntas Internet Preregistradas",
+    "Computadores para Educar",
+    "Avanzatec"
   ],
   "datos": [
     {
-      "municipio": "SAN ANDRÉS DE TUMACO",
-      "centros_digitales": 122,
-      "talento_tech": 307,
-      "juntas_internet_prereg": 60,
-      "computadores": 3081,
-      "avanzatec": 20
+      "municipio": "ALBÁN",
+      "centros_digitales": 16,
+      "talento_tech": 68,
+      "juntas_internet_prereg": 7,
+      "computadores": 1,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "ALDANA",
+      "centros_digitales": 7,
+      "talento_tech": 13,
+      "juntas_internet_prereg": 10,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "ANCUYA",
+      "centros_digitales": 10,
+      "talento_tech": 16,
+      "juntas_internet_prereg": 58,
+      "computadores": 0,
+      "avanzatec": 2
+    },
+    {
+      "municipio": "ARBOLEDA",
+      "centros_digitales": 8,
+      "talento_tech": 15,
+      "juntas_internet_prereg": 55,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "BARBACOAS",
+      "centros_digitales": 29,
+      "talento_tech": 28,
+      "juntas_internet_prereg": 20,
+      "computadores": 142,
+      "avanzatec": 5
+    },
+    {
+      "municipio": "BELÉN",
+      "centros_digitales": 3,
+      "talento_tech": 29,
+      "juntas_internet_prereg": 27,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "BUESACO",
+      "centros_digitales": 26,
+      "talento_tech": 46,
+      "juntas_internet_prereg": 2,
+      "computadores": 2,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "CHACHAGÜÍ",
+      "centros_digitales": 9,
+      "talento_tech": 50,
+      "juntas_internet_prereg": 25,
+      "computadores": 1,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "COLÓN",
+      "centros_digitales": 7,
+      "talento_tech": 21,
+      "juntas_internet_prereg": 20,
+      "computadores": 0,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "CONSACÁ",
+      "centros_digitales": 7,
+      "talento_tech": 21,
+      "juntas_internet_prereg": 38,
+      "computadores": 0,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "CONTADERO",
+      "centros_digitales": 9,
+      "talento_tech": 12,
+      "juntas_internet_prereg": 0,
+      "computadores": 1,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "CÓRDOBA",
+      "centros_digitales": 17,
+      "talento_tech": 61,
+      "juntas_internet_prereg": 11,
+      "computadores": 2,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "CUASPUD CARLOSAMA",
+      "centros_digitales": 8,
+      "talento_tech": 19,
+      "juntas_internet_prereg": 2,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "CUMBAL",
+      "centros_digitales": 21,
+      "talento_tech": 83,
+      "juntas_internet_prereg": 28,
+      "computadores": 2,
+      "avanzatec": 5
+    },
+    {
+      "municipio": "CUMBITARA",
+      "centros_digitales": 17,
+      "talento_tech": 7,
+      "juntas_internet_prereg": 11,
+      "computadores": 35,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "EL CHARCO",
+      "centros_digitales": 2,
+      "talento_tech": 17,
+      "juntas_internet_prereg": 22,
+      "computadores": 161,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "EL PEÑOL",
+      "centros_digitales": 5,
+      "talento_tech": 21,
+      "juntas_internet_prereg": 14,
+      "computadores": 0,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "EL ROSARIO",
+      "centros_digitales": 12,
+      "talento_tech": 13,
+      "juntas_internet_prereg": 4,
+      "computadores": 22,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "EL TABLÓN DE GÓMEZ",
+      "centros_digitales": 9,
+      "talento_tech": 35,
+      "juntas_internet_prereg": 15,
+      "computadores": 1,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "EL TAMBO",
+      "centros_digitales": 11,
+      "talento_tech": 32,
+      "juntas_internet_prereg": 3,
+      "computadores": 11,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "FRANCISCO PIZARRO",
+      "centros_digitales": 4,
+      "talento_tech": 11,
+      "juntas_internet_prereg": 0,
+      "computadores": 80,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "FUNES",
+      "centros_digitales": 6,
+      "talento_tech": 19,
+      "juntas_internet_prereg": 35,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "GUACHUCAL",
+      "centros_digitales": 17,
+      "talento_tech": 55,
+      "juntas_internet_prereg": 16,
+      "computadores": 3,
+      "avanzatec": 3
+    },
+    {
+      "municipio": "GUAITARILLA",
+      "centros_digitales": 7,
+      "talento_tech": 18,
+      "juntas_internet_prereg": 15,
+      "computadores": 0,
+      "avanzatec": 3
+    },
+    {
+      "municipio": "GUALMATÁN",
+      "centros_digitales": 2,
+      "talento_tech": 13,
+      "juntas_internet_prereg": 10,
+      "computadores": 1,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "ILES",
+      "centros_digitales": 6,
+      "talento_tech": 8,
+      "juntas_internet_prereg": 8,
+      "computadores": 1,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "IMUÉS",
+      "centros_digitales": 9,
+      "talento_tech": 12,
+      "juntas_internet_prereg": 6,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "IPIALES",
+      "centros_digitales": 22,
+      "talento_tech": 488,
+      "juntas_internet_prereg": 38,
+      "computadores": 14,
+      "avanzatec": 29
+    },
+    {
+      "municipio": "LA CRUZ",
+      "centros_digitales": 7,
+      "talento_tech": 32,
+      "juntas_internet_prereg": 59,
+      "computadores": 6,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "LA FLORIDA",
+      "centros_digitales": 8,
+      "talento_tech": 19,
+      "juntas_internet_prereg": 43,
+      "computadores": 1,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "LA LLANADA",
+      "centros_digitales": 4,
+      "talento_tech": 9,
+      "juntas_internet_prereg": 15,
+      "computadores": 0,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "LA TOLA",
+      "centros_digitales": 7,
+      "talento_tech": 10,
+      "juntas_internet_prereg": 4,
+      "computadores": 81,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "LA UNIÓN",
+      "centros_digitales": 14,
+      "talento_tech": 62,
+      "juntas_internet_prereg": 2,
+      "computadores": 153,
+      "avanzatec": 5
+    },
+    {
+      "municipio": "LEIVA",
+      "centros_digitales": 10,
+      "talento_tech": 7,
+      "juntas_internet_prereg": 2,
+      "computadores": 40,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "LINARES",
+      "centros_digitales": 10,
+      "talento_tech": 19,
+      "juntas_internet_prereg": 51,
+      "computadores": 1,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "LOS ANDES",
+      "centros_digitales": 23,
+      "talento_tech": 13,
+      "juntas_internet_prereg": 38,
+      "computadores": 20,
+      "avanzatec": 2
+    },
+    {
+      "municipio": "MAGÜÍ",
+      "centros_digitales": 2,
+      "talento_tech": 5,
+      "juntas_internet_prereg": 11,
+      "computadores": 100,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "MALLAMA",
+      "centros_digitales": 12,
+      "talento_tech": 18,
+      "juntas_internet_prereg": 17,
+      "computadores": 2,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "MOSQUERA",
+      "centros_digitales": 7,
+      "talento_tech": 17,
+      "juntas_internet_prereg": 10,
+      "computadores": 81,
+      "avanzatec": 2
+    },
+    {
+      "municipio": "NARIÑO",
+      "centros_digitales": 1,
+      "talento_tech": 83,
+      "juntas_internet_prereg": 7,
+      "computadores": 0,
+      "avanzatec": 3
+    },
+    {
+      "municipio": "OLAYA HERRERA",
+      "centros_digitales": 5,
+      "talento_tech": 15,
+      "juntas_internet_prereg": 3,
+      "computadores": 142,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "OSPINA",
+      "centros_digitales": 8,
+      "talento_tech": 8,
+      "juntas_internet_prereg": 17,
+      "computadores": 0,
+      "avanzatec": 0
     },
     {
       "municipio": "PASTO",
@@ -50,19 +431,51 @@
       "avanzatec": 0
     },
     {
-      "municipio": "BARBACOAS",
-      "centros_digitales": 29,
-      "talento_tech": 28,
-      "juntas_internet_prereg": 20,
-      "computadores": 142,
-      "avanzatec": 5
+      "municipio": "POTOSÍ",
+      "centros_digitales": 14,
+      "talento_tech": 25,
+      "juntas_internet_prereg": 30,
+      "computadores": 2,
+      "avanzatec": 0
     },
     {
-      "municipio": "SAN LORENZO",
-      "centros_digitales": 28,
-      "talento_tech": 36,
-      "juntas_internet_prereg": 48,
+      "municipio": "PROVIDENCIA",
+      "centros_digitales": 9,
+      "talento_tech": 5,
+      "juntas_internet_prereg": 31,
       "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "PUERRES",
+      "centros_digitales": 10,
+      "talento_tech": 20,
+      "juntas_internet_prereg": 72,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "PUPIALES",
+      "centros_digitales": 17,
+      "talento_tech": 33,
+      "juntas_internet_prereg": 6,
+      "computadores": 1,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "RICAURTE",
+      "centros_digitales": 16,
+      "talento_tech": 29,
+      "juntas_internet_prereg": 7,
+      "computadores": 172,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "ROBERTO PAYÁN",
+      "centros_digitales": 4,
+      "talento_tech": 1,
+      "juntas_internet_prereg": 33,
+      "computadores": 181,
       "avanzatec": 0
     },
     {
@@ -74,12 +487,92 @@
       "avanzatec": 2
     },
     {
-      "municipio": "BUESACO",
-      "centros_digitales": 26,
-      "talento_tech": 46,
-      "juntas_internet_prereg": 2,
-      "computadores": 2,
+      "municipio": "SAN ANDRÉS DE TUMACO",
+      "centros_digitales": 122,
+      "talento_tech": 307,
+      "juntas_internet_prereg": 60,
+      "computadores": 3081,
+      "avanzatec": 20
+    },
+    {
+      "municipio": "SAN BERNARDO",
+      "centros_digitales": 13,
+      "talento_tech": 16,
+      "juntas_internet_prereg": 3,
+      "computadores": 1,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "SAN LORENZO",
+      "centros_digitales": 28,
+      "talento_tech": 36,
+      "juntas_internet_prereg": 48,
+      "computadores": 20,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "SAN PABLO",
+      "centros_digitales": 14,
+      "talento_tech": 38,
+      "juntas_internet_prereg": 30,
+      "computadores": 1,
       "avanzatec": 1
+    },
+    {
+      "municipio": "SAN PEDRO DE CARTAGO",
+      "centros_digitales": 7,
+      "talento_tech": 22,
+      "juntas_internet_prereg": 57,
+      "computadores": 0,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "SANDONÁ",
+      "centros_digitales": 13,
+      "talento_tech": 70,
+      "juntas_internet_prereg": 7,
+      "computadores": 3,
+      "avanzatec": 3
+    },
+    {
+      "municipio": "SANTA BÁRBARA",
+      "centros_digitales": 4,
+      "talento_tech": 2,
+      "juntas_internet_prereg": 1,
+      "computadores": 100,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "SANTACRUZ",
+      "centros_digitales": 6,
+      "talento_tech": 17,
+      "juntas_internet_prereg": 0,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "SAPUYES",
+      "centros_digitales": 5,
+      "talento_tech": 18,
+      "juntas_internet_prereg": 2,
+      "computadores": 0,
+      "avanzatec": 0
+    },
+    {
+      "municipio": "TAMINANGO",
+      "centros_digitales": 16,
+      "talento_tech": 31,
+      "juntas_internet_prereg": 8,
+      "computadores": 1,
+      "avanzatec": 1
+    },
+    {
+      "municipio": "TANGUA",
+      "centros_digitales": 13,
+      "talento_tech": 32,
+      "juntas_internet_prereg": 83,
+      "computadores": 0,
+      "avanzatec": 2
     },
     {
       "municipio": "TÚQUERRES",
@@ -90,35 +583,11 @@
       "avanzatec": 5
     },
     {
-      "municipio": "LOS ANDES",
-      "centros_digitales": 23,
-      "talento_tech": 13,
-      "juntas_internet_prereg": 38,
-      "computadores": 20,
-      "avanzatec": 2
-    },
-    {
-      "municipio": "IPIALES",
-      "centros_digitales": 22,
-      "talento_tech": 488,
-      "juntas_internet_prereg": 38,
-      "computadores": 14,
-      "avanzatec": 29
-    },
-    {
-      "municipio": "CUMBAL",
-      "centros_digitales": 21,
-      "talento_tech": 83,
-      "juntas_internet_prereg": 28,
-      "computadores": 2,
-      "avanzatec": 5
-    },
-    {
-      "municipio": "CÓRDOBA",
-      "centros_digitales": 17,
-      "talento_tech": 61,
-      "juntas_internet_prereg": 11,
-      "computadores": 2,
+      "municipio": "YACUANQUER",
+      "centros_digitales": 13,
+      "talento_tech": 46,
+      "juntas_internet_prereg": 18,
+      "computadores": 0,
       "avanzatec": 1
     }
   ]

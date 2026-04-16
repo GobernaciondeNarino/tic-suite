@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,12 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.4.1 =
+* Vistas regeneradas sin filtro "Top N": las 4 vistas que mostraban recortes (Top 12/15/16/20) ahora incluyen los **64 municipios** de Nariño extraídos del archivo maestro `vista-analisis-municipios.json`.
+* Títulos actualizados para reflejar el alcance departamental completo.
+* Nuevo script `scripts/regen-views.py` para regenerar las 4 vistas derivadas a partir del maestro — útil si el maestro cambia y hay que sincronizar.
+* `zcp_por_municipio` ahora incluye los 64 municipios con el flag `pdet` booleano (los municipios no-PDET tienen `zcp_asignadas=0`).
 
 = 1.4.0 =
 * Tooltips: cada gráfico ahora muestra un tbody con todas las dimensiones y medidas en español, valores formateados con `Intl.NumberFormat('es-CO')` (separadores de miles correctos), porcentajes con 1 decimal y unidades detectadas automáticamente del nombre del campo (`(Millones COP)`, `(%)`).
