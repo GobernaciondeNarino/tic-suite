@@ -81,6 +81,13 @@
 					.detectResize( true )
 					.legend( Boolean( opts.legend ) );
 
+				// Always anchor the legend at the bottom. d3plus' default
+				// switches between "right" and "bottom" based on the aspect
+				// ratio; we want a consistent layout across chart types.
+				if ( typeof viz.legendPosition === 'function' ) {
+					viz.legendPosition( 'bottom' );
+				}
+
 				this.configure( viz, payload, opts );
 				this.applyAxes( viz, payload, opts );
 				this.applyTooltip( viz, payload );

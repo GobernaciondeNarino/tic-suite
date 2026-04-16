@@ -1,6 +1,6 @@
 # TIC Suite · Gráficos
 
-**v1.4.2** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
+**v1.4.3** — Plugin profesional para **TIC Suite** (Gobernación de Nariño)
 que permite generar **15 tipos de gráficos interactivos con
 [@d3plus/core v3.1.4](https://d3plus.org/)** e insertarlos en cualquier
 página o entrada mediante **shortcode**.
@@ -109,6 +109,9 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill u
 Estos skills aportan guías de diseño que se aplican cuando Claude escribe CSS/HTML, manteniendo la experiencia minimalista y accesible.
 
 ## Changelog
+
+### 1.4.3
+- **Leyenda anclada al bottom**: `viz.legendPosition("bottom")` en el base config del renderer, para que toda la flota de charts (bar, line, pie, donut, treemap, geomap, etc.) muestre la leyenda debajo del SVG, sin depender del aspect ratio. El modo "iconos" ya estaba debajo por orden del DOM.
 
 ### 1.4.2
 - **Cobertura completa de los 12 proyectos TIC** del Informe Gestión 2024. Vistas nuevas:
