@@ -308,22 +308,30 @@ def regen_profesores_areas(totales: dict) -> None:
 # ----------------------------------------------------------------------
 
 def regen_ninos_sankey(totales: dict) -> None:
-    """Combined view for a multi-level Sankey: Género + Étnico + Estrato.
+    """Combined Sankey with two root nodes: Niños and Profesores.
 
-    Structure:  Total → [Género, Grupo Étnico, Estrato] → leaves
+    Structure:
+      Niños (7114) ─── Género ─── Femenino / Masculino / ...
+                  ├── Grupo Étnico ─── Ninguno / Indígena / ...
+                  └── Estrato ─── 1 / 2 / ...
+
+      Profesores (792) ─── Género ─── Femenino / Masculino / ...
     """
-    distributions = [
+    nodes: list[dict] = []
+    edges: list[dict] = []
+    data:  list[dict] = []
+
+    # --- Root 1: Niños ---
+    ninos_groups = [
         ('Género',       totales.get('distribucion_genero_ninos', {})),
         ('Grupo Étnico', totales.get('distribucion_etnica_ninos', {})),
         ('Estrato',      totales.get('distribucion_estrato_ninos', {})),
     ]
-    nodes: list[dict] = [{'id': 'Total'}]
-    edges: list[dict] = []
-    data: list[dict]  = []
-
     total_ninos = 0
-    for dim_label, items in distributions:
-        nodes.append({'id': dim_label})
+    nodes.append({'id': 'Niños'})
+    for dim_label, items in ninos_groups:
+        dim_id = f'Niños: {dim_label}'
+        nodes.append({'id': dim_id})
         dim_total = 0
         for cat, count in (items or {}).items():
             n = _i(count)
@@ -331,22 +339,45 @@ def regen_ninos_sankey(totales: dict) -> None:
                 continue
             cat_id = f'{dim_label}: {cat}'
             nodes.append({'id': cat_id})
-            edges.append({'source': dim_label, 'target': cat_id, 'value': n})
-            data.append({'id': cat_id, 'ninos': n})
+            edges.append({'source': dim_id, 'target': cat_id, 'value': n})
+            data.append({'id': cat_id, 'cantidad': n})
             dim_total += n
-        edges.append({'source': 'Total', 'target': dim_label, 'value': dim_total})
-        data.append({'id': dim_label, 'ninos': dim_total})
+        edges.append({'source': 'Niños', 'target': dim_id, 'value': dim_total})
+        data.append({'id': dim_id, 'cantidad': dim_total})
         total_ninos = max(total_ninos, dim_total)
+    data.append({'id': 'Niños', 'cantidad': total_ninos})
 
-    data.insert(0, {'id': 'Total', 'ninos': total_ninos})
+    # --- Root 2: Profesores ---
+    prof_groups = [
+        ('Género', totales.get('distribucion_genero_profesores', {})),
+    ]
+    total_prof = 0
+    nodes.append({'id': 'Profesores'})
+    for dim_label, items in prof_groups:
+        dim_id = f'Profesores: {dim_label}'
+        nodes.append({'id': dim_id})
+        dim_total = 0
+        for cat, count in (items or {}).items():
+            n = _i(count)
+            if n <= 0:
+                continue
+            cat_id = f'Prof. {dim_label}: {cat}'
+            nodes.append({'id': cat_id})
+            edges.append({'source': dim_id, 'target': cat_id, 'value': n})
+            data.append({'id': cat_id, 'cantidad': n})
+            dim_total += n
+        edges.append({'source': 'Profesores', 'target': dim_id, 'value': dim_total})
+        data.append({'id': dim_id, 'cantidad': dim_total})
+        total_prof = max(total_prof, dim_total)
+    data.append({'id': 'Profesores', 'cantidad': total_prof})
 
     write_view('vista-ondas-ninos-sankey.json', {
         'id':          'ondas_ninos_sankey',
-        'name':        'Ondas - Niños: Género · Étnico · Estrato (Sankey)',
-        'description': 'Diagrama Sankey de la distribución de niños Ondas 2025 por Género, Grupo Étnico y Estrato.',
+        'name':        'Ondas - Niños y Profesores: Género · Étnico · Estrato (Sankey)',
+        'description': 'Diagrama Sankey de la distribución de niños y profesores Ondas 2025 por Género, Grupo Étnico y Estrato.',
         'category':    'network',
         'dimensions':  ['id'],
-        'measures':    ['ninos'],
+        'measures':    ['cantidad'],
         'data':        data,
         'edges':       edges,
     })
