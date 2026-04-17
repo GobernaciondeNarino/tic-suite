@@ -244,8 +244,6 @@
 		const figureId     = 'tsg-preview-figure';
 		const actions      = opts.actions.map( ( a ) => toolbarButtonHtml( a ) ).join( '' );
 		const showToolbar  = opts.toolbar && opts.actions.length > 0;
-		const useIcons     = opts.legend && opts.legend_style === 'icons';
-
 		els.preview.innerHTML = `
 			<figure id="${ figureId }" class="tsg-figure tsg-preview__figure"
 					data-view="${ escapeAttr( state.viewId ) }"
@@ -254,20 +252,16 @@
 				${ showToolbar ? `<div class="tsg-toolbar">${ actions }</div>` : '' }
 				<div id="${ containerId }" class="tsg-chart tsg-preview__canvas"
 					 style="height: 440px; min-height: 440px;"></div>
-				${ useIcons ? '<div class="tsg-legend" data-tsg-legend="1"></div>' : '' }
 			</figure>
 		`;
 
 		const rendererOpts = {
-			legend: opts.legend && opts.legend_style === 'text',
+			legend: opts.legend,
+			legendStyle: opts.legend_style || 'text',
 			xTitle: opts.x_title || '',
 			yTitle: opts.y_title || '',
 		};
 		window.TSGRenderer.render( containerId, payload, rendererOpts );
-
-		if ( useIcons ) {
-			renderIconLegend( $( '[data-tsg-legend="1"]', els.preview ), payload );
-		}
 
 		// Populate the chart-type selector (if rendered) with the compatible
 		// types and wire the live swap.

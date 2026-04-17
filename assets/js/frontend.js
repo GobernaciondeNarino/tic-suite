@@ -65,11 +65,13 @@
 
 				cache.set( figure.id, { payload, project, viewId, type, legendOn, legendStyle, xTitle, yTitle } );
 
-				// Tell the renderer whether to attach d3plus's own legend.
-				// When icons mode is selected we hide d3plus' native legend
-				// and paint a custom strip ourselves.
+				// Both "text" and "icons" modes use d3plus's native legend
+				// (with built-in interactivity: click to highlight/hide).
+				// In "icons" mode the renderer hides the label text via
+				// legendConfig so only colored shapes show.
 				const rendererOpts = {
-					legend: legendOn && legendStyle === 'text',
+					legend: legendOn,
+					legendStyle: legendStyle,
 					xTitle: xTitle,
 					yTitle: yTitle,
 				};
@@ -82,13 +84,10 @@
 
 				window.TSGRenderer.render( chartEl.id, payload, rendererOpts );
 
-				// Render the optional icon-strip legend.
+				// Hide the legacy HTML legend container — everything is
+				// handled by d3plus's native legend now.
 				if ( legendEl ) {
-					if ( legendOn && legendStyle === 'icons' ) {
-						renderIconLegend( legendEl, payload );
-					} else {
-						legendEl.hidden = true;
-					}
+					legendEl.hidden = true;
 				}
 
 				// Populate the chart-type selector with the compatible
@@ -177,19 +176,15 @@
 			chartEl.classList.remove( 'is-loading' );
 
 			const rendererOpts = {
-				legend: entry.legendOn && entry.legendStyle === 'text',
+				legend: entry.legendOn,
+				legendStyle: entry.legendStyle,
 				xTitle: entry.xTitle,
 				yTitle: entry.yTitle,
 			};
 			window.TSGRenderer.render( chartEl.id, payload, rendererOpts );
 
-			// Refresh the legend strip to match the new chart type.
 			if ( legendEl ) {
-				if ( entry.legendOn && entry.legendStyle === 'icons' ) {
-					renderIconLegend( legendEl, payload );
-				} else {
-					legendEl.hidden = true;
-				}
+				legendEl.hidden = true;
 			}
 
 			// Re-populate the selector — keeps the currently-selected

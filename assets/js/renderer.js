@@ -58,7 +58,7 @@
 			}
 			el.innerHTML = '';
 
-			const opts = Object.assign( { legend: true, xTitle: '', yTitle: '' }, options || {} );
+			const opts = Object.assign( { legend: true, legendStyle: 'text', xTitle: '', yTitle: '' }, options || {} );
 
 			try {
 				await this.waitForD3plus();
@@ -81,11 +81,23 @@
 					.detectResize( true )
 					.legend( Boolean( opts.legend ) );
 
-				// Always anchor the legend at the bottom. d3plus' default
-				// switches between "right" and "bottom" based on the aspect
-				// ratio; we want a consistent layout across chart types.
+				// Always anchor the legend at the bottom.
 				if ( typeof viz.legendPosition === 'function' ) {
 					viz.legendPosition( 'bottom' );
+				}
+
+				// "Icons" mode: keep d3plus native legend (with its
+				// interactivity — click to highlight/hide) but hide the
+				// text labels so only the colored shapes show.
+				if ( opts.legend && opts.legendStyle === 'icons' && typeof viz.legendConfig === 'function' ) {
+					viz.legendConfig( {
+						shapeConfig: {
+							labelConfig: { fontSize: () => 0 },
+							width: 24,
+							height: 24,
+						},
+						padding: 4,
+					} );
 				}
 
 				this.configure( viz, payload, opts );
