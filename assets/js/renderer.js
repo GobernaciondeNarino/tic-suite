@@ -91,8 +91,12 @@
 				// text labels so only the colored shapes show.
 				if ( opts.legend && opts.legendStyle === 'icons' && typeof viz.legendConfig === 'function' ) {
 					viz.legendConfig( {
+						label: () => '',
 						shapeConfig: {
-							labelConfig: { fontSize: () => 0 },
+							labelConfig: {
+								fontSize: () => 0,
+								padding: 0,
+							},
 							width: 24,
 							height: 24,
 						},

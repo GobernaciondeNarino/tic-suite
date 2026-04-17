@@ -339,6 +339,14 @@
 .tsg-modal__table tbody tr:nth-child( even ) { background: #fafbff; }
 
 /* ------------------------------------------------------------- */
+/* Legend: icons mode — hide any residual text from d3plus        */
+/* ------------------------------------------------------------- */
+
+.tsg-figure[data-legend-style="icons"] .d3plus-Legend .d3plus-textBox {
+	display: none !important;
+}
+
+/* ------------------------------------------------------------- */
 /* Empty state                                                    */
 /* ------------------------------------------------------------- */
 
