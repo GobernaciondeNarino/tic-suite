@@ -1,8 +1,14 @@
 {
-  "vista": "ondas_ninos_estrato",
-  "titulo": "Ondas - Niños por Estrato (2025)",
-  "descripcion": "Distribución por estrato socioeconómico de los niños y niñas inscritos en Ondas 2025.",
-  "tipo_grafico_sugerido": "bar",
+  "id": "ondas_ninos_estrato",
+  "name": "Ondas - Niños por Estrato (2025)",
+  "description": "Distribución por estrato de los niños Ondas 2025.",
+  "category": "categorical",
+  "dimensions": [
+    "estrato"
+  ],
+  "measures": [
+    "ninos"
+  ],
   "data": [
     {
       "estrato": "1",
@@ -25,17 +31,5 @@
       "ninos": 2
     }
   ],
-  "totales": {
-    "total": 7114,
-    "categorias": 5
-  },
-  "id": "ondas_ninos_estrato",
-  "name": "Ondas - Niños por Estrato (2025)",
-  "category": "categorical",
-  "dimensions": [
-    "estrato"
-  ],
-  "measures": [
-    "ninos"
-  ]
+  "tipo_grafico_sugerido": "bar"
 }

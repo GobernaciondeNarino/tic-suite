@@ -1,8 +1,14 @@
 {
-  "vista": "ondas_profesores_areas",
-  "titulo": "Ondas - Áreas de Profesores (Top 15, 2025)",
-  "descripcion": "Las 15 áreas con más profesores vinculados a Ondas 2025.",
-  "tipo_grafico_sugerido": "bar",
+  "id": "ondas_profesores_areas",
+  "name": "Ondas - Áreas de Profesores (Top 15, 2025)",
+  "description": "Las 15 áreas con más profesores Ondas 2025.",
+  "category": "categorical",
+  "dimensions": [
+    "area"
+  ],
+  "measures": [
+    "profesores"
+  ],
   "data": [
     {
       "area": "Ciencias Naturales",
@@ -65,17 +71,5 @@
       "profesores": 12
     }
   ],
-  "totales": {
-    "total": 672,
-    "categorias": 15
-  },
-  "id": "ondas_profesores_areas",
-  "name": "Ondas - Áreas de Profesores (Top 15, 2025)",
-  "category": "categorical",
-  "dimensions": [
-    "area"
-  ],
-  "measures": [
-    "profesores"
-  ]
+  "tipo_grafico_sugerido": "bar"
 }

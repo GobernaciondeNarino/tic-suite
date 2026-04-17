@@ -1,7 +1,7 @@
 {
   "id": "ondas_ninos_sankey",
   "name": "Ondas - Niños y Profesores: Género · Étnico · Estrato (Sankey)",
-  "description": "Diagrama Sankey de la distribución de niños y profesores Ondas 2025 por Género, Grupo Étnico y Estrato.",
+  "description": "Diagrama Sankey con nodos compartidos: Niños y Profesores fluyen por Género, Grupo Étnico y Estrato.",
   "category": "network",
   "dimensions": [
     "id"
@@ -11,220 +11,181 @@
   ],
   "data": [
     {
-      "id": "Género: Femenino",
-      "cantidad": 3750
-    },
-    {
-      "id": "Género: Masculino",
-      "cantidad": 3292
-    },
-    {
-      "id": "Género: Sin dato",
-      "cantidad": 67
-    },
-    {
-      "id": "Género: Otro / No binario",
-      "cantidad": 5
-    },
-    {
-      "id": "Niños: Género",
-      "cantidad": 7114
-    },
-    {
-      "id": "Grupo Étnico: Ninguno",
-      "cantidad": 5065
-    },
-    {
-      "id": "Grupo Étnico: Indígena",
-      "cantidad": 965
-    },
-    {
-      "id": "Grupo Étnico: Pastos",
-      "cantidad": 498
-    },
-    {
-      "id": "Grupo Étnico: Afrodescendiente",
-      "cantidad": 343
-    },
-    {
-      "id": "Grupo Étnico: Sin dato",
-      "cantidad": 188
-    },
-    {
-      "id": "Grupo Étnico: Mestizo",
-      "cantidad": 46
-    },
-    {
-      "id": "Grupo Étnico: Otro",
-      "cantidad": 9
-    },
-    {
-      "id": "Niños: Grupo Étnico",
-      "cantidad": 7114
-    },
-    {
-      "id": "Estrato: 1",
+      "id": "1",
       "cantidad": 6096
     },
     {
-      "id": "Estrato: Sin dato",
-      "cantidad": 860
-    },
-    {
-      "id": "Estrato: 2",
+      "id": "2",
       "cantidad": 136
     },
     {
-      "id": "Estrato: 3",
+      "id": "3",
       "cantidad": 20
     },
     {
-      "id": "Estrato: 4",
+      "id": "4",
       "cantidad": 2
     },
     {
-      "id": "Niños: Estrato",
+      "id": "Afrodescendiente",
+      "cantidad": 343
+    },
+    {
+      "id": "Estrato",
       "cantidad": 7114
+    },
+    {
+      "id": "Femenino",
+      "cantidad": 4184
+    },
+    {
+      "id": "Grupo Étnico",
+      "cantidad": 7114
+    },
+    {
+      "id": "Género",
+      "cantidad": 7906
+    },
+    {
+      "id": "Indígena",
+      "cantidad": 965
+    },
+    {
+      "id": "Masculino",
+      "cantidad": 3648
+    },
+    {
+      "id": "Mestizo",
+      "cantidad": 46
+    },
+    {
+      "id": "Ninguno",
+      "cantidad": 5065
     },
     {
       "id": "Niños",
-      "cantidad": 7114
+      "cantidad": 0
     },
     {
-      "id": "Prof. Género: Femenino",
-      "cantidad": 434
+      "id": "Otro",
+      "cantidad": 9
     },
     {
-      "id": "Prof. Género: Masculino",
-      "cantidad": 356
+      "id": "Otro / No binario",
+      "cantidad": 5
     },
     {
-      "id": "Prof. Género: Sin dato",
-      "cantidad": 2
-    },
-    {
-      "id": "Profesores: Género",
-      "cantidad": 792
+      "id": "Pastos",
+      "cantidad": 498
     },
     {
       "id": "Profesores",
-      "cantidad": 792
+      "cantidad": 0
+    },
+    {
+      "id": "Sin dato",
+      "cantidad": 1117
     }
   ],
   "edges": [
     {
-      "source": "Niños: Género",
-      "target": "Género: Femenino",
-      "value": 3750
+      "source": "Género",
+      "target": "Femenino",
+      "value": 4184
     },
     {
-      "source": "Niños: Género",
-      "target": "Género: Masculino",
-      "value": 3292
+      "source": "Género",
+      "target": "Masculino",
+      "value": 3648
     },
     {
-      "source": "Niños: Género",
-      "target": "Género: Sin dato",
-      "value": 67
+      "source": "Género",
+      "target": "Sin dato",
+      "value": 69
     },
     {
-      "source": "Niños: Género",
-      "target": "Género: Otro / No binario",
+      "source": "Género",
+      "target": "Otro / No binario",
       "value": 5
     },
     {
       "source": "Niños",
-      "target": "Niños: Género",
+      "target": "Género",
       "value": 7114
     },
     {
-      "source": "Niños: Grupo Étnico",
-      "target": "Grupo Étnico: Ninguno",
+      "source": "Grupo Étnico",
+      "target": "Ninguno",
       "value": 5065
     },
     {
-      "source": "Niños: Grupo Étnico",
-      "target": "Grupo Étnico: Indígena",
+      "source": "Grupo Étnico",
+      "target": "Indígena",
       "value": 965
     },
     {
-      "source": "Niños: Grupo Étnico",
-      "target": "Grupo Étnico: Pastos",
+      "source": "Grupo Étnico",
+      "target": "Pastos",
       "value": 498
     },
     {
-      "source": "Niños: Grupo Étnico",
-      "target": "Grupo Étnico: Afrodescendiente",
+      "source": "Grupo Étnico",
+      "target": "Afrodescendiente",
       "value": 343
     },
     {
-      "source": "Niños: Grupo Étnico",
-      "target": "Grupo Étnico: Sin dato",
+      "source": "Grupo Étnico",
+      "target": "Sin dato",
       "value": 188
     },
     {
-      "source": "Niños: Grupo Étnico",
-      "target": "Grupo Étnico: Mestizo",
+      "source": "Grupo Étnico",
+      "target": "Mestizo",
       "value": 46
     },
     {
-      "source": "Niños: Grupo Étnico",
-      "target": "Grupo Étnico: Otro",
+      "source": "Grupo Étnico",
+      "target": "Otro",
       "value": 9
     },
     {
       "source": "Niños",
-      "target": "Niños: Grupo Étnico",
+      "target": "Grupo Étnico",
       "value": 7114
     },
     {
-      "source": "Niños: Estrato",
-      "target": "Estrato: 1",
+      "source": "Estrato",
+      "target": "1",
       "value": 6096
     },
     {
-      "source": "Niños: Estrato",
-      "target": "Estrato: Sin dato",
+      "source": "Estrato",
+      "target": "Sin dato",
       "value": 860
     },
     {
-      "source": "Niños: Estrato",
-      "target": "Estrato: 2",
+      "source": "Estrato",
+      "target": "2",
       "value": 136
     },
     {
-      "source": "Niños: Estrato",
-      "target": "Estrato: 3",
+      "source": "Estrato",
+      "target": "3",
       "value": 20
     },
     {
-      "source": "Niños: Estrato",
-      "target": "Estrato: 4",
+      "source": "Estrato",
+      "target": "4",
       "value": 2
     },
     {
       "source": "Niños",
-      "target": "Niños: Estrato",
+      "target": "Estrato",
       "value": 7114
     },
     {
-      "source": "Profesores: Género",
-      "target": "Prof. Género: Femenino",
-      "value": 434
-    },
-    {
-      "source": "Profesores: Género",
-      "target": "Prof. Género: Masculino",
-      "value": 356
-    },
-    {
-      "source": "Profesores: Género",
-      "target": "Prof. Género: Sin dato",
-      "value": 2
-    },
-    {
       "source": "Profesores",
-      "target": "Profesores: Género",
+      "target": "Género",
       "value": 792
     }
   ]

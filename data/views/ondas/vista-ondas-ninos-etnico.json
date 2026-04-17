@@ -1,8 +1,14 @@
 {
-  "vista": "ondas_ninos_etnico",
-  "titulo": "Ondas - Niños por Grupo Étnico (2025)",
-  "descripcion": "Distribución étnica de los niños y niñas inscritos en Ondas 2025.",
-  "tipo_grafico_sugerido": "donut",
+  "id": "ondas_ninos_etnico",
+  "name": "Ondas - Niños por Grupo Étnico (2025)",
+  "description": "Distribución étnica de los niños Ondas 2025.",
+  "category": "categorical",
+  "dimensions": [
+    "grupo_etnico"
+  ],
+  "measures": [
+    "ninos"
+  ],
   "data": [
     {
       "grupo_etnico": "Ninguno",
@@ -33,17 +39,5 @@
       "ninos": 9
     }
   ],
-  "totales": {
-    "total": 7114,
-    "categorias": 7
-  },
-  "id": "ondas_ninos_etnico",
-  "name": "Ondas - Niños por Grupo Étnico (2025)",
-  "category": "categorical",
-  "dimensions": [
-    "grupo_etnico"
-  ],
-  "measures": [
-    "ninos"
-  ]
+  "tipo_grafico_sugerido": "donut"
 }

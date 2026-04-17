@@ -29,7 +29,7 @@ def write_view(filename: str, payload: dict) -> None:
     path = VIEWS / filename
     with path.open('w') as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
-    rows = len(payload.get('municipios', payload.get('datos', [])))
+    rows = len(payload.get('municipios', payload.get('datos', payload.get('data', []))))
     size = os.path.getsize(path)
     print(f'  wrote {filename:45s}  rows={rows:3d}  size={size:,}B')
 
@@ -48,29 +48,63 @@ def _f(v) -> float:
         return 0.0
 
 
-# ----------------------------------------------------------------------
-# Municipio-level views (geographic)
-# ----------------------------------------------------------------------
+def _program_view(
+    master: dict,
+    *,
+    slug: str,
+    filename: str,
+    titulo: str,
+    descripcion: str,
+    measure_field: str,
+    getter: Callable[[dict], int],
+    chart_hint: str = 'bar',
+    extra_totales: dict | None = None,
+) -> None:
+    municipios = []
+    total = 0
+    zeros = 0
+    for m in master['municipios']:
+        value = getter(m)
+        municipios.append({
+            'municipio': m['nombre'],
+            measure_field: value,
+        })
+        total += value
+        if value == 0:
+            zeros += 1
+
+    totales = {
+        'total_departamento': total,
+        'municipios_con_presencia': len(municipios) - zeros,
+        'municipios_sin_presencia': zeros,
+    }
+    if extra_totales:
+        totales.update(extra_totales)
+
+    write_view(filename, {
+        'vista': slug,
+        'titulo': titulo,
+        'descripcion': descripcion,
+        'tipo_grafico_sugerido': chart_hint,
+        'total_municipios': len(municipios),
+        'municipios': municipios,
+        'totales': totales,
+    })
+
+
+# --- Geographic views ---
 
 def regen_proyectos(master: dict) -> None:
-    """Proyectos Ondas por municipio: 2024, 2025, total, variación."""
     rows = []
-    t24 = t25 = tot = 0
     for m in master['municipios']:
         p = m.get('proyectos', {}) or {}
-        p24, p25 = _i(p.get('2024')), _i(p.get('2025'))
-        row = {
+        rows.append({
             'municipio': m['nombre'],
-            'proyectos_2024': p24,
-            'proyectos_2025': p25,
-            'total': _i(p.get('total')) or (p24 + p25),
+            'proyectos_2024': _i(p.get('2024')),
+            'proyectos_2025': _i(p.get('2025')),
+            'total': _i(p.get('total')) or (_i(p.get('2024')) + _i(p.get('2025'))),
             'variacion_pct': _f(p.get('variacion_pct')),
-        }
-        rows.append(row)
-        t24 += p24
-        t25 += p25
-        tot += row['total']
-
+        })
     write_view('vista-ondas-proyectos-municipio.json', {
         'vista': 'ondas_proyectos_municipio',
         'titulo': 'Ondas - Proyectos por Municipio (2024-2025)',
@@ -78,59 +112,34 @@ def regen_proyectos(master: dict) -> None:
         'tipo_grafico_sugerido': 'bar_stacked',
         'total_municipios': len(rows),
         'municipios': rows,
-        'totales': {
-            'proyectos_2024': t24,
-            'proyectos_2025': t25,
-            'total_departamento': tot,
-        },
     })
 
 
 def regen_profesores(master: dict) -> None:
-    """Profesores Ondas por municipio: 2024, 2025, total."""
     rows = []
-    t24 = t25 = tot = 0
     for m in master['municipios']:
         p = m.get('profesores', {}) or {}
-        p24, p25 = _i(p.get('2024')), _i(p.get('2025'))
         rows.append({
             'municipio': m['nombre'],
-            'profesores_2024': p24,
-            'profesores_2025': p25,
-            'total': _i(p.get('total')) or (p24 + p25),
+            'profesores_2024': _i(p.get('2024')),
+            'profesores_2025': _i(p.get('2025')),
+            'total': _i(p.get('total')) or (_i(p.get('2024')) + _i(p.get('2025'))),
         })
-        t24 += p24
-        t25 += p25
-        tot += rows[-1]['total']
-
     write_view('vista-ondas-profesores-municipio.json', {
         'vista': 'ondas_profesores_municipio',
         'titulo': 'Ondas - Profesores por Municipio (2024-2025)',
-        'descripcion': 'Profesores vinculados a Ondas por municipio de Nariño para las vigencias 2024 y 2025.',
+        'descripcion': 'Profesores vinculados a Ondas por municipio de Nariño.',
         'tipo_grafico_sugerido': 'bar_stacked',
         'total_municipios': len(rows),
         'municipios': rows,
-        'totales': {
-            'profesores_2024': t24,
-            'profesores_2025': t25,
-            'total_departamento': tot,
-        },
     })
 
 
 def regen_ninos(master: dict) -> None:
-    """Niños 2025 Ondas por municipio."""
     rows = []
-    total = 0
     for m in master['municipios']:
         n = m.get('ninos_2025', {}) or {}
-        tot = _i(n.get('total'))
-        rows.append({
-            'municipio': m['nombre'],
-            'ninos_2025': tot,
-        })
-        total += tot
-
+        rows.append({'municipio': m['nombre'], 'ninos_2025': _i(n.get('total'))})
     write_view('vista-ondas-ninos-municipio.json', {
         'vista': 'ondas_ninos_municipio',
         'titulo': 'Ondas - Niños Inscritos por Municipio (2025)',
@@ -138,27 +147,19 @@ def regen_ninos(master: dict) -> None:
         'tipo_grafico_sugerido': 'bar',
         'total_municipios': len(rows),
         'municipios': rows,
-        'totales': {
-            'ninos_departamento': total,
-        },
     })
 
 
 def regen_instituciones(master: dict) -> None:
-    """Instituciones Educativas únicas por municipio."""
     rows = []
-    total = 0
     for m in master['municipios']:
         ie = m.get('instituciones_educativas', {}) or {}
-        uniq = _i(ie.get('total_unicas_combinadas'))
         rows.append({
             'municipio': m['nombre'],
             'ie_2024': _i(ie.get('2024_total_unicas')),
             'ie_2025': _i(ie.get('2025_total_unicas')),
-            'ie_unicas_combinadas': uniq,
+            'ie_unicas_combinadas': _i(ie.get('total_unicas_combinadas')),
         })
-        total += uniq
-
     write_view('vista-ondas-instituciones-municipio.json', {
         'vista': 'ondas_instituciones_municipio',
         'titulo': 'Ondas - Instituciones Educativas por Municipio',
@@ -166,228 +167,134 @@ def regen_instituciones(master: dict) -> None:
         'tipo_grafico_sugerido': 'bar',
         'total_municipios': len(rows),
         'municipios': rows,
-        'totales': {
-            'ie_unicas_departamento': total,
-        },
     })
 
 
-# ----------------------------------------------------------------------
-# Categorical (distribution) views — based on totales_departamentales
-# ----------------------------------------------------------------------
+# --- Categorical views ---
 
-def _distribution_view(
-    slug: str,
-    filename: str,
-    titulo: str,
-    descripcion: str,
-    dim_label: str,
-    items: dict,
-    measure_field: str = 'cantidad',
-    chart_hint: str = 'donut',
-) -> None:
-    """Emit a simple categorical view: [{ category, measure }, …]."""
+def _distribution_view(slug, filename, titulo, descripcion, dim_label,
+                       items, measure_field='cantidad', chart_hint='donut'):
     datos = [
         {dim_label: str(k), measure_field: _i(v)}
         for k, v in items.items()
         if _i(v) > 0
     ]
     write_view(filename, {
-        'vista': slug,
-        'titulo': titulo,
-        'descripcion': descripcion,
-        'tipo_grafico_sugerido': chart_hint,
-        'data': datos,
-        'totales': {
-            'total': sum(x[measure_field] for x in datos),
-            'categorias': len(datos),
-        },
-        # Force canonical plugin shape for these categorical views so the
-        # data provider doesn't have to infer dimensions/measures.
-        'id': slug,
-        'name': titulo,
+        'id': slug, 'name': titulo, 'description': descripcion,
         'category': 'categorical',
-        'dimensions': [dim_label],
-        'measures': [measure_field],
+        'dimensions': [dim_label], 'measures': [measure_field],
+        'data': datos,
+        'tipo_grafico_sugerido': chart_hint,
     })
 
 
-def regen_ninos_genero(totales: dict) -> None:
-    _distribution_view(
-        'ondas_ninos_genero',
-        'vista-ondas-ninos-genero.json',
-        'Ondas - Niños por Género (2025)',
-        'Distribución de género de los niños y niñas inscritos en Ondas 2025.',
-        'genero',
-        totales.get('distribucion_genero_ninos', {}),
-        measure_field='ninos',
-        chart_hint='donut',
-    )
+def regen_ninos_genero(t):
+    _distribution_view('ondas_ninos_genero', 'vista-ondas-ninos-genero.json',
+        'Ondas - Niños por Género (2025)', 'Distribución de género de los niños Ondas 2025.',
+        'genero', t.get('distribucion_genero_ninos', {}), 'ninos', 'donut')
 
+def regen_ninos_etnico(t):
+    _distribution_view('ondas_ninos_etnico', 'vista-ondas-ninos-etnico.json',
+        'Ondas - Niños por Grupo Étnico (2025)', 'Distribución étnica de los niños Ondas 2025.',
+        'grupo_etnico', t.get('distribucion_etnica_ninos', {}), 'ninos', 'donut')
 
-def regen_ninos_etnico(totales: dict) -> None:
-    _distribution_view(
-        'ondas_ninos_etnico',
-        'vista-ondas-ninos-etnico.json',
-        'Ondas - Niños por Grupo Étnico (2025)',
-        'Distribución étnica de los niños y niñas inscritos en Ondas 2025.',
-        'grupo_etnico',
-        totales.get('distribucion_etnica_ninos', {}),
-        measure_field='ninos',
-        chart_hint='donut',
-    )
+def regen_ninos_estrato(t):
+    _distribution_view('ondas_ninos_estrato', 'vista-ondas-ninos-estrato.json',
+        'Ondas - Niños por Estrato (2025)', 'Distribución por estrato de los niños Ondas 2025.',
+        'estrato', t.get('distribucion_estrato_ninos', {}), 'ninos', 'bar')
 
+def regen_ninos_grado(t):
+    items = t.get('distribucion_grado_ninos', {}) or {}
+    def _sk(k):
+        try: return (0, int(k))
+        except: return (1, 0)
+    _distribution_view('ondas_ninos_grado', 'vista-ondas-ninos-grado.json',
+        'Ondas - Niños por Grado Escolar (2025)', 'Distribución por grado escolar de los niños Ondas 2025.',
+        'grado', dict(sorted(items.items(), key=lambda kv: _sk(kv[0]))), 'ninos', 'bar')
 
-def regen_ninos_estrato(totales: dict) -> None:
-    _distribution_view(
-        'ondas_ninos_estrato',
-        'vista-ondas-ninos-estrato.json',
-        'Ondas - Niños por Estrato (2025)',
-        'Distribución por estrato socioeconómico de los niños y niñas inscritos en Ondas 2025.',
-        'estrato',
-        totales.get('distribucion_estrato_ninos', {}),
-        measure_field='ninos',
-        chart_hint='bar',
-    )
+def regen_profesores_genero(t):
+    _distribution_view('ondas_profesores_genero', 'vista-ondas-profesores-genero.json',
+        'Ondas - Profesores por Género (2025)', 'Distribución de género de profesores Ondas 2025.',
+        'genero', t.get('distribucion_genero_profesores', {}), 'profesores', 'donut')
 
-
-def regen_ninos_grado(totales: dict) -> None:
-    """Distribution by grade — sort numerically for a cleaner bar chart."""
-    items = totales.get('distribucion_grado_ninos', {}) or {}
-    # Sort: numeric grades asc, then "Sin dato" last
-    def _sort_key(k):
-        try:
-            return (0, int(k))
-        except (TypeError, ValueError):
-            return (1, 0)
-    sorted_items = dict(sorted(items.items(), key=lambda kv: _sort_key(kv[0])))
-    _distribution_view(
-        'ondas_ninos_grado',
-        'vista-ondas-ninos-grado.json',
-        'Ondas - Niños por Grado Escolar (2025)',
-        'Distribución por grado escolar de los niños y niñas inscritos en Ondas 2025.',
-        'grado',
-        sorted_items,
-        measure_field='ninos',
-        chart_hint='bar',
-    )
-
-
-def regen_profesores_genero(totales: dict) -> None:
-    _distribution_view(
-        'ondas_profesores_genero',
-        'vista-ondas-profesores-genero.json',
-        'Ondas - Profesores por Género (2025)',
-        'Distribución de género de los profesores vinculados a Ondas 2025.',
-        'genero',
-        totales.get('distribucion_genero_profesores', {}),
-        measure_field='profesores',
-        chart_hint='donut',
-    )
-
-
-def regen_profesores_areas(totales: dict) -> None:
-    """Top 15 areas of teachers."""
-    items = totales.get('distribucion_areas_profesores', {}) or {}
-    # Keep only top 15 by count; the tail is very long noise.
+def regen_profesores_areas(t):
+    items = t.get('distribucion_areas_profesores', {}) or {}
     top = dict(sorted(items.items(), key=lambda kv: _i(kv[1]), reverse=True)[:15])
-    _distribution_view(
-        'ondas_profesores_areas',
-        'vista-ondas-profesores-areas.json',
-        'Ondas - Áreas de Profesores (Top 15, 2025)',
-        'Las 15 áreas con más profesores vinculados a Ondas 2025.',
-        'area',
-        top,
-        measure_field='profesores',
-        chart_hint='bar',
-    )
+    _distribution_view('ondas_profesores_areas', 'vista-ondas-profesores-areas.json',
+        'Ondas - Áreas de Profesores (Top 15, 2025)', 'Las 15 áreas con más profesores Ondas 2025.',
+        'area', top, 'profesores', 'bar')
 
 
-# ----------------------------------------------------------------------
-# Main
-# ----------------------------------------------------------------------
+# --- Combined Sankey ---
 
 def regen_ninos_sankey(totales: dict) -> None:
-    """Combined Sankey with two root nodes: Niños and Profesores.
+    """Sankey with shared intermediate nodes (Género, Grupo Étnico, Estrato).
 
-    Structure:
-      Niños (7114) ─── Género ─── Femenino / Masculino / ...
-                  ├── Grupo Étnico ─── Ninguno / Indígena / ...
-                  └── Estrato ─── 1 / 2 / ...
-
-      Profesores (792) ─── Género ─── Femenino / Masculino / ...
+    Two roots: Niños, Profesores. "Género" receives flow from both.
+    Leaf nodes like "Femenino" aggregate combined flows.
+    Edges with the same source+target pair are summed (deduped).
     """
-    nodes: list[dict] = []
-    edges: list[dict] = []
-    data:  list[dict] = []
+    edges_raw: list[tuple[str, str, int]] = []
 
-    # --- Root 1: Niños ---
-    ninos_groups = [
+    def _add(src: str, tgt: str, val: int) -> None:
+        if val > 0:
+            edges_raw.append((src, tgt, val))
+
+    # Niños → Género / Grupo Étnico / Estrato → leaves
+    for dim, items in [
         ('Género',       totales.get('distribucion_genero_ninos', {})),
         ('Grupo Étnico', totales.get('distribucion_etnica_ninos', {})),
         ('Estrato',      totales.get('distribucion_estrato_ninos', {})),
-    ]
-    total_ninos = 0
-    nodes.append({'id': 'Niños'})
-    for dim_label, items in ninos_groups:
-        dim_id = f'Niños: {dim_label}'
-        nodes.append({'id': dim_id})
+    ]:
         dim_total = 0
         for cat, count in (items or {}).items():
             n = _i(count)
-            if n <= 0:
-                continue
-            cat_id = f'{dim_label}: {cat}'
-            nodes.append({'id': cat_id})
-            edges.append({'source': dim_id, 'target': cat_id, 'value': n})
-            data.append({'id': cat_id, 'cantidad': n})
+            _add(dim, cat, n)
             dim_total += n
-        edges.append({'source': 'Niños', 'target': dim_id, 'value': dim_total})
-        data.append({'id': dim_id, 'cantidad': dim_total})
-        total_ninos = max(total_ninos, dim_total)
-    data.append({'id': 'Niños', 'cantidad': total_ninos})
+        _add('Niños', dim, dim_total)
 
-    # --- Root 2: Profesores ---
-    prof_groups = [
+    # Profesores → Género → leaves
+    for dim, items in [
         ('Género', totales.get('distribucion_genero_profesores', {})),
-    ]
-    total_prof = 0
-    nodes.append({'id': 'Profesores'})
-    for dim_label, items in prof_groups:
-        dim_id = f'Profesores: {dim_label}'
-        nodes.append({'id': dim_id})
+    ]:
         dim_total = 0
         for cat, count in (items or {}).items():
             n = _i(count)
-            if n <= 0:
-                continue
-            cat_id = f'Prof. {dim_label}: {cat}'
-            nodes.append({'id': cat_id})
-            edges.append({'source': dim_id, 'target': cat_id, 'value': n})
-            data.append({'id': cat_id, 'cantidad': n})
+            _add(dim, cat, n)
             dim_total += n
-        edges.append({'source': 'Profesores', 'target': dim_id, 'value': dim_total})
-        data.append({'id': dim_id, 'cantidad': dim_total})
-        total_prof = max(total_prof, dim_total)
-    data.append({'id': 'Profesores', 'cantidad': total_prof})
+        _add('Profesores', dim, dim_total)
+
+    # Deduplicate edges (sum values for same source→target).
+    edge_map: dict[tuple[str, str], int] = {}
+    for s, t, v in edges_raw:
+        edge_map[(s, t)] = edge_map.get((s, t), 0) + v
+    deduped = [{'source': s, 'target': t, 'value': v}
+               for (s, t), v in edge_map.items()]
+
+    # Build node data: each unique id gets summed incoming value.
+    node_vals: dict[str, int] = {}
+    for s, t, v in edges_raw:
+        node_vals[s] = node_vals.get(s, 0)
+        node_vals[t] = node_vals.get(t, 0) + v
+    data_rows = [{'id': nid, 'cantidad': val}
+                 for nid, val in sorted(node_vals.items())]
 
     write_view('vista-ondas-ninos-sankey.json', {
         'id':          'ondas_ninos_sankey',
         'name':        'Ondas - Niños y Profesores: Género · Étnico · Estrato (Sankey)',
-        'description': 'Diagrama Sankey de la distribución de niños y profesores Ondas 2025 por Género, Grupo Étnico y Estrato.',
+        'description': 'Diagrama Sankey con nodos compartidos: Niños y Profesores fluyen por Género, Grupo Étnico y Estrato.',
         'category':    'network',
         'dimensions':  ['id'],
         'measures':    ['cantidad'],
-        'data':        data,
-        'edges':       edges,
+        'data':        data_rows,
+        'edges':       deduped,
     })
 
 
 def main() -> None:
     master = load_master()
-    n_muni = len(master['municipios'])
     totales = master.get('totales_departamentales', {}) or {}
-    print(f'Master: {n_muni} municipios con presencia Ondas')
+    print(f'Master: {len(master["municipios"])} municipios')
     print('Regenerating Py Ondas views:')
     regen_proyectos(master)
     regen_profesores(master)

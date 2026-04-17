@@ -1,8 +1,14 @@
 {
-  "vista": "ondas_ninos_grado",
-  "titulo": "Ondas - Niños por Grado Escolar (2025)",
-  "descripcion": "Distribución por grado escolar de los niños y niñas inscritos en Ondas 2025.",
-  "tipo_grafico_sugerido": "bar",
+  "id": "ondas_ninos_grado",
+  "name": "Ondas - Niños por Grado Escolar (2025)",
+  "description": "Distribución por grado escolar de los niños Ondas 2025.",
+  "category": "categorical",
+  "dimensions": [
+    "grado"
+  ],
+  "measures": [
+    "ninos"
+  ],
   "data": [
     {
       "grado": "0",
@@ -57,17 +63,5 @@
       "ninos": 30
     }
   ],
-  "totales": {
-    "total": 7114,
-    "categorias": 13
-  },
-  "id": "ondas_ninos_grado",
-  "name": "Ondas - Niños por Grado Escolar (2025)",
-  "category": "categorical",
-  "dimensions": [
-    "grado"
-  ],
-  "measures": [
-    "ninos"
-  ]
+  "tipo_grafico_sugerido": "bar"
 }

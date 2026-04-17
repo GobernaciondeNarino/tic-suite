@@ -375,7 +375,7 @@
 				return;
 			}
 			const { chart, view } = payload;
-			const SKIP = [ 'stacked_bar', 'stacked_area', 'line', 'area', 'priestley', 'sankey', 'network', 'rings' ];
+			const SKIP = [ 'stacked_bar', 'stacked_area', 'line', 'area', 'priestley', 'sankey', 'network', 'rings', 'geomap' ];
 			if ( SKIP.includes( chart.key ) ) {
 				return;
 			}

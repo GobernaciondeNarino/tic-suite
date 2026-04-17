@@ -1,8 +1,14 @@
 {
-  "vista": "ondas_ninos_genero",
-  "titulo": "Ondas - Niños por Género (2025)",
-  "descripcion": "Distribución de género de los niños y niñas inscritos en Ondas 2025.",
-  "tipo_grafico_sugerido": "donut",
+  "id": "ondas_ninos_genero",
+  "name": "Ondas - Niños por Género (2025)",
+  "description": "Distribución de género de los niños Ondas 2025.",
+  "category": "categorical",
+  "dimensions": [
+    "genero"
+  ],
+  "measures": [
+    "ninos"
+  ],
   "data": [
     {
       "genero": "Femenino",
@@ -21,17 +27,5 @@
       "ninos": 5
     }
   ],
-  "totales": {
-    "total": 7114,
-    "categorias": 4
-  },
-  "id": "ondas_ninos_genero",
-  "name": "Ondas - Niños por Género (2025)",
-  "category": "categorical",
-  "dimensions": [
-    "genero"
-  ],
-  "measures": [
-    "ninos"
-  ]
+  "tipo_grafico_sugerido": "donut"
 }

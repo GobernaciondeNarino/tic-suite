@@ -1,7 +1,7 @@
 {
   "vista": "ondas_profesores_municipio",
   "titulo": "Ondas - Profesores por Municipio (2024-2025)",
-  "descripcion": "Profesores vinculados a Ondas por municipio de Nariño para las vigencias 2024 y 2025.",
+  "descripcion": "Profesores vinculados a Ondas por municipio de Nariño.",
   "tipo_grafico_sugerido": "bar_stacked",
   "total_municipios": 38,
   "municipios": [
@@ -233,10 +233,5 @@
       "profesores_2025": 0,
       "total": 23
     }
-  ],
-  "totales": {
-    "profesores_2024": 235,
-    "profesores_2025": 792,
-    "total_departamento": 1027
-  }
+  ]
 }
