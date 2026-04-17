@@ -123,6 +123,9 @@
 			// the prune too — polygons without matching data fall back to
 			// `topojsonFill` (set below to #fffcf3).
 			const data = this.filterMeaningful( payload.data, chart.key, measures );
+			// Store for downstream (applyTimeline reads it instead of
+			// the raw payload.data, keeping the zero-filter consistent).
+			payload._filteredData = data;
 
 			switch ( chart.key ) {
 				case 'bar':
@@ -383,8 +386,9 @@
 			}
 
 			// Reshape: for each row × year, emit one long-format row.
+			// Use the filtered data so zero-only rows stay excluded.
 			const dims    = view.dimensions || [];
-			const rawData = viz._data || payload.data || [];
+			const rawData = payload._filteredData || payload.data || [];
 			const long    = [];
 			const yearMeasures = measures.filter( ( m ) => /_(20\d{2})$/.test( m ) );
 			const baseName     = yearMeasures[ 0 ].replace( /_(20\d{2})$/, '' );
@@ -455,6 +459,10 @@
 				return;
 			}
 
+			// Detect if the timeline reshaped the data (year-based measures).
+			const years   = this.detectYears( measures );
+			const hasTime = years.length >= 2 && ! [ 'stacked_bar', 'stacked_area', 'priestley' ].includes( chart.key );
+
 			// Default field used on each axis, mirroring configure()'s logic.
 			let xField, yField;
 			switch ( chart.key ) {
@@ -467,18 +475,44 @@
 					xField = dims[ 0 ];
 					yField = '';
 					break;
+				case 'line':
+				case 'area':
+					if ( hasTime ) {
+						xField = '_year';
+						yField = '_value';
+					} else {
+						xField = dims[ 0 ];
+						yField = measures[ 0 ];
+					}
+					break;
 				default:
-					xField = dims[ 0 ];
-					yField = measures[ 0 ];
+					xField = hasTime ? dims[ 0 ] : dims[ 0 ];
+					yField = hasTime ? '_value' : measures[ 0 ];
 			}
 
 			// Auto-generated titles, overridable via opts.xTitle / opts.yTitle.
-			let xTitle = ( opts && opts.xTitle ) || this.autoAxisTitle( xField );
-			let yTitle = ( opts && opts.yTitle ) || (
-				( chart.key === 'stacked_bar' || chart.key === 'stacked_area' )
-					? this.measureGroupTitle( measures )
-					: this.autoAxisTitle( yField )
-			);
+			let xTitle, yTitle;
+			if ( hasTime ) {
+				// After timeline reshape: X = municipio, Y = the base metric
+				// name without the year suffix (e.g. "Proyectos" not "Proyectos 2024").
+				const yearMeasures = measures.filter( ( m ) => /_(20\d{2})$/.test( m ) );
+				const baseName     = yearMeasures.length
+					? yearMeasures[ 0 ].replace( /_(20\d{2})$/, '' )
+					: measures[ 0 ];
+				xTitle = ( opts && opts.xTitle ) || (
+					chart.key === 'line' || chart.key === 'area'
+						? 'Vigencia'
+						: this.autoAxisTitle( dims[ 0 ] )
+				);
+				yTitle = ( opts && opts.yTitle ) || this.autoAxisTitle( baseName );
+			} else {
+				xTitle = ( opts && opts.xTitle ) || this.autoAxisTitle( xField );
+				yTitle = ( opts && opts.yTitle ) || (
+					( chart.key === 'stacked_bar' || chart.key === 'stacked_area' )
+						? this.measureGroupTitle( measures )
+						: this.autoAxisTitle( yField )
+				);
+			}
 
 			const titleConfig = {
 				fontFamily: () => 'inherit',
@@ -767,7 +801,16 @@
 				);
 				relevant = stackable.length >= 2 ? stackable : measures.slice( 0, 3 );
 			} else {
-				relevant = [ measures[ 0 ] ];
+				// For views with year-based measures (e.g. proyectos_2024,
+				// proyectos_2025), keep a row if ANY year has data — not
+				// just measures[0] (which might be the 2024 column and zero
+				// for municipios that only appear in 2025).
+				const yearMeasures = measures.filter( ( m ) => /_(20\d{2})$/.test( m ) );
+				if ( yearMeasures.length >= 2 ) {
+					relevant = yearMeasures;
+				} else {
+					relevant = [ measures[ 0 ] ];
+				}
 			}
 
 			return rows.filter( ( row ) => {
