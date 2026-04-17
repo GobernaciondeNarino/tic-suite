@@ -89,6 +89,7 @@
 				}
 
 				this.configure( viz, payload, opts );
+				this.applyTimeline( viz, payload );
 				this.applyAxes( viz, payload, opts );
 				this.applyTooltip( viz, payload );
 				this.applyShape( viz );
@@ -184,23 +185,39 @@
 						.sum( measures[ 0 ] );
 					break;
 
-				case 'box_whisker':
-					viz
-						.data( data )
-						.groupBy( dims[ 0 ] )
-						.x( dims[ 0 ] )
-						.y( measures[ 0 ] );
-					break;
-
-				case 'priestley':
-					viz.groupBy( dims[ 0 ] );
-					if ( typeof viz.start === 'function' && dims[ 0 ] ) {
-						viz.start( dims[ 0 ] );
+				case 'priestley': {
+					// Priestley: horizontal bars spanning a time range.
+					// When the view has year-based measures (e.g. profesores_2024,
+					// profesores_2025), reshape to one row per entity with
+					// start = first year, end = last year, size = total.
+					const years = this.detectYears( measures );
+					if ( years.length >= 2 ) {
+						const firstY = String( Math.min( ...years ) );
+						const lastY  = String( Math.max( ...years ) );
+						const totalM = measures.find( ( m ) => /^total$/i.test( m ) ) || measures[ 0 ];
+						const pData  = ( data || [] ).map( ( row ) => Object.assign( {}, row, {
+							_start: firstY,
+							_end:   lastY,
+						} ) );
+						viz
+							.data( pData )
+							.groupBy( dims[ 0 ] );
+						this.safeCall( viz, 'start', '_start' );
+						this.safeCall( viz, 'end', '_end' );
+						if ( typeof viz.value === 'function' ) {
+							viz.value( totalM );
+						}
+					} else {
+						viz.data( data ).groupBy( dims[ 0 ] );
+						if ( typeof viz.start === 'function' && measures[ 0 ] ) {
+							viz.start( measures[ 0 ] );
+						}
+						if ( typeof viz.end === 'function' && measures[ 1 ] ) {
+							viz.end( measures[ 1 ] );
+						}
 					}
-					if ( typeof viz.end === 'function' && dims[ 1 ] ) {
-						viz.end( dims[ 1 ] );
-					}
 					break;
+				}
 
 				case 'network': {
 					const nodes = this.buildNodes( data, dims[ 0 ] );
@@ -224,18 +241,34 @@
 				}
 
 				case 'sankey': {
-					const nodes = this.buildNodes( data, dims[ 0 ] );
-					this.safeCall( viz, 'nodes', nodes );
-					this.safeCall( viz, 'links', mapping.links || view.edges || [] );
-					break;
-				}
-
-				case 'tree':
-					viz.groupBy( dims );
-					if ( measures[ 0 ] ) {
-						viz.sum( measures[ 0 ] );
+					// If the view has explicit edges, use those (network data).
+					const hasEdges = ( view.edges && view.edges.length > 0 )
+						|| ( mapping.links && mapping.links.length > 0 );
+					if ( hasEdges ) {
+						const nodes = this.buildNodes( data, dims[ 0 ] );
+						this.safeCall( viz, 'nodes', nodes );
+						this.safeCall( viz, 'links', mapping.links || view.edges || [] );
+					} else {
+						// Categorical data: synthesize a root → category flow.
+						// Each row becomes a leaf node; "Total" is the root.
+						const dim     = dims[ 0 ];
+						const measure = measures[ 0 ];
+						const nodes   = [ { id: 'Total' } ];
+						const links   = [];
+						( data || [] ).forEach( ( row ) => {
+							const label = String( row[ dim ] || '' );
+							const val   = Number( row[ measure ] ) || 0;
+							if ( ! label || val <= 0 ) {
+								return;
+							}
+							nodes.push( { id: label } );
+							links.push( { source: 'Total', target: label, value: val } );
+						} );
+						this.safeCall( viz, 'nodes', nodes );
+						this.safeCall( viz, 'links', links );
 					}
 					break;
+				}
 
 				case 'geomap': {
 					const joinField = mapping.join || dims[ 0 ] || 'municipio';
@@ -300,6 +333,94 @@
 		 * Apply X / Y axis titles. Skips chart types that have no axes
 		 * (pie, donut, treemap, geomap, network, rings, sankey, tree).
 		 */
+		// ==============================================================
+		// Timeline (d3plus .time() scrubber)
+		// ==============================================================
+
+		/**
+		 * If the view has year-suffixed measures (e.g. proyectos_2024,
+		 * proyectos_2025) and the chart type is bar / pie / donut /
+		 * treemap / geomap, reshape to long format with a `_year` column
+		 * and call `.time("_year")`. d3plus then renders a Timeline
+		 * scrubber at the bottom.
+		 *
+		 * We skip stacked_bar / stacked_area because their own reshape
+		 * already handles the years as stacked series. Also skip line/area
+		 * where the X axis IS the time axis already.
+		 */
+		applyTimeline( viz, payload ) {
+			if ( typeof viz.time !== 'function' ) {
+				return;
+			}
+			const { chart, view } = payload;
+			const SKIP = [ 'stacked_bar', 'stacked_area', 'line', 'area', 'priestley', 'sankey', 'network', 'rings' ];
+			if ( SKIP.includes( chart.key ) ) {
+				return;
+			}
+			const measures = view.measures || [];
+			const years    = this.detectYears( measures );
+			if ( years.length < 2 ) {
+				return;
+			}
+
+			// Reshape: for each row × year, emit one long-format row.
+			const dims    = view.dimensions || [];
+			const rawData = viz._data || payload.data || [];
+			const long    = [];
+			const yearMeasures = measures.filter( ( m ) => /_(20\d{2})$/.test( m ) );
+			const baseName     = yearMeasures[ 0 ].replace( /_(20\d{2})$/, '' );
+
+			( rawData.length ? rawData : ( payload.data || [] ) ).forEach( ( row ) => {
+				years.forEach( ( y ) => {
+					const col = yearMeasures.find( ( m ) => m.endsWith( '_' + y ) );
+					if ( ! col ) {
+						return;
+					}
+					long.push( Object.assign( {}, row, {
+						_year:  String( y ),
+						_value: Number( row[ col ] ) || 0,
+					} ) );
+				} );
+			} );
+
+			if ( long.length ) {
+				viz.data( long );
+				viz.time( '_year' );
+				viz.timeline( true );
+
+				// Update groupBy / x / y to use the reshaped columns.
+				if ( typeof viz.y === 'function' && typeof viz.x === 'function' ) {
+					viz.x( dims[ 0 ] || '_year' );
+					viz.y( '_value' );
+					viz.groupBy( dims[ 0 ] || '_year' );
+				}
+				if ( typeof viz.value === 'function' && [ 'pie', 'donut' ].includes( chart.key ) ) {
+					viz.value( '_value' );
+				}
+				if ( typeof viz.sum === 'function' && chart.key === 'treemap' ) {
+					viz.sum( '_value' );
+				}
+			}
+		},
+
+		/**
+		 * Extract year numbers from measure names matching `*_YYYY` pattern.
+		 */
+		detectYears( measures ) {
+			const years = new Set();
+			( measures || [] ).forEach( ( m ) => {
+				const match = String( m ).match( /_(20\d{2})$/ );
+				if ( match ) {
+					years.add( Number( match[ 1 ] ) );
+				}
+			} );
+			return Array.from( years ).sort();
+		},
+
+		// ==============================================================
+		// Axes
+		// ==============================================================
+
 		applyAxes( viz, payload, opts ) {
 			if ( typeof viz.xConfig !== 'function' || typeof viz.yConfig !== 'function' ) {
 				return;
