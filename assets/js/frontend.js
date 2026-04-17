@@ -243,7 +243,7 @@
 		switch ( chart.key ) {
 			case 'stacked_bar':
 			case 'stacked_area': {
-				const stackable = measures.filter( ( m ) => ! /^(total|pct_|participacion|cobertura)/i.test( m ) );
+				const stackable = measures.filter( ( m ) => ! /^(total|pct_|participacion|cobertura)|(_pct|_total)$/i.test( m ) );
 				const ms = stackable.length >= 2 ? stackable : measures.slice( 0, 3 );
 				return ms.map( ( m ) => ( { label: humanize( m ) } ) );
 			}

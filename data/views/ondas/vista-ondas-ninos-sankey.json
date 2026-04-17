@@ -1,0 +1,191 @@
+{
+  "id": "ondas_ninos_sankey",
+  "name": "Ondas - Niños: Género · Étnico · Estrato (Sankey)",
+  "description": "Diagrama Sankey de la distribución de niños Ondas 2025 por Género, Grupo Étnico y Estrato.",
+  "category": "network",
+  "dimensions": [
+    "id"
+  ],
+  "measures": [
+    "ninos"
+  ],
+  "data": [
+    {
+      "id": "Total",
+      "ninos": 7114
+    },
+    {
+      "id": "Género: Femenino",
+      "ninos": 3750
+    },
+    {
+      "id": "Género: Masculino",
+      "ninos": 3292
+    },
+    {
+      "id": "Género: Sin dato",
+      "ninos": 67
+    },
+    {
+      "id": "Género: Otro / No binario",
+      "ninos": 5
+    },
+    {
+      "id": "Género",
+      "ninos": 7114
+    },
+    {
+      "id": "Grupo Étnico: Ninguno",
+      "ninos": 5065
+    },
+    {
+      "id": "Grupo Étnico: Indígena",
+      "ninos": 965
+    },
+    {
+      "id": "Grupo Étnico: Pastos",
+      "ninos": 498
+    },
+    {
+      "id": "Grupo Étnico: Afrodescendiente",
+      "ninos": 343
+    },
+    {
+      "id": "Grupo Étnico: Sin dato",
+      "ninos": 188
+    },
+    {
+      "id": "Grupo Étnico: Mestizo",
+      "ninos": 46
+    },
+    {
+      "id": "Grupo Étnico: Otro",
+      "ninos": 9
+    },
+    {
+      "id": "Grupo Étnico",
+      "ninos": 7114
+    },
+    {
+      "id": "Estrato: 1",
+      "ninos": 6096
+    },
+    {
+      "id": "Estrato: Sin dato",
+      "ninos": 860
+    },
+    {
+      "id": "Estrato: 2",
+      "ninos": 136
+    },
+    {
+      "id": "Estrato: 3",
+      "ninos": 20
+    },
+    {
+      "id": "Estrato: 4",
+      "ninos": 2
+    },
+    {
+      "id": "Estrato",
+      "ninos": 7114
+    }
+  ],
+  "edges": [
+    {
+      "source": "Género",
+      "target": "Género: Femenino",
+      "value": 3750
+    },
+    {
+      "source": "Género",
+      "target": "Género: Masculino",
+      "value": 3292
+    },
+    {
+      "source": "Género",
+      "target": "Género: Sin dato",
+      "value": 67
+    },
+    {
+      "source": "Género",
+      "target": "Género: Otro / No binario",
+      "value": 5
+    },
+    {
+      "source": "Total",
+      "target": "Género",
+      "value": 7114
+    },
+    {
+      "source": "Grupo Étnico",
+      "target": "Grupo Étnico: Ninguno",
+      "value": 5065
+    },
+    {
+      "source": "Grupo Étnico",
+      "target": "Grupo Étnico: Indígena",
+      "value": 965
+    },
+    {
+      "source": "Grupo Étnico",
+      "target": "Grupo Étnico: Pastos",
+      "value": 498
+    },
+    {
+      "source": "Grupo Étnico",
+      "target": "Grupo Étnico: Afrodescendiente",
+      "value": 343
+    },
+    {
+      "source": "Grupo Étnico",
+      "target": "Grupo Étnico: Sin dato",
+      "value": 188
+    },
+    {
+      "source": "Grupo Étnico",
+      "target": "Grupo Étnico: Mestizo",
+      "value": 46
+    },
+    {
+      "source": "Grupo Étnico",
+      "target": "Grupo Étnico: Otro",
+      "value": 9
+    },
+    {
+      "source": "Total",
+      "target": "Grupo Étnico",
+      "value": 7114
+    },
+    {
+      "source": "Estrato",
+      "target": "Estrato: 1",
+      "value": 6096
+    },
+    {
+      "source": "Estrato",
+      "target": "Estrato: Sin dato",
+      "value": 860
+    },
+    {
+      "source": "Estrato",
+      "target": "Estrato: 2",
+      "value": 136
+    },
+    {
+      "source": "Estrato",
+      "target": "Estrato: 3",
+      "value": 20
+    },
+    {
+      "source": "Estrato",
+      "target": "Estrato: 4",
+      "value": 2
+    },
+    {
+      "source": "Total",
+      "target": "Estrato",
+      "value": 7114
+    }
+  ]
+}

@@ -66,9 +66,9 @@ class TSG_Chart_Types {
 				'label'        => __( 'Líneas', 'tic-suite-graficos' ),
 				'icon'         => 'chart-line',
 				'd3plus_class' => 'LinePlot',
-				'categories'   => [ 'temporal', 'statistical', 'categorical' ],
-				'requires'     => [ 'dimensions' => 1, 'measures' => 1 ],
-				'description'  => __( 'Tendencias en el tiempo.', 'tic-suite-graficos' ),
+				'categories'   => [ 'temporal', 'statistical', 'categorical', 'geographic' ],
+				'requires'     => [ 'dimensions' => 1, 'measures' => 2 ],
+				'description'  => __( 'Evolución entre vigencias o series.', 'tic-suite-graficos' ),
 			],
 			'area'        => [
 				'label'        => __( 'Área', 'tic-suite-graficos' ),

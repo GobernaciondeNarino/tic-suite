@@ -145,20 +145,39 @@
 				}
 
 				case 'line':
-					viz
-						.data( data )
-						.groupBy( dims[ 1 ] || dims[ 0 ] )
-						.x( dims[ 0 ] )
-						.y( measures[ 0 ] );
+				case 'area': {
+					// When the view has year-suffixed measures, reshape to
+					// long format with _year on X and one line per entity.
+					const yearCols = this.detectYears( measures );
+					if ( yearCols.length >= 2 ) {
+						const yearMeasures = measures.filter( ( m ) => /_(20\d{2})$/.test( m ) );
+						const long = [];
+						( data || [] ).forEach( ( row ) => {
+							yearCols.forEach( ( y ) => {
+								const col = yearMeasures.find( ( m ) => m.endsWith( '_' + y ) );
+								if ( ! col ) {
+									return;
+								}
+								long.push( Object.assign( {}, row, {
+									_year:  String( y ),
+									_value: Number( row[ col ] ) || 0,
+								} ) );
+							} );
+						} );
+						viz
+							.data( long )
+							.groupBy( dims[ 0 ] )
+							.x( '_year' )
+							.y( '_value' );
+					} else {
+						viz
+							.data( data )
+							.groupBy( dims[ 1 ] || dims[ 0 ] )
+							.x( dims[ 0 ] )
+							.y( measures[ 0 ] );
+					}
 					break;
-
-				case 'area':
-					viz
-						.data( data )
-						.groupBy( dims[ 1 ] || dims[ 0 ] )
-						.x( dims[ 0 ] )
-						.y( measures[ 0 ] );
-					break;
+				}
 
 				case 'stacked_area': {
 					const long = this.reshapeWideToLong( data, dims, measures );
@@ -510,7 +529,7 @@
 		 * stacked. Pick the most common unit hint among them.
 		 */
 		measureGroupTitle( measures ) {
-			const filtered = ( measures || [] ).filter( ( m ) => ! /^(total|pct_|participacion|cobertura)/i.test( m ) );
+			const filtered = ( measures || [] ).filter( ( m ) => ! /^(total|pct_|participacion|cobertura)|(_pct|_total)$/i.test( m ) );
 			const sample   = filtered.length ? filtered[ 0 ] : ( measures || [] )[ 0 ] || '';
 			if ( /cop|inversion/i.test( sample ) ) {
 				return 'Valor (Millones COP)';
@@ -744,7 +763,7 @@
 			let relevant;
 			if ( chartKey === 'stacked_bar' || chartKey === 'stacked_area' ) {
 				const stackable = measures.filter(
-					( m ) => ! /^(total|pct_|participacion|cobertura)/i.test( m )
+					( m ) => ! /^(total|pct_|participacion|cobertura)|(_pct|_total)$/i.test( m )
 				);
 				relevant = stackable.length >= 2 ? stackable : measures.slice( 0, 3 );
 			} else {
@@ -761,7 +780,7 @@
 
 		reshapeWideToLong( data, dims, measures ) {
 			const stackable = ( measures || [] ).filter(
-				( m ) => ! /^(total|pct_|participacion|cobertura)/i.test( m )
+				( m ) => ! /^(total|pct_|participacion|cobertura)|(_pct|_total)$/i.test( m )
 			);
 			const useMeasures = stackable.length >= 2 ? stackable : ( measures || [] ).slice( 0, 3 );
 			const out = [];

@@ -307,6 +307,51 @@ def regen_profesores_areas(totales: dict) -> None:
 # Main
 # ----------------------------------------------------------------------
 
+def regen_ninos_sankey(totales: dict) -> None:
+    """Combined view for a multi-level Sankey: Género + Étnico + Estrato.
+
+    Structure:  Total → [Género, Grupo Étnico, Estrato] → leaves
+    """
+    distributions = [
+        ('Género',       totales.get('distribucion_genero_ninos', {})),
+        ('Grupo Étnico', totales.get('distribucion_etnica_ninos', {})),
+        ('Estrato',      totales.get('distribucion_estrato_ninos', {})),
+    ]
+    nodes: list[dict] = [{'id': 'Total'}]
+    edges: list[dict] = []
+    data: list[dict]  = []
+
+    total_ninos = 0
+    for dim_label, items in distributions:
+        nodes.append({'id': dim_label})
+        dim_total = 0
+        for cat, count in (items or {}).items():
+            n = _i(count)
+            if n <= 0:
+                continue
+            cat_id = f'{dim_label}: {cat}'
+            nodes.append({'id': cat_id})
+            edges.append({'source': dim_label, 'target': cat_id, 'value': n})
+            data.append({'id': cat_id, 'ninos': n})
+            dim_total += n
+        edges.append({'source': 'Total', 'target': dim_label, 'value': dim_total})
+        data.append({'id': dim_label, 'ninos': dim_total})
+        total_ninos = max(total_ninos, dim_total)
+
+    data.insert(0, {'id': 'Total', 'ninos': total_ninos})
+
+    write_view('vista-ondas-ninos-sankey.json', {
+        'id':          'ondas_ninos_sankey',
+        'name':        'Ondas - Niños: Género · Étnico · Estrato (Sankey)',
+        'description': 'Diagrama Sankey de la distribución de niños Ondas 2025 por Género, Grupo Étnico y Estrato.',
+        'category':    'network',
+        'dimensions':  ['id'],
+        'measures':    ['ninos'],
+        'data':        data,
+        'edges':       edges,
+    })
+
+
 def main() -> None:
     master = load_master()
     n_muni = len(master['municipios'])
@@ -323,6 +368,7 @@ def main() -> None:
     regen_ninos_grado(totales)
     regen_profesores_genero(totales)
     regen_profesores_areas(totales)
+    regen_ninos_sankey(totales)
     print('Done.')
 
 
