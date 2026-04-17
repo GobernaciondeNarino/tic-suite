@@ -4,7 +4,7 @@ Tags: charts, d3plus, shortcode, dataviz, tic-suite
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,9 @@ TIC Suite · Gráficos convierte cualquier vista JSON registrada en un gráfico 
 * `uninstall.php` limpia las opciones al desinstalar.
 
 == Changelog ==
+
+= 1.6.1 =
+* Hotfix de producción: la condición de enqueue de assets admin todavía buscaba el slug viejo `tic-suite-graficos` en `$hook` — después de renombrar el menú a `tic-suite` ningún CSS/JS admin se cargaba y las páginas se veían sin estilos ni interactividad. Ahora la condición chequea `tic-suite` como substring, cubriendo todos los slugs del menú (`toplevel_page_tic-suite`, `tic-suite_page_tic-suite-nacion`, `…-ondas`, `…-shortcodes`, `…-datos`).
 
 = 1.6.0 =
 * Plugin renombrado a "TIC Suite" (antes "TIC Suite · Gráficos"). Aparece así en el menú lateral de WordPress.

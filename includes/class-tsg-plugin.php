@@ -214,7 +214,11 @@ final class TSG_Plugin {
 	 * @param string $hook Current admin screen hook.
 	 */
 	public function enqueue_admin_assets( string $hook ): void {
-		if ( strpos( $hook, 'tic-suite-graficos' ) === false ) {
+		// WP uses hooks like "toplevel_page_tic-suite",
+		// "tic-suite_page_tic-suite-ondas", "tic-suite_page_tic-suite-shortcodes",
+		// "tic-suite_page_tic-suite-datos". Any TIC Suite screen contains
+		// the `tic-suite` substring.
+		if ( strpos( $hook, 'tic-suite' ) === false ) {
 			return;
 		}
 
