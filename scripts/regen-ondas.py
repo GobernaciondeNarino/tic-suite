@@ -271,13 +271,24 @@ def regen_ninos_sankey(totales: dict) -> None:
     deduped = [{'source': s, 'target': t, 'value': v}
                for (s, t), v in edge_map.items()]
 
-    # Build node data: each unique id gets summed incoming value.
-    node_vals: dict[str, int] = {}
+    # Build node data.
+    # - Pure roots (only source, never target): use the max single
+    #   outgoing edge value — NOT the sum, because each outgoing edge
+    #   represents the same population distributed differently.
+    # - All other nodes: sum of incoming edges.
+    outgoing: dict[str, list[int]] = {}
+    incoming: dict[str, int] = {}
     for s, t, v in edges_raw:
-        node_vals[s] = node_vals.get(s, 0)
-        node_vals[t] = node_vals.get(t, 0) + v
-    data_rows = [{'id': nid, 'cantidad': val}
-                 for nid, val in sorted(node_vals.items())]
+        outgoing.setdefault(s, []).append(v)
+        incoming[t] = incoming.get(t, 0) + v
+    all_ids = set(outgoing) | set(incoming)
+    data_rows = []
+    for nid in sorted(all_ids):
+        if nid in incoming:
+            val = incoming[nid]
+        else:
+            val = max(outgoing.get(nid, [0]))
+        data_rows.append({'id': nid, 'cantidad': val})
 
     write_view('vista-ondas-ninos-sankey.json', {
         'id':          'ondas_ninos_sankey',
